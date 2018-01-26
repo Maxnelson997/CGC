@@ -16,6 +16,7 @@
 		7998F3A5201BCA51007D9C0E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3A4201BCA51007D9C0E /* Extensions.swift */; };
 		7998F3A7201BCC44007D9C0E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3A6201BCC44007D9C0E /* SettingsController.swift */; };
 		7998F3A9201BCD50007D9C0E /* AAGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3A8201BCD50007D9C0E /* AAGradient.swift */; };
+		7998F3AB201BD371007D9C0E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3AA201BD371007D9C0E /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		7998F3A4201BCA51007D9C0E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7998F3A6201BCC44007D9C0E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		7998F3A8201BCD50007D9C0E /* AAGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AAGradient.swift; sourceTree = "<group>"; };
+		7998F3AA201BD371007D9C0E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				7998F3A4201BCA51007D9C0E /* Extensions.swift */,
 				7998F3A6201BCC44007D9C0E /* SettingsController.swift */,
 				7998F3A8201BCD50007D9C0E /* AAGradient.swift */,
+				7998F3AA201BD371007D9C0E /* Helpers.swift */,
 			);
 			path = CGC;
 			sourceTree = "<group>";
@@ -150,6 +153,7 @@
 				7998F3A7201BCC44007D9C0E /* SettingsController.swift in Sources */,
 				7998F3A5201BCA51007D9C0E /* Extensions.swift in Sources */,
 				7998F3A9201BCD50007D9C0E /* AAGradient.swift in Sources */,
+				7998F3AB201BD371007D9C0E /* Helpers.swift in Sources */,
 				7998F390201BC960007D9C0E /* SemestersController.swift in Sources */,
 				7998F396201BC960007D9C0E /* CGC.xcdatamodeld in Sources */,
 				7998F3A3201BC9AA007D9C0E /* MainTabBarController.swift in Sources */,
