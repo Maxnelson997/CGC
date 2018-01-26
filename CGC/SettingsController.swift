@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SettingsController.swift
 //  CGC
 //
 //  Created by Max Nelson on 1/26/18.
@@ -8,18 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class SettingsController: UITableViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        
+        view.backgroundColor = .yellow
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
 
 }
 
