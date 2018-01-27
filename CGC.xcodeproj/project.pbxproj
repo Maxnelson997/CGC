@@ -17,6 +17,9 @@
 		7998F3A7201BCC44007D9C0E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3A6201BCC44007D9C0E /* SettingsController.swift */; };
 		7998F3A9201BCD50007D9C0E /* AAGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3A8201BCD50007D9C0E /* AAGradient.swift */; };
 		7998F3AB201BD371007D9C0E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3AA201BD371007D9C0E /* Helpers.swift */; };
+		7998F3AD201C0251007D9C0E /* SemesterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3AC201C0251007D9C0E /* SemesterCell.swift */; };
+		7998F3AF201C10A8007D9C0E /* AddSemesterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3AE201C10A8007D9C0E /* AddSemesterController.swift */; };
+		7998F3B1201C196F007D9C0E /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3B0201C196F007D9C0E /* UIViewController+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +35,9 @@
 		7998F3A6201BCC44007D9C0E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		7998F3A8201BCD50007D9C0E /* AAGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AAGradient.swift; sourceTree = "<group>"; };
 		7998F3AA201BD371007D9C0E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		7998F3AC201C0251007D9C0E /* SemesterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterCell.swift; sourceTree = "<group>"; };
+		7998F3AE201C10A8007D9C0E /* AddSemesterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSemesterController.swift; sourceTree = "<group>"; };
+		7998F3B0201C196F007D9C0E /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,9 @@
 				7998F3A6201BCC44007D9C0E /* SettingsController.swift */,
 				7998F3A8201BCD50007D9C0E /* AAGradient.swift */,
 				7998F3AA201BD371007D9C0E /* Helpers.swift */,
+				7998F3AC201C0251007D9C0E /* SemesterCell.swift */,
+				7998F3AE201C10A8007D9C0E /* AddSemesterController.swift */,
+				7998F3B0201C196F007D9C0E /* UIViewController+Helpers.swift */,
 			);
 			path = CGC;
 			sourceTree = "<group>";
@@ -152,10 +161,13 @@
 			files = (
 				7998F3A7201BCC44007D9C0E /* SettingsController.swift in Sources */,
 				7998F3A5201BCA51007D9C0E /* Extensions.swift in Sources */,
+				7998F3AD201C0251007D9C0E /* SemesterCell.swift in Sources */,
+				7998F3AF201C10A8007D9C0E /* AddSemesterController.swift in Sources */,
 				7998F3A9201BCD50007D9C0E /* AAGradient.swift in Sources */,
 				7998F3AB201BD371007D9C0E /* Helpers.swift in Sources */,
 				7998F390201BC960007D9C0E /* SemestersController.swift in Sources */,
 				7998F396201BC960007D9C0E /* CGC.xcdatamodeld in Sources */,
+				7998F3B1201C196F007D9C0E /* UIViewController+Helpers.swift in Sources */,
 				7998F3A3201BC9AA007D9C0E /* MainTabBarController.swift in Sources */,
 				7998F38E201BC960007D9C0E /* AppDelegate.swift in Sources */,
 			);

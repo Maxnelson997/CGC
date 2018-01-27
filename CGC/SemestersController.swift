@@ -8,7 +8,17 @@
 
 import UIKit
 
+struct Semester {
+    let icon:UIImage
+    let title:String
+    let GPALabel:String
+    let creditHours:String
+}
+
 class SemestersController: UITableViewController {
+    
+    var semesters = [Semester]()
+    var cellId:String = "cellId"
     
     
     let userInfoLabel:TabbedLabel = {
@@ -36,29 +46,38 @@ class SemestersController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .lightBlue
+        semesters = [
+            Semester(icon: UIImage(), title: "Fall 2017", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
+            Semester(icon: UIImage(), title: "Fall 2017", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
+            Semester(icon: UIImage(), title: "Fall 2017", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
+            Semester(icon: UIImage(), title: "Fall 2017", GPALabel: "3.45 GPA", creditHours: "15 credit hours")
+        ]
+        
+        view.backgroundColor = .clear
         navigationItem.title = "Semesters"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(self.handleEdit))
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(self.handleAdd))
-        setupUI()
         
+        tableView.register(SemesterCell.self, forCellReuseIdentifier: cellId)
+        tableView.isSpringLoaded = true
         tableView.delegate = self
-    
+        tableView.dataSource = self
     }
     
-    private func setupUI() {
-        let backgroundGradient = AAGradient(frame: UIScreen.main.bounds, colors: [.lightBlue, .white], locations: [0.1, 1])
-        view.addSubview(backgroundGradient)
-        
-    }
+
+    var isEditingSemesters:Bool = false
     
     //actions
     @objc func handleEdit() {
         print("trying to edit")
+        isEditingSemesters = !isEditingSemesters
+        tableView.reloadData()
     }
     
     @objc func handleAdd() {
-        print("trying to add")
+        let ASC = AddSemesterController()
+        let ASC_NAV = CustomNavController(rootViewController: ASC)
+        present(ASC_NAV, animated: true, completion: nil)
     }
     
     //tableview
@@ -73,6 +92,37 @@ class SemestersController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 100
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return semesters.count
+    }
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        //change later to include disabled cells section.
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 70
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SemesterCell
+        cell.tag = indexPath.item
+        cell.semester = semesters[indexPath.item]
+        cell.backgroundColor = .clear
+        cell.selectionStyle = .none
+        cell.isEditingCell = isEditingSemesters
+        return cell
+    }
+
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        self.tableView.beginUpdates()
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        self.tableView.endUpdates()
     }
     
 }
