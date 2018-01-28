@@ -14,7 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
     
@@ -28,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         window?.rootViewController = tab
-        let backgroundGradient = AAGradient(frame: UIScreen.main.bounds, colors: [.lighterBlue, .white], locations: [-0.5, 1])
+        let backgroundGradient = AAGradientView(frame: UIScreen.main.bounds, colors: [.lighterBlue, .white], locations: [-0.5, 1])
         window?.insertSubview(backgroundGradient, at: 0)
         return true
     }

@@ -43,7 +43,7 @@ class SemesterCell: UITableViewCell {
     var semester:Semester? {
         didSet {
             guard let s = semester else { return }
-            icon.image = s.icon
+            icon.setImage(s.icon, for: .normal)
             sel = s.selected
             self.selectedView.backgroundColor = .clear
             self.editButton.backgroundColor = .clear
@@ -55,14 +55,16 @@ class SemesterCell: UITableViewCell {
         }
     }
     
-    let icon:UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleToFill
-        iv.layer.masksToBounds = true
-        iv.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        iv.layer.cornerRadius = 15
-        return iv
+    let icon:UIButton = {
+        let button = UIButton()
+        button.imageEdgeInsets = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
+        button.layer.masksToBounds = true
+        button.isUserInteractionEnabled = false
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        button.layer.cornerRadius = 15
+        return button
     }()
+    
     
     let infoLabel:TabbedLabel = {
         let label = TabbedLabel()

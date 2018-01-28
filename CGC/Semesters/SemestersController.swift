@@ -15,13 +15,11 @@ struct Semester {
     let creditHours:String
     var selected:Bool = false
     
-    init(
-    icon:UIImage,
-    title:String,
-    GPALabel:String,
-    creditHours:String
-    ) {
-        self.icon = icon; self.title = title; self.GPALabel = GPALabel; self.creditHours = creditHours
+    init(icon:UIImage, title:String, GPALabel:String, creditHours:String) {
+        self.icon = icon
+        self.title = title
+        self.GPALabel = GPALabel
+        self.creditHours = creditHours
     }
 }
 
@@ -114,13 +112,8 @@ class SemestersController: UITableViewController, IndexDelegate, AddSemesterDele
         super.viewDidLoad()
         
         semesters = [
-            Semester(icon: UIImage(), title: "ONE", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
-            Semester(icon: UIImage(), title: "TWO", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
-            Semester(icon: UIImage(), title: "THREE", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
-            Semester(icon: UIImage(), title: "FOUR", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
-            Semester(icon: UIImage(), title: "FIVE", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
-            Semester(icon: UIImage(), title: "SIX", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
-            Semester(icon: UIImage(), title: "SEVEN", GPALabel: "3.45 GPA", creditHours: "15 credit hours")
+            Semester(icon: #imageLiteral(resourceName: "football"), title: "ONE", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
+            Semester(icon: #imageLiteral(resourceName: "id-card"), title: "TWO", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
         ]
         
         view.backgroundColor = .clear

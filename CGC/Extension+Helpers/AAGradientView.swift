@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AAGradient:UIView {
+class AAGradientView:UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         phaseTwo()

@@ -8,87 +8,45 @@
 
 import UIKit
 
-class AddSemesterController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+protocol SelectIconDelegate {
+    func chooseIcon(image:UIImage)
+}
+
+class AddSemesterController: UIViewController, SelectIconDelegate {
+    
+    //pickerview data
+    var season = "Spring"
+    var year = "2018"
     
     var seasons:[String] = ["Spring", "Sum", "Fall", "Winter"]
     
     var years:[String] = {
         var s = [String]()
+        s.append("2000")
+        s.append("2018")
         for i in 2001 ..< 2041 {
-            s.append(String(describing: i))
+            if i != 2018 {
+                s.append(String(describing: i))
+            }
         }
         return s
     }()
     
-    override func viewWillAppear(_ animated: Bool) {
-        view.backgroundColor = .white
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        if component == 0 {
-            return seasons.count
-        }
-        return years.count
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 2
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        var text = years[row]
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.alignment = .center
-        if component == 0 {
-            text = " " + seasons[row]
-            paragraphStyle.alignment = .left
-        }
-        return NSAttributedString(string: text, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white, NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 16)!, NSAttributedStringKey.paragraphStyle: paragraphStyle])
-    }
-    
-    var season = "Spring"
-    var year = "2001"
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if component == 0 {
-            season = seasons[row]
-        } else {
-            year = years[row]
-        }
-        let title = NSMutableAttributedString(string: season, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42) ?? UIFont.systemFont(ofSize: 42), NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
-        let info = NSMutableAttributedString(string: "\n\(year)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
-        title.append(info)
-        largeNameLabel.attributedText = title
-        nameTextField.text = "\(season) \(year)"
-        nameTextField.attributedPlaceholder = NSAttributedString(string: "\(season) \(year)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 14)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.6, alpha: 1)])
-    }
-    
     var delegate:AddSemesterDelegate?
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.title = "New Semester"
-        setupCancelButton()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(handleSave))
-        setupUI()
-        pickerView.dataSource = self
-        pickerView.delegate = self
-        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))
-    }
-    
-    @objc func dismissTextField() {
-        nameTextField.resignFirstResponder()
-    }
 
+    //components
     let iconLabel = TitleLabel(text: "Icon", size: 18, alignment: .left)
     
-    let iconImageView:UIImageView = {
-        let iv = UIImageView()
-        iv.contentMode = .scaleToFill
-        iv.layer.masksToBounds = true
-        iv.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        iv.layer.cornerRadius = 15
-        return iv
+    lazy var iconImageView:UIButton = {
+        let button = UIButton()
+        button.addTarget(self, action: #selector(handleAddIcon), for: .touchUpInside)
+        button.setImage(#imageLiteral(resourceName: "addIcon").withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = .white
+        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        button.layer.masksToBounds = true
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        button.layer.cornerRadius = 15
+        return button
     }()
     
     let largeNameLabel:TabbedRightLabel = {
@@ -103,6 +61,7 @@ class AddSemesterController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }()
     
     let nameLabel = TitleLabel(text: "Name", size: 18, alignment: .left)
+    
     let nameTextField:UITextField = {
         let tf = UITextField()
         tf.backgroundColor = .blackPointEight
@@ -116,7 +75,9 @@ class AddSemesterController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }()
     
     let seasonLabel = TitleLabel(text: "Season", size: 18, alignment: .left)
+    
     let yearLabel = TitleLabel(text: "Year", size: 18, alignment: .center)
+    
     let pickerView:UIPickerView = {
         let p = UIPickerView()
         p.backgroundColor = .blackPointEight
@@ -124,6 +85,22 @@ class AddSemesterController: UIViewController, UIPickerViewDelegate, UIPickerVie
         p.layer.masksToBounds = true
         return p
     }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationItem.title = "New Semester"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(handleSave))
+        setupCancelButton()
+        setupUI()
+        pickerView.dataSource = self
+        pickerView.delegate = self
+        view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        view.backgroundColor = .white
+    }
     
     fileprivate func setupUI() {
         view.addSubview(iconLabel)
@@ -151,19 +128,30 @@ class AddSemesterController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     @objc fileprivate func handleSave() {
         var semesterImage = UIImage()
-        var semesterTitle = "New Semester"
-        if let iconImage = iconImageView.image {
+        if let iconImage = iconImageView.imageView?.image {
             semesterImage = iconImage
         }
-        if let titleText = nameTextField.text {
-            semesterTitle = titleText
-        }
-        let newSemester = Semester(icon: semesterImage, title: semesterTitle, GPALabel: "4.0?", creditHours: "2?")
+        let newSemester = Semester(icon: semesterImage, title: "\(season) \(year)", GPALabel: "4.0?", creditHours: "2?")
         delegate?.addSemester(semester: newSemester)
         dismiss(animated: true, completion: nil)
     }
+    
+    @objc func handleAddIcon() {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
+        let SIC = SelectIconController(collectionViewLayout: layout)
+        SIC.delegate = self
+        let SIC_NAV = CustomNavController(rootViewController: SIC)
+        present(SIC_NAV, animated: true, completion: nil)
+    }
+    
+    func chooseIcon(image: UIImage) {
+        iconImageView.setImage(image, for: .normal)
+    }
+    
+    @objc func dismissTextField() {
+        nameTextField.resignFirstResponder()
+    }
 
-    
-    
     
 }

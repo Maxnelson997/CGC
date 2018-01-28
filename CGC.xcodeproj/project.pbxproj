@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79106E77201D8EFD003F9729 /* AddSemesterController+PickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79106E76201D8EFD003F9729 /* AddSemesterController+PickerViewDelegate.swift */; };
+		79106E7C201D92ED003F9729 /* AddSemesterController+ImagePickerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79106E7B201D92ED003F9729 /* AddSemesterController+ImagePickerDelegate.swift */; };
+		79106E7E201D93BD003F9729 /* SelectIconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79106E7D201D93BD003F9729 /* SelectIconController.swift */; };
 		7998F38E201BC960007D9C0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F38D201BC960007D9C0E /* AppDelegate.swift */; };
 		7998F390201BC960007D9C0E /* SemestersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F38F201BC960007D9C0E /* SemestersController.swift */; };
 		7998F396201BC960007D9C0E /* CGC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7998F394201BC960007D9C0E /* CGC.xcdatamodeld */; };
@@ -15,14 +18,17 @@
 		7998F3A3201BC9AA007D9C0E /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3A2201BC9AA007D9C0E /* MainTabBarController.swift */; };
 		7998F3A5201BCA51007D9C0E /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3A4201BCA51007D9C0E /* Extensions.swift */; };
 		7998F3A7201BCC44007D9C0E /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3A6201BCC44007D9C0E /* SettingsController.swift */; };
-		7998F3A9201BCD50007D9C0E /* AAGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3A8201BCD50007D9C0E /* AAGradient.swift */; };
-		7998F3AB201BD371007D9C0E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3AA201BD371007D9C0E /* Helpers.swift */; };
+		7998F3A9201BCD50007D9C0E /* AAGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3A8201BCD50007D9C0E /* AAGradientView.swift */; };
+		7998F3AB201BD371007D9C0E /* UIView+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3AA201BD371007D9C0E /* UIView+Helpers.swift */; };
 		7998F3AD201C0251007D9C0E /* SemesterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3AC201C0251007D9C0E /* SemesterCell.swift */; };
 		7998F3AF201C10A8007D9C0E /* AddSemesterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3AE201C10A8007D9C0E /* AddSemesterController.swift */; };
 		7998F3B1201C196F007D9C0E /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3B0201C196F007D9C0E /* UIViewController+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		79106E76201D8EFD003F9729 /* AddSemesterController+PickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddSemesterController+PickerViewDelegate.swift"; sourceTree = "<group>"; };
+		79106E7B201D92ED003F9729 /* AddSemesterController+ImagePickerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddSemesterController+ImagePickerDelegate.swift"; sourceTree = "<group>"; };
+		79106E7D201D93BD003F9729 /* SelectIconController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectIconController.swift; sourceTree = "<group>"; };
 		7998F38A201BC960007D9C0E /* CGC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7998F38D201BC960007D9C0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7998F38F201BC960007D9C0E /* SemestersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemestersController.swift; sourceTree = "<group>"; };
@@ -33,8 +39,8 @@
 		7998F3A2201BC9AA007D9C0E /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		7998F3A4201BCA51007D9C0E /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		7998F3A6201BCC44007D9C0E /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
-		7998F3A8201BCD50007D9C0E /* AAGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AAGradient.swift; sourceTree = "<group>"; };
-		7998F3AA201BD371007D9C0E /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		7998F3A8201BCD50007D9C0E /* AAGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AAGradientView.swift; sourceTree = "<group>"; };
+		7998F3AA201BD371007D9C0E /* UIView+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Helpers.swift"; sourceTree = "<group>"; };
 		7998F3AC201C0251007D9C0E /* SemesterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterCell.swift; sourceTree = "<group>"; };
 		7998F3AE201C10A8007D9C0E /* AddSemesterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSemesterController.swift; sourceTree = "<group>"; };
 		7998F3B0201C196F007D9C0E /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
@@ -51,6 +57,45 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		79106E75201D8EDF003F9729 /* AddSemester */ = {
+			isa = PBXGroup;
+			children = (
+				7998F3AE201C10A8007D9C0E /* AddSemesterController.swift */,
+				79106E76201D8EFD003F9729 /* AddSemesterController+PickerViewDelegate.swift */,
+				79106E7B201D92ED003F9729 /* AddSemesterController+ImagePickerDelegate.swift */,
+			);
+			path = AddSemester;
+			sourceTree = "<group>";
+		};
+		79106E78201D8FAB003F9729 /* Semesters */ = {
+			isa = PBXGroup;
+			children = (
+				79106E75201D8EDF003F9729 /* AddSemester */,
+				7998F3AC201C0251007D9C0E /* SemesterCell.swift */,
+				7998F38F201BC960007D9C0E /* SemestersController.swift */,
+			);
+			path = Semesters;
+			sourceTree = "<group>";
+		};
+		79106E79201D9017003F9729 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				7998F3A6201BCC44007D9C0E /* SettingsController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		79106E7A201D902A003F9729 /* Extension+Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7998F3A4201BCA51007D9C0E /* Extensions.swift */,
+				7998F3A8201BCD50007D9C0E /* AAGradientView.swift */,
+				7998F3AA201BD371007D9C0E /* UIView+Helpers.swift */,
+				7998F3B0201C196F007D9C0E /* UIViewController+Helpers.swift */,
+			);
+			path = "Extension+Helpers";
+			sourceTree = "<group>";
+		};
 		7998F381201BC960007D9C0E = {
 			isa = PBXGroup;
 			children = (
@@ -71,19 +116,15 @@
 			isa = PBXGroup;
 			children = (
 				7998F38D201BC960007D9C0E /* AppDelegate.swift */,
-				7998F38F201BC960007D9C0E /* SemestersController.swift */,
+				7998F3A2201BC9AA007D9C0E /* MainTabBarController.swift */,
+				79106E7D201D93BD003F9729 /* SelectIconController.swift */,
+				79106E78201D8FAB003F9729 /* Semesters */,
+				79106E79201D9017003F9729 /* Settings */,
+				79106E7A201D902A003F9729 /* Extension+Helpers */,
 				7998F397201BC960007D9C0E /* Assets.xcassets */,
 				7998F399201BC960007D9C0E /* LaunchScreen.storyboard */,
 				7998F39C201BC960007D9C0E /* Info.plist */,
 				7998F394201BC960007D9C0E /* CGC.xcdatamodeld */,
-				7998F3A2201BC9AA007D9C0E /* MainTabBarController.swift */,
-				7998F3A4201BCA51007D9C0E /* Extensions.swift */,
-				7998F3A6201BCC44007D9C0E /* SettingsController.swift */,
-				7998F3A8201BCD50007D9C0E /* AAGradient.swift */,
-				7998F3AA201BD371007D9C0E /* Helpers.swift */,
-				7998F3AC201C0251007D9C0E /* SemesterCell.swift */,
-				7998F3AE201C10A8007D9C0E /* AddSemesterController.swift */,
-				7998F3B0201C196F007D9C0E /* UIViewController+Helpers.swift */,
 			);
 			path = CGC;
 			sourceTree = "<group>";
@@ -160,15 +201,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				7998F3A7201BCC44007D9C0E /* SettingsController.swift in Sources */,
+				79106E77201D8EFD003F9729 /* AddSemesterController+PickerViewDelegate.swift in Sources */,
 				7998F3A5201BCA51007D9C0E /* Extensions.swift in Sources */,
 				7998F3AD201C0251007D9C0E /* SemesterCell.swift in Sources */,
 				7998F3AF201C10A8007D9C0E /* AddSemesterController.swift in Sources */,
-				7998F3A9201BCD50007D9C0E /* AAGradient.swift in Sources */,
-				7998F3AB201BD371007D9C0E /* Helpers.swift in Sources */,
+				7998F3A9201BCD50007D9C0E /* AAGradientView.swift in Sources */,
+				79106E7E201D93BD003F9729 /* SelectIconController.swift in Sources */,
+				7998F3AB201BD371007D9C0E /* UIView+Helpers.swift in Sources */,
 				7998F390201BC960007D9C0E /* SemestersController.swift in Sources */,
 				7998F396201BC960007D9C0E /* CGC.xcdatamodeld in Sources */,
 				7998F3B1201C196F007D9C0E /* UIViewController+Helpers.swift in Sources */,
 				7998F3A3201BC9AA007D9C0E /* MainTabBarController.swift in Sources */,
+				79106E7C201D92ED003F9729 /* AddSemesterController+ImagePickerDelegate.swift in Sources */,
 				7998F38E201BC960007D9C0E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
