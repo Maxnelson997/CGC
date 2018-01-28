@@ -17,9 +17,7 @@ class AddSemesterController: UIViewController, SelectIconDelegate {
     //pickerview data
     var season = "Spring"
     var year = "2018"
-    
     var seasons:[String] = ["Spring", "Sum", "Fall", "Winter"]
-    
     var years:[String] = {
         var s = [String]()
         for i in 1 ..< 41 {
@@ -38,6 +36,9 @@ class AddSemesterController: UIViewController, SelectIconDelegate {
 
     //components
     let iconLabel = TitleLabel(text: "Icon", size: 18, alignment: .left)
+    let nameLabel = TitleLabel(text: "Name", size: 18, alignment: .left)
+    let seasonLabel = TitleLabel(text: "Season", size: 18, alignment: .left)
+    let yearLabel = TitleLabel(text: "Year", size: 18, alignment: .center)
     
     lazy var iconImageView:UIButton = {
         let button = UIButton()
@@ -62,23 +63,12 @@ class AddSemesterController: UIViewController, SelectIconDelegate {
         return label
     }()
     
-    let nameLabel = TitleLabel(text: "Name", size: 18, alignment: .left)
-    
-    let nameTextField:UITextField = {
-        let tf = UITextField()
-        tf.backgroundColor = .blackPointEight
-        tf.textColor = .white
-        tf.layer.cornerRadius = 8
-        tf.layer.masksToBounds = true
-        tf.font = UIFont.init(name: "Futura", size: 16)
+    let nameTextField:CGCTextField = {
+        let tf = CGCTextField()
         tf.paddingLeft = 8
         tf.attributedPlaceholder = NSAttributedString(string: "Type here or pick a season & year", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 14)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.6, alpha: 1)])
         return tf
     }()
-    
-    let seasonLabel = TitleLabel(text: "Season", size: 18, alignment: .left)
-    
-    let yearLabel = TitleLabel(text: "Year", size: 18, alignment: .center)
     
     let pickerView:UIPickerView = {
         let p = UIPickerView()
@@ -97,7 +87,6 @@ class AddSemesterController: UIViewController, SelectIconDelegate {
         pickerView.dataSource = self
         pickerView.delegate = self
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -108,10 +97,8 @@ class AddSemesterController: UIViewController, SelectIconDelegate {
         view.addSubview(iconLabel)
         view.addSubview(iconImageView)
         view.addSubview(largeNameLabel)
-        //
         view.addSubview(nameLabel)
         view.addSubview(nameTextField)
-        //
         view.addSubview(seasonLabel)
         view.addSubview(yearLabel)
         view.addSubview(pickerView)
@@ -119,43 +106,11 @@ class AddSemesterController: UIViewController, SelectIconDelegate {
         iconLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: iconImageView.rightAnchor, paddingTop: 30, paddingLeft: 58, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         iconImageView.anchor(top: iconLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 50, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
         largeNameLabel.anchor(top: iconImageView.topAnchor, left: iconImageView.rightAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 50, width: 0, height: 0)
-        //
         nameLabel.anchor(top: iconImageView.bottomAnchor, left: iconImageView.leftAnchor, bottom: nil, right: view.centerXAnchor, paddingTop: 20, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         nameTextField.anchor(top: nameLabel.bottomAnchor, left: iconImageView.leftAnchor, bottom: nil, right: largeNameLabel.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)
-        //
         seasonLabel.anchor(top: nameTextField.bottomAnchor, left: iconImageView.leftAnchor, bottom: nil, right: view.centerXAnchor, paddingTop: 20, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         yearLabel.anchor(top: nameTextField.bottomAnchor, left: view.centerXAnchor, bottom: nil, right: nameTextField.rightAnchor, paddingTop: 20, paddingLeft: 0, paddingBottom: 0, paddingRight: 8, width: 0, height: 0)
         pickerView.anchor(top: yearLabel.bottomAnchor, left: iconImageView.leftAnchor, bottom: nil, right: nameTextField.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 150)
     }
-    
-    @objc fileprivate func handleSave() {
-        var semesterImage = UIImage()
-        if let iconImage = iconImageView.imageView?.image {
-            semesterImage = iconImage
-        }
-        let newSemester = Semester(icon: semesterImage, title: "\(season) \(year)", GPALabel: "4.0?", classes: [SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "Robotics", grade: "A-", creditHours: 4)])
-        dismiss(animated: true) {
-            self.delegate?.addSemester(semester: newSemester)
-        }
-
-    }
-    
-    @objc func handleAddIcon() {
-        let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
-        let SIC = SelectIconController(collectionViewLayout: layout)
-        SIC.delegate = self
-        let SIC_NAV = CustomNavController(rootViewController: SIC)
-        present(SIC_NAV, animated: true, completion: nil)
-    }
-    
-    func chooseIcon(image: UIImage) {
-        iconImageView.setImage(image, for: .normal)
-    }
-    
-    @objc func dismissTextField() {
-        nameTextField.resignFirstResponder()
-    }
-
     
 }

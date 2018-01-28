@@ -11,24 +11,19 @@ import UIKit
 
 
 class TabbedLabel: UILabel {
-    
     override func drawText(in rect: CGRect) {
         super.drawText(in: UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(0, 16, 0, 0)))
     }
-    
 }
 
 
 class TabbedRightLabel: UILabel {
-    
     override func drawText(in rect: CGRect) {
         super.drawText(in: UIEdgeInsetsInsetRect(rect, UIEdgeInsetsMake(0, 0, 0, 16)))
     }
-    
 }
 
 class TitleLabel: UILabel {
-
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -46,7 +41,6 @@ class TitleLabel: UILabel {
 }
 
 extension UITextField {
-    
     var paddingLeft: CGFloat {
         get {
             return leftView!.frame.size.width
@@ -69,4 +63,5 @@ extension UITextField {
         }
     }
 }
+
 
