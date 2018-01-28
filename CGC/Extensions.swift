@@ -35,7 +35,15 @@ extension UIColor {
     
     static var appleBlue: UIColor { return UIColor.init(rgb: 0x007AFF) }
     static var lightBlue: UIColor { return UIColor.init(rgb: 0x98FFEF) }
+    static var lighterBlue: UIColor { return UIColor.init(rgb: 0xD6F6FF) }
     static var grayButton: UIColor { return UIColor.init(rgb: 0xEFEFF4) }
+    static var yellowBG: UIColor { return UIColor.init(rgb: 0xBCFF43) }
+    static var purpleBG: UIColor { return UIColor.init(rgb: 0x6B22FF) }
+    static var blackPointEight: UIColor { return UIColor.black.withAlphaComponent(0.8) }
+    
+    
+    
+    
     
     convenience init(red: Int, green: Int, blue: Int) {
         assert(red >= 0 && red <= 255, "Invalid red component")

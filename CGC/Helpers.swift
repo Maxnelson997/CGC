@@ -27,3 +27,46 @@ class TabbedRightLabel: UILabel {
     
 }
 
+class TitleLabel: UILabel {
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    init(text:String, size:CGFloat = 12, alignment:NSTextAlignment = .left) {
+        super.init(frame: .zero)
+        textAlignment = alignment
+        attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: size)!, NSAttributedStringKey.foregroundColor: UIColor.black])
+        numberOfLines = 0
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension UITextField {
+    
+    var paddingLeft: CGFloat {
+        get {
+            return leftView!.frame.size.width
+        }
+        set {
+            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: newValue, height: frame.size.height))
+            leftView = paddingView
+            leftViewMode = .always
+        }
+    }
+    
+    var paddingRight: CGFloat {
+        get {
+            return rightView!.frame.size.width
+        }
+        set {
+            let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: newValue, height: frame.size.height))
+            rightView = paddingView
+            rightViewMode = .always
+        }
+    }
+}
+

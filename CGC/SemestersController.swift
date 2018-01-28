@@ -13,13 +13,80 @@ struct Semester {
     let title:String
     let GPALabel:String
     let creditHours:String
+    var selected:Bool = false
+    
+    init(
+    icon:UIImage,
+    title:String,
+    GPALabel:String,
+    creditHours:String
+    ) {
+        self.icon = icon; self.title = title; self.GPALabel = GPALabel; self.creditHours = creditHours
+    }
 }
 
-class SemestersController: UITableViewController {
+protocol IndexDelegate {
+    func setSemesterSelected(at index:Int)
+}
+
+protocol AddSemesterDelegate {
+    func addSemester()
+}
+
+class SemestersController: UITableViewController, IndexDelegate, AddSemesterDelegate {
     
+    func setSemesterSelected(at index:Int) {
+        print("selected index:",index)
+        if index <= semesters.count {
+            semesters[index].selected = !semesters[index].selected
+            if semesters[index].selected {
+                indexes.append(IndexPath(row: index, section: 0))
+            } else {
+                indexes = indexes.filter { $0.row != index }
+            }
+        } else {
+            assert(false, "out of range")
+        }
+    }
+    
+    var indexes = [IndexPath]()
     var semesters = [Semester]()
     var cellId:String = "cellId"
     
+    lazy var footerView:UIView = {
+        let footerView = UIStackView()
+        let bg = UIView()
+        bg.backgroundColor = UIColor.appleBlue.withAlphaComponent(0.2)
+        footerView.addSubview(bg)
+        bg.anchorEntireView(to: footerView)
+        footerView.axis = .horizontal
+        footerView.distribution = .fillEqually
+        footerView.addArrangedSubview(deleteButton)
+        footerView.addArrangedSubview(UIView())
+        footerView.addArrangedSubview(disableButton)
+        footerView.alpha = 0
+        return footerView
+    }()
+    
+    lazy var disableButton:UIButton = {
+        let b = UIButton()
+        b.backgroundColor = .clear
+        b.setTitle("disable", for: .normal)
+        b.setTitleColor(.appleBlue, for: .normal)
+        b.titleLabel?.font = UIFont.init(name: "Futura-Bold", size: 18)
+        b.addTarget(self, action: #selector(handleDisable), for: .touchUpInside)
+        return b
+    }()
+    
+    lazy var deleteButton:UIButton = {
+        let b = UIButton()
+        b.backgroundColor = .clear
+        b.setTitle("delete", for: .normal)
+        b.setTitleColor(.appleBlue, for: .normal)
+        b.titleLabel?.font = UIFont.init(name: "Futura-Bold", size: 18)
+        b.addTarget(self, action: #selector(handleDelete), for: .touchUpInside)
+        return b
+    }()
     
     let userInfoLabel:TabbedLabel = {
         let label = TabbedLabel()
@@ -47,10 +114,13 @@ class SemestersController: UITableViewController {
         super.viewDidLoad()
         
         semesters = [
-            Semester(icon: UIImage(), title: "Fall 2017", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
-            Semester(icon: UIImage(), title: "Fall 2017", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
-            Semester(icon: UIImage(), title: "Fall 2017", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
-            Semester(icon: UIImage(), title: "Fall 2017", GPALabel: "3.45 GPA", creditHours: "15 credit hours")
+            Semester(icon: UIImage(), title: "ONE", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
+            Semester(icon: UIImage(), title: "TWO", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
+            Semester(icon: UIImage(), title: "THREE", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
+            Semester(icon: UIImage(), title: "FOUR", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
+            Semester(icon: UIImage(), title: "FIVE", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
+            Semester(icon: UIImage(), title: "SIX", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
+            Semester(icon: UIImage(), title: "SEVEN", GPALabel: "3.45 GPA", creditHours: "15 credit hours")
         ]
         
         view.backgroundColor = .clear
@@ -62,22 +132,51 @@ class SemestersController: UITableViewController {
         tableView.isSpringLoaded = true
         tableView.delegate = self
         tableView.dataSource = self
+        
+        let dummyViewHeight = CGFloat(100)
+        self.tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.bounds.size.width, height: dummyViewHeight))
+        self.tableView.contentInset = UIEdgeInsetsMake(-dummyViewHeight, 0, 0, 0)
     }
     
 
     var isEditingSemesters:Bool = false
-    
+
     //actions
     @objc func handleEdit() {
-        print("trying to edit")
+        if isEditingSemesters {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(self.handleEdit))
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(self.handleAdd))
+        } else {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(self.handleEdit))
+             navigationItem.rightBarButtonItem = .none
+        }
+        indexes = []
+        for var sem in semesters {
+            sem.selected = false
+        }
         isEditingSemesters = !isEditingSemesters
+        let alpha:CGFloat = isEditingSemesters ? 1 : 0
+        UIView.animate(withDuration: 0.3) {
+            self.footerView.alpha = alpha
+        }
         tableView.reloadData()
     }
     
     @objc func handleAdd() {
         let ASC = AddSemesterController()
+        ASC.delegate = self
         let ASC_NAV = CustomNavController(rootViewController: ASC)
         present(ASC_NAV, animated: true, completion: nil)
+    }
+    
+    
+    func addSemester() {
+        let semester = Semester(icon: UIImage(), title: "TWO", GPALabel: "3.45 GPA", creditHours: "15 credit hours")
+        semesters.append(semester)
+        let newIndexPath = IndexPath(row: semesters.count - 1, section: 0)
+        tableView.beginUpdates()
+        tableView.insertRows(at: [newIndexPath], with: .right)
+        tableView.endUpdates()
     }
     
     //tableview
@@ -87,6 +186,10 @@ class SemestersController: UITableViewController {
         view.distribution = .fillEqually
         view.addArrangedSubview(userInfoLabel)
         view.addArrangedSubview(GPALabel)
+//        let bg = UIView()
+//        bg.addSubview(view)
+//        bg.backgroundColor = .lightBlue
+//        view.anchorEntireView(to: bg)
         return view
     }
     
@@ -109,21 +212,53 @@ class SemestersController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SemesterCell
-        cell.tag = indexPath.item
+        cell.tag = indexPath.item + 1
         cell.semester = semesters[indexPath.item]
+        cell.delegate = self
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
         cell.isEditingCell = isEditingSemesters
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if isEditingSemesters {
+            let cell = tableView.cellForRow(at: indexPath) as! SemesterCell
+            cell.handleEdit()
+        } else {
+            //open semester
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return footerView
+    }
+    
+    func handleOpen() {
+        
+    }
+    
+    @objc func handleDelete() {
+        guard indexes.count > 0 else { return }
+        //filter out selected semesters. obliterate them.
+        semesters = semesters.filter { !$0.selected }
+        tableView.beginUpdates()
+        tableView.deleteRows(at: indexes, with: .right)
+        tableView.endUpdates()
+//        indexes = []
+//        for var sem in semesters {
+//            sem.selected = false
+//        }
+//        tableView.reloadData()
+        handleEdit()
+    }
+    
+    @objc func handleDisable() {
+        print("trying to disable")
+        
+    }
+    
+    
 
-    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        self.tableView.beginUpdates()
-    }
-    
-    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        self.tableView.endUpdates()
-    }
-    
 }
 

@@ -23,9 +23,9 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     let settingsController = SettingsController()
     
     func setupViewControllers() {
-        let semestersNavController = templateNavController(rootViewController: semestersController)
-        let settingsNavController = templateNavController(rootViewController: settingsController)
-        
+        let semestersNavController = templateNavController(rootViewController: semestersController, unselectedImage: #imageLiteral(resourceName: "semesters"), selectedImage: #imageLiteral(resourceName: "semesters"))
+        let settingsNavController = templateNavController(rootViewController: settingsController, unselectedImage: #imageLiteral(resourceName: "settings"), selectedImage: #imageLiteral(resourceName: "settings"))
+    
         viewControllers = [semestersNavController, settingsNavController]
 //        UITabBar.appearance().tintColor = UIColor.init(rgb: 0x00FFEB)
 //        tabBar.backgroundImage = getImageWithColor(color: .clear, size: CGSize(width: 100, height: 100))
@@ -39,10 +39,8 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 func templateNavController(rootViewController:UIViewController = UIViewController(), unselectedImage: UIImage = UIImage(), selectedImage: UIImage = UIImage()) -> UINavigationController {
     let viewController = rootViewController
     let navController = CustomNavController(rootViewController: viewController)
-//    navController.tabBarItem.image = unselectedImage
-//    navController.tabBarItem.selectedImage = selectedImage
-    navController.tabBarItem.image = UIImage()
-    navController.tabBarItem.selectedImage = UIImage()
+    navController.tabBarItem.image = unselectedImage
+    navController.tabBarItem.selectedImage = selectedImage
     return navController
 }
 
