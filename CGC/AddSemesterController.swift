@@ -10,11 +10,11 @@ import UIKit
 
 class AddSemesterController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    var seasons:[String] = [" Spring", " Summer", " Fall", " Winter"]
+    var seasons:[String] = ["Spring", "Sum", "Fall", "Winter"]
     
     var years:[String] = {
         var s = [String]()
-        for i in 1 ..< 40 {
+        for i in 2001 ..< 2041 {
             s.append(String(describing: i))
         }
         return s
@@ -40,10 +40,27 @@ class AddSemesterController: UIViewController, UIPickerViewDelegate, UIPickerVie
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = .center
         if component == 0 {
-            text = seasons[row]
+            text = " " + seasons[row]
             paragraphStyle.alignment = .left
         }
         return NSAttributedString(string: text, attributes: [NSAttributedStringKey.foregroundColor:UIColor.white, NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 16)!, NSAttributedStringKey.paragraphStyle: paragraphStyle])
+    }
+    
+    var season = "Spring"
+    var year = "2001"
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if component == 0 {
+            season = seasons[row]
+        } else {
+            year = years[row]
+        }
+        let title = NSMutableAttributedString(string: season, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42) ?? UIFont.systemFont(ofSize: 42), NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+        let info = NSMutableAttributedString(string: "\n\(year)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
+        title.append(info)
+        largeNameLabel.attributedText = title
+        nameTextField.text = "\(season) \(year)"
+        nameTextField.attributedPlaceholder = NSAttributedString(string: "\(season) \(year)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 14)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.6, alpha: 1)])
     }
     
     var delegate:AddSemesterDelegate?
@@ -76,7 +93,7 @@ class AddSemesterController: UIViewController, UIPickerViewDelegate, UIPickerVie
     
     let largeNameLabel:TabbedRightLabel = {
         let label = TabbedRightLabel()
-        let title = NSMutableAttributedString(string: "Fall", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 45) ?? UIFont.systemFont(ofSize: 45), NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+        let title = NSMutableAttributedString(string: "Fall", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42) ?? UIFont.systemFont(ofSize: 42), NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
         let info = NSMutableAttributedString(string: "\n2019", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
         title.append(info)
         label.attributedText = title
@@ -122,7 +139,7 @@ class AddSemesterController: UIViewController, UIPickerViewDelegate, UIPickerVie
         
         iconLabel.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: iconImageView.rightAnchor, paddingTop: 30, paddingLeft: 58, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         iconImageView.anchor(top: iconLabel.bottomAnchor, left: view.leftAnchor, bottom: nil, right: nil, paddingTop: 8, paddingLeft: 50, paddingBottom: 0, paddingRight: 0, width: 80, height: 80)
-        largeNameLabel.anchor(top: iconImageView.topAnchor, left: view.centerXAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 50, width: 0, height: 0)
+        largeNameLabel.anchor(top: iconImageView.topAnchor, left: iconImageView.rightAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 0, paddingLeft: 8, paddingBottom: 0, paddingRight: 50, width: 0, height: 0)
         //
         nameLabel.anchor(top: iconImageView.bottomAnchor, left: iconImageView.leftAnchor, bottom: nil, right: view.centerXAnchor, paddingTop: 20, paddingLeft: 8, paddingBottom: 0, paddingRight: 0, width: 0, height: 0)
         nameTextField.anchor(top: nameLabel.bottomAnchor, left: iconImageView.leftAnchor, bottom: nil, right: largeNameLabel.rightAnchor, paddingTop: 8, paddingLeft: 0, paddingBottom: 0, paddingRight: 0, width: 0, height: 30)

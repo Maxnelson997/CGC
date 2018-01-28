@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     func setupCancelButton() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(handleCancel))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(handleCancel))
     }
     
     @objc func handleCancel() {
