@@ -30,7 +30,7 @@ protocol IndexDelegate {
 }
 
 protocol AddSemesterDelegate {
-    func addSemester()
+    func addSemester(semester: Semester)
 }
 
 class SemestersController: UITableViewController, IndexDelegate, AddSemesterDelegate {
@@ -170,8 +170,7 @@ class SemestersController: UITableViewController, IndexDelegate, AddSemesterDele
     }
     
     
-    func addSemester() {
-        let semester = Semester(icon: UIImage(), title: "TWO", GPALabel: "3.45 GPA", creditHours: "15 credit hours")
+    func addSemester(semester: Semester) {
         semesters.append(semester)
         let newIndexPath = IndexPath(row: semesters.count - 1, section: 0)
         tableView.beginUpdates()

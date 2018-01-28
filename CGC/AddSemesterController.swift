@@ -150,10 +150,17 @@ class AddSemesterController: UIViewController, UIPickerViewDelegate, UIPickerVie
     }
     
     @objc fileprivate func handleSave() {
-        
-        
-        
-        
+        var semesterImage = UIImage()
+        var semesterTitle = "New Semester"
+        if let iconImage = iconImageView.image {
+            semesterImage = iconImage
+        }
+        if let titleText = nameTextField.text {
+            semesterTitle = titleText
+        }
+        let newSemester = Semester(icon: semesterImage, title: semesterTitle, GPALabel: "4.0?", creditHours: "2?")
+        delegate?.addSemester(semester: newSemester)
+        dismiss(animated: true, completion: nil)
     }
 
     
