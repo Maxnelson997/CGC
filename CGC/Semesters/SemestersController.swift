@@ -8,18 +8,59 @@
 
 import UIKit
 
+struct SemesterClass {
+    let icon:UIImage
+    let title:String
+    let grade:String
+    let creditHours:Int
+    var gpa:String = "0.0"
+    
+    
+    init(icon:UIImage, title:String, grade:String, creditHours:Int) {
+        self.icon = icon
+        self.title = title
+        self.grade = grade
+        self.creditHours = creditHours
+        self.gpa = String(describing: getGPA(for: grade, hour: Double(creditHours)))
+    }
+}
+
+func getGPA(for grade: String, hour: Double) -> Double {
+    let gpa:Double = letters[grade]!
+    //    let points = grade_value * hour
+    //    let gpa = points/hour
+    //    return gpa
+    return gpa
+}
+
+
+let letters:[String:Double] = [
+    "A+":4.0,
+    "A":4.0,
+    "A-":3.7,
+    "B+":3.33,
+    "B":3.00,
+    "B-":2.7,
+    "C+":2.3,
+    "C":2.0,
+    "C-":1.7,
+    "D+":1.3,
+    "D":1.0,
+    "D-":0.70,
+    "F":0]
+
 struct Semester {
     let icon:UIImage
     let title:String
-    let GPALabel:String
-    let creditHours:String
+    var GPALabel:String
+    var classes:[SemesterClass] = []
     var selected:Bool = false
     
-    init(icon:UIImage, title:String, GPALabel:String, creditHours:String) {
+    init(icon:UIImage, title:String, GPALabel:String, classes:[SemesterClass]) {
         self.icon = icon
         self.title = title
         self.GPALabel = GPALabel
-        self.creditHours = creditHours
+        self.classes = classes
     }
 }
 
@@ -88,7 +129,7 @@ class SemestersController: UITableViewController, IndexDelegate, AddSemesterDele
     
     let userInfoLabel:TabbedLabel = {
         let label = TabbedLabel()
-        let title = NSMutableAttributedString(string: "Jane Smith", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 18) ?? UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor: UIColor.black])
+        let title = NSMutableAttributedString(string: "Your Stats", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 18) ?? UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor: UIColor.black])
         let info = NSMutableAttributedString(string: "\nSemesters: 5\nClasses: 21\nCredit Hours: 68", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12) ?? UIFont.systemFont(ofSize: 12),NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
         title.append(info)
         label.attributedText = title
@@ -107,14 +148,59 @@ class SemestersController: UITableViewController, IndexDelegate, AddSemesterDele
         return label
     }()
     
+    fileprivate func calculateAllInfo() {
+        let totalSemesters = semesters.count
+        var totalClasses = 0.0
+        var totalCreditHours = 0.0
+        var totalPointsEarned = 0.0
+        var totalGPA = 0.0
+        
+        for i in 0 ..< semesters.count {
+
+            var semesterCreditHours:Double = 0
+            var semesterPointsEarned:Double = 0.0
+            var semesterGPA:Double = 0.0
+
+            for k in 0 ..< semesters[i].classes.count {
+                semesterCreditHours += Double(semesters[i].classes[k].creditHours)
+                semesterPointsEarned += Double(semesters[i].classes[k].creditHours) * getGPA(for: semesters[i].classes[k].grade, hour: Double(semesters[i].classes[k].creditHours))
+                semesters[i].classes[k].gpa = String(describing: getGPA(for: semesters[i].classes[k].grade, hour: Double(semesters[i].classes[k].creditHours)))
+            }
+//            (4*(3.7) + 3*(3.0))/7.0
+            totalCreditHours += semesterCreditHours
+            totalPointsEarned += semesterPointsEarned
+            totalClasses += Double(semesters[i].classes.count)
+
+            semesterGPA = semesterPointsEarned / semesterCreditHours
+            semesters[i].GPALabel = String(format: "%.2f", semesterGPA)
+        }
+        
+        totalGPA = totalPointsEarned / totalCreditHours
+        let totalGPAString = String(format: "%.2f", totalGPA)
+        
+        tableView.reloadData()
+        
+        let title = NSMutableAttributedString(string: "Your Stats", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 18) ?? UIFont.systemFont(ofSize: 12), NSAttributedStringKey.foregroundColor: UIColor.black])
+        let info = NSMutableAttributedString(string: "\nSemesters: \(totalSemesters)\nClasses: \(totalClasses)\nCredit Hours: \(totalCreditHours)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12) ?? UIFont.systemFont(ofSize: 12),NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
+        title.append(info)
+        userInfoLabel.attributedText = title
+        
+        let GPAtitle = NSMutableAttributedString(string: totalGPAString, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 40) ?? UIFont.systemFont(ofSize: 40), NSAttributedStringKey.foregroundColor: UIColor.black])
+        let GPAinfo = NSMutableAttributedString(string: "\nout of 4.0", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12) ?? UIFont.systemFont(ofSize: 12),NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
+        GPAtitle.append(GPAinfo)
+        GPALabel.attributedText = GPAtitle
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         semesters = [
-            Semester(icon: #imageLiteral(resourceName: "football"), title: "ONE", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
-            Semester(icon: #imageLiteral(resourceName: "id-card"), title: "TWO", GPALabel: "3.45 GPA", creditHours: "15 credit hours"),
+            Semester(icon: #imageLiteral(resourceName: "alien-1"), title: "ONE", GPALabel: "3.45 GPA", classes: [SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "class title", grade: "A-", creditHours: 3)]),
+            Semester(icon: #imageLiteral(resourceName: "astronaut"), title: "TWO", GPALabel: "3.45 GPA", classes: [SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "class title", grade: "A-", creditHours: 6),SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "class title", grade: "A", creditHours: 3)]),
         ]
+        
+        calculateAllInfo()
         
         view.backgroundColor = .clear
         navigationItem.title = "Semesters"
@@ -164,11 +250,25 @@ class SemestersController: UITableViewController, IndexDelegate, AddSemesterDele
     
     
     func addSemester(semester: Semester) {
-        semesters.append(semester)
-        let newIndexPath = IndexPath(row: semesters.count - 1, section: 0)
-        tableView.beginUpdates()
-        tableView.insertRows(at: [newIndexPath], with: .right)
-        tableView.endUpdates()
+        
+        DispatchQueue.main.async {
+            self.semesters.append(semester)
+            let newIndexPath = IndexPath(row: self.semesters.count - 1, section: 0)
+            self.tableView.beginUpdates()
+            self.tableView.insertRows(at: [newIndexPath], with: .right)
+            self.tableView.endUpdates()
+            
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {
+            self.calculateAllInfo()
+        }
+        
+
+        
+        
+        
+        
     }
     
     //tableview
@@ -231,18 +331,17 @@ class SemestersController: UITableViewController, IndexDelegate, AddSemesterDele
     }
     
     @objc func handleDelete() {
-        guard indexes.count > 0 else { return }
-        //filter out selected semesters. obliterate them.
-        semesters = semesters.filter { !$0.selected }
-        tableView.beginUpdates()
-        tableView.deleteRows(at: indexes, with: .right)
-        tableView.endUpdates()
-//        indexes = []
-//        for var sem in semesters {
-//            sem.selected = false
+//        DispatchQueue.main.async {
+            guard self.indexes.count > 0 else { return }
+            //filter out selected semesters. obliterate them.
+            self.semesters = self.semesters.filter { !$0.selected }
+            self.tableView.beginUpdates()
+            self.tableView.deleteRows(at: self.indexes, with: .right)
+            self.tableView.endUpdates()
+            self.handleEdit()
 //        }
-//        tableView.reloadData()
-        handleEdit()
+        calculateAllInfo()
+
     }
     
     @objc func handleDisable() {

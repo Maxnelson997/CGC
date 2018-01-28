@@ -22,11 +22,13 @@ class AddSemesterController: UIViewController, SelectIconDelegate {
     
     var years:[String] = {
         var s = [String]()
-        s.append("2000")
-        s.append("2018")
-        for i in 2001 ..< 2041 {
+        for i in 1 ..< 41 {
             if i != 2018 {
-                s.append(String(describing: i))
+                if i < 10 {
+                    s.append("0" + String(describing: i))
+                } else {
+                    s.append(String(describing: i))
+                }
             }
         }
         return s
@@ -131,9 +133,11 @@ class AddSemesterController: UIViewController, SelectIconDelegate {
         if let iconImage = iconImageView.imageView?.image {
             semesterImage = iconImage
         }
-        let newSemester = Semester(icon: semesterImage, title: "\(season) \(year)", GPALabel: "4.0?", creditHours: "2?")
-        delegate?.addSemester(semester: newSemester)
-        dismiss(animated: true, completion: nil)
+        let newSemester = Semester(icon: semesterImage, title: "\(season) \(year)", GPALabel: "4.0?", classes: [SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "Robotics", grade: "A-", creditHours: 4)])
+        dismiss(animated: true) {
+            self.delegate?.addSemester(semester: newSemester)
+        }
+
     }
     
     @objc func handleAddIcon() {

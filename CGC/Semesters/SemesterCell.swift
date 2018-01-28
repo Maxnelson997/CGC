@@ -48,8 +48,14 @@ class SemesterCell: UITableViewCell {
             self.selectedView.backgroundColor = .clear
             self.editButton.backgroundColor = .clear
             self.editButton.layer.borderColor = UIColor.black.withAlphaComponent(0.8).cgColor
+            var infoString:String = ""
+            if s.classes.count > 1 {
+                infoString = "\(s.GPALabel)\n\(s.classes.count) classes"
+            } else {
+                infoString = "\(s.GPALabel)\n\(s.classes.count) class"
+            }
             let title = NSMutableAttributedString(string: s.title, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 18)!, NSAttributedStringKey.foregroundColor: UIColor.black])
-            let info = NSMutableAttributedString(string: "\n\(s.GPALabel)\n\(s.creditHours)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)! ,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
+            let info = NSMutableAttributedString(string: "\n\(infoString)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)! ,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
             title.append(info)
             infoLabel.attributedText = title
         }
