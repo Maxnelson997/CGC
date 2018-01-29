@@ -52,6 +52,7 @@ extension SemestersController {
             cell.handleEdit()
         } else {
             let classesController = ClassesController()
+            classesController.index = indexPath.item
             classesController.delegate = self
             classesController.semester = semesters[indexPath.row]
             navigationController?.pushViewController(classesController, animated: true)

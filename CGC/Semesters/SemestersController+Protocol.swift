@@ -17,7 +17,7 @@ protocol AddSemesterDelegate {
 }
 
 protocol UpdateSemesterDelegate {
-    func saveSemester(semester: Semester)
+    func saveSemester(semester: Semester, at index: Int)
 }
 
 extension SemestersController: IndexDelegate, AddSemesterDelegate, UpdateSemesterDelegate {
@@ -35,6 +35,7 @@ extension SemestersController: IndexDelegate, AddSemesterDelegate, UpdateSemeste
         }
     }
     
+    
     func addSemester(semester: Semester) {
         DispatchQueue.main.async {
             self.semesters.append(semester)
@@ -50,24 +51,17 @@ extension SemestersController: IndexDelegate, AddSemesterDelegate, UpdateSemeste
         }
     }
     
-    func saveSemester(semester: Semester) {
-        print("old")
-        semesters.forEach { (s) in
-            print(s)
+    func saveSemester(semester: Semester, at index: Int) {
+//        for i in 0 ..< semesters.count {
+//            if semesters[i].title == semester.title {
+//                //replace it bit.
+//                semesters[i] = semester
+//            }
+//        }
+        if semesters[index].title == semester.title {
+            //replace it bit.
+            semesters[index] = semester
         }
-
-        for i in 0 ..< semesters.count {
-            if semesters[i].title == semester.title {
-                //replace it bit.
-                semesters[i] = semester
-            }
-        }
-
-        print("new")
-        semesters.forEach { (s) in
-            print(s)
-        }
-        
         calculateAllInfo()
     }
 }

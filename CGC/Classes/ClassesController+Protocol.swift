@@ -12,6 +12,7 @@ protocol AddClassDelegate {
     func addClass(clas: SemesterClass)
 }
 
+
 extension ClassesController: IndexDelegate, AddClassDelegate {
     func setSemesterSelected(at index:Int) {
         print("selected index:",index)
@@ -41,4 +42,5 @@ extension ClassesController: IndexDelegate, AddClassDelegate {
             self.calculateAllInfo()
         }
     }
+
 }

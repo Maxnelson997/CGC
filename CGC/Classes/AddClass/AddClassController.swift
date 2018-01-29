@@ -1,42 +1,34 @@
 //
-//  addSemesterController.swift
+//  AddClassController.swift
 //  CGC
 //
-//  Created by Max Nelson on 1/26/18.
+//  Created by Max Nelson on 1/28/18.
 //  Copyright © 2018 AsherApps. All rights reserved.
 //
 
 import UIKit
 
-protocol SelectIconDelegate {
-    func chooseIcon(image:UIImage)
-}
-
-class AddSemesterController: UIViewController {
+class AddClassController: UIViewController {
     
     //pickerview data
-    var season = "Spring"
-    var year = "2018"
-    var seasons:[String] = ["Spring", "Sum", "Fall", "Winter"]
-    var years:[String] = {
+    var grade = "A"
+    var hour = "3"
+    var grades:[String] = ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"]
+    var hours:[String] = {
         var s = [String]()
-        for i in 1 ..< 41 {
-            if i < 10 {
-                s.append("0" + String(describing: i))
-            } else {
-                s.append(String(describing: i))
-            }
+        for i in 0 ..< 11 {
+            s.append(String(describing: i))
         }
         return s
     }()
     
-    var delegate:AddSemesterDelegate?
-
+    var delegate:AddClassDelegate?
+    
     //components
     let iconLabel = TitleLabel(text: "Icon", size: 18, alignment: .left)
     let nameLabel = TitleLabel(text: "Name", size: 18, alignment: .left)
-    let seasonLabel = TitleLabel(text: "Season", size: 18, alignment: .left)
-    let yearLabel = TitleLabel(text: "Year", size: 18, alignment: .center)
+    let seasonLabel = TitleLabel(text: "Grade", size: 18, alignment: .left)
+    let yearLabel = TitleLabel(text: "Hours", size: 18, alignment: .center)
     
     lazy var iconImageView:UIButton = {
         let button = UIButton()
@@ -50,11 +42,10 @@ class AddSemesterController: UIViewController {
         return button
     }()
     
-    let largeNameLabel:TabbedRightLabel = {
+    lazy var largeNameLabel:TabbedRightLabel = {
         let label = TabbedRightLabel()
-        let title = NSMutableAttributedString(string: "Fall", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42) ?? UIFont.systemFont(ofSize: 42), NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
-        let info = NSMutableAttributedString(string: "\n2019", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
-        title.append(info)
+        let title = NSMutableAttributedString(string: "Name", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42) ?? UIFont.systemFont(ofSize: 42), NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+        title.append(NSMutableAttributedString(string: "\n\(grade)\n\(hour) hours", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
         label.attributedText = title
         label.textAlignment = .right
         label.numberOfLines = 0
@@ -78,10 +69,11 @@ class AddSemesterController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationItem.title = "New Semester"
+        navigationItem.title = "New Class"
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(handleSave))
         setupCancelButton()
         setupUI()
+        nameTextField.delegate = self
         pickerView.dataSource = self
         pickerView.delegate = self
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))

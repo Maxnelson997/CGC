@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		79106E77201D8EFD003F9729 /* AddSemesterController+PickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79106E76201D8EFD003F9729 /* AddSemesterController+PickerViewDelegate.swift */; };
+		79106E77201D8EFD003F9729 /* AddSemesterController+UIPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79106E76201D8EFD003F9729 /* AddSemesterController+UIPickerViewDelegate.swift */; };
 		79106E7E201D93BD003F9729 /* SelectIconController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79106E7D201D93BD003F9729 /* SelectIconController.swift */; };
 		79289623201DFD9E00BC22D3 /* SemestersController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289622201DFD9E00BC22D3 /* SemestersController+UITableViewDelegate.swift */; };
 		79289625201DFE5800BC22D3 /* SemestersController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289624201DFE5800BC22D3 /* SemestersController+Protocol.swift */; };
@@ -21,6 +21,10 @@
 		79289636201E9C2D00BC22D3 /* ClassesController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289635201E9C2D00BC22D3 /* ClassesController+Protocol.swift */; };
 		79289638201E9C3700BC22D3 /* ClassesController+ActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289637201E9C3700BC22D3 /* ClassesController+ActionModel.swift */; };
 		7928963A201E9C7300BC22D3 /* ClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289639201E9C7300BC22D3 /* ClassCell.swift */; };
+		7928963D201EB45600BC22D3 /* AddClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928963C201EB45600BC22D3 /* AddClassController.swift */; };
+		7928963F201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928963E201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift */; };
+		79289641201EB47700BC22D3 /* AddClassController+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289640201EB47700BC22D3 /* AddClassController+Action.swift */; };
+		79289643201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289642201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift */; };
 		7998F38E201BC960007D9C0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F38D201BC960007D9C0E /* AppDelegate.swift */; };
 		7998F390201BC960007D9C0E /* SemestersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F38F201BC960007D9C0E /* SemestersController.swift */; };
 		7998F396201BC960007D9C0E /* CGC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7998F394201BC960007D9C0E /* CGC.xcdatamodeld */; };
@@ -37,7 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		79106E76201D8EFD003F9729 /* AddSemesterController+PickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddSemesterController+PickerViewDelegate.swift"; sourceTree = "<group>"; };
+		79106E76201D8EFD003F9729 /* AddSemesterController+UIPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddSemesterController+UIPickerViewDelegate.swift"; sourceTree = "<group>"; };
 		79106E7D201D93BD003F9729 /* SelectIconController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectIconController.swift; sourceTree = "<group>"; };
 		79289622201DFD9E00BC22D3 /* SemestersController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemestersController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		79289624201DFE5800BC22D3 /* SemestersController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemestersController+Protocol.swift"; sourceTree = "<group>"; };
@@ -51,6 +55,10 @@
 		79289635201E9C2D00BC22D3 /* ClassesController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassesController+Protocol.swift"; sourceTree = "<group>"; };
 		79289637201E9C3700BC22D3 /* ClassesController+ActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassesController+ActionModel.swift"; sourceTree = "<group>"; };
 		79289639201E9C7300BC22D3 /* ClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCell.swift; sourceTree = "<group>"; };
+		7928963C201EB45600BC22D3 /* AddClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClassController.swift; sourceTree = "<group>"; };
+		7928963E201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddClassController+UIPickerViewDelegate.swift"; sourceTree = "<group>"; };
+		79289640201EB47700BC22D3 /* AddClassController+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddClassController+Action.swift"; sourceTree = "<group>"; };
+		79289642201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddClassController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		7998F38A201BC960007D9C0E /* CGC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7998F38D201BC960007D9C0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7998F38F201BC960007D9C0E /* SemestersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemestersController.swift; sourceTree = "<group>"; };
@@ -83,7 +91,7 @@
 			isa = PBXGroup;
 			children = (
 				7998F3AE201C10A8007D9C0E /* AddSemesterController.swift */,
-				79106E76201D8EFD003F9729 /* AddSemesterController+PickerViewDelegate.swift */,
+				79106E76201D8EFD003F9729 /* AddSemesterController+UIPickerViewDelegate.swift */,
 				7928962C201E007E00BC22D3 /* AddSemesterController+Action.swift */,
 			);
 			path = AddSemester;
@@ -126,6 +134,7 @@
 		79289630201E9B8200BC22D3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7928963B201EB3FD00BC22D3 /* AddClass */,
 				79289631201E9B8C00BC22D3 /* ClassesController.swift */,
 				79289633201E9C2400BC22D3 /* ClassesController+UITableViewDelegate.swift */,
 				79289635201E9C2D00BC22D3 /* ClassesController+Protocol.swift */,
@@ -134,6 +143,17 @@
 				79289639201E9C7300BC22D3 /* ClassCell.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		7928963B201EB3FD00BC22D3 /* AddClass */ = {
+			isa = PBXGroup;
+			children = (
+				7928963C201EB45600BC22D3 /* AddClassController.swift */,
+				7928963E201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift */,
+				79289640201EB47700BC22D3 /* AddClassController+Action.swift */,
+				79289642201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift */,
+			);
+			path = AddClass;
 			sourceTree = "<group>";
 		};
 		7998F381201BC960007D9C0E = {
@@ -242,19 +262,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				7998F3A7201BCC44007D9C0E /* SettingsController.swift in Sources */,
-				79106E77201D8EFD003F9729 /* AddSemesterController+PickerViewDelegate.swift in Sources */,
+				79106E77201D8EFD003F9729 /* AddSemesterController+UIPickerViewDelegate.swift in Sources */,
 				7998F3A5201BCA51007D9C0E /* Extensions.swift in Sources */,
 				79289627201DFE8200BC22D3 /* SemestersController+ActionModel.swift in Sources */,
+				7928963F201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift in Sources */,
 				7998F3AD201C0251007D9C0E /* SemesterCell.swift in Sources */,
 				7998F3AF201C10A8007D9C0E /* AddSemesterController.swift in Sources */,
+				79289643201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift in Sources */,
 				7928962B201DFF0700BC22D3 /* Semester.swift in Sources */,
 				79289632201E9B8C00BC22D3 /* ClassesController.swift in Sources */,
 				7998F3A9201BCD50007D9C0E /* AAGradientView.swift in Sources */,
+				79289641201EB47700BC22D3 /* AddClassController+Action.swift in Sources */,
 				7928963A201E9C7300BC22D3 /* ClassCell.swift in Sources */,
 				79106E7E201D93BD003F9729 /* SelectIconController.swift in Sources */,
 				7998F3AB201BD371007D9C0E /* UIView+Helpers.swift in Sources */,
 				7998F390201BC960007D9C0E /* SemestersController.swift in Sources */,
 				7998F396201BC960007D9C0E /* CGC.xcdatamodeld in Sources */,
+				7928963D201EB45600BC22D3 /* AddClassController.swift in Sources */,
 				79289625201DFE5800BC22D3 /* SemestersController+Protocol.swift in Sources */,
 				79289629201DFEF700BC22D3 /* SemesterClass.swift in Sources */,
 				79289623201DFD9E00BC22D3 /* SemestersController+UITableViewDelegate.swift in Sources */,

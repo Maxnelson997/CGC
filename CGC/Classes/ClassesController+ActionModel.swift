@@ -33,10 +33,10 @@ extension ClassesController {
     }
     
     @objc func handleAdd() {
-//        let ASC = AddSemesterController()
-//        ASC.delegate = self
-//        let ASC_NAV = CustomNavController(rootViewController: ASC)
-//        present(ASC_NAV, animated: true, completion: nil)
+        let ACC = AddClassController()
+        ACC.delegate = self
+        let ACC_NAV = CustomNavController(rootViewController: ACC)
+        present(ACC_NAV, animated: true, completion: nil)
     }
     
     @objc func handleDelete() {
@@ -46,8 +46,8 @@ extension ClassesController {
         //overwrite semester classes
         semester?.classes = classes
         guard let semester = semester else { return }
-        
-        delegate?.saveSemester(semester: semester)
+        guard let index = index else { return }
+        delegate?.saveSemester(semester: semester, at: index)
         tableView.beginUpdates()
         tableView.deleteRows(at: indexes, with: .right)
         tableView.endUpdates()
@@ -80,8 +80,6 @@ extension ClassesController {
         title.append(NSMutableAttributedString(string: "\nout of 4.0", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
         GPALabel.attributedText = title
     }
-    
+
 }
-
-
 
