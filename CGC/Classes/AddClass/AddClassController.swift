@@ -44,7 +44,7 @@ class AddClassController: UIViewController {
     
     lazy var largeNameLabel:TabbedRightLabel = {
         let label = TabbedRightLabel()
-        let title = NSMutableAttributedString(string: "Name", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42) ?? UIFont.systemFont(ofSize: 42), NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+        let title = NSMutableAttributedString(string: "Class", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42) ?? UIFont.systemFont(ofSize: 42), NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
         title.append(NSMutableAttributedString(string: "\n\(grade)\n\(hour) hours", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
         label.attributedText = title
         label.textAlignment = .right
@@ -86,30 +86,26 @@ class AddClassController: UIViewController {
         
         if isEdit {
             guard let clas = classToEdit else { return }
-            var gradeIndex = 0
-            var hourIndex = 0
-            for i in 0 ..< grades.count {
-                if grades[i] == clas.grade {
-                    gradeIndex = i
-                }
+ 
+            pickerView.selectRow(getGradeIndex(for: clas.grade), inComponent: 0, animated: true)
+            pickerView.selectRow(getHourIndex(for: clas.creditHours), inComponent: 1, animated: true)
+        
+            var fontSize:CGFloat = 42
+            if clas.title.count > 8 {
+                fontSize = 25
             }
-            for i in 0 ..< hours.count {
-                if Double(hours[i]) == clas.creditHours {
-                    hourIndex = i
-                }
-            }
-            pickerView.selectRow(gradeIndex, inComponent: 0, animated: true)
-            pickerView.selectRow(hourIndex, inComponent: 1, animated: true)
             
             navigationItem.title = "Edit Class"
-            let title = NSMutableAttributedString(string: clas.title, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
-            title.append(NSMutableAttributedString(string: "\n\(clas.grade)\n\(clas.creditHours) hours", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
+            let title = NSMutableAttributedString(string: clas.title, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: fontSize)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+            title.append(NSMutableAttributedString(string: "\n\(clas.grade)\n\(Int(clas.creditHours)) hours", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
             largeNameLabel.attributedText = title
             nameTextField.text = clas.title
             iconImageView.setImage(clas.icon, for: .normal)
             
         }
     }
+
+    
     
     override func viewWillAppear(_ animated: Bool) {
         view.backgroundColor = .white

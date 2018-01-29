@@ -11,15 +11,19 @@ import UIKit
 extension AddSemesterController: SelectIconDelegate {
     @objc func handleSave() {
         var newSemester:Semester?
+        var semesterImage = UIImage()
+        guard let title = nameTextField.text else { return }
+        if let iconImage = iconImageView.imageView?.image {
+            semesterImage = iconImage
+        }
         if isEdit {
             newSemester = semesterToEdit
+            newSemester?.title = title
         } else {
-            var semesterImage = UIImage()
-            if let iconImage = iconImageView.imageView?.image {
-                semesterImage = iconImage
-            }
-            newSemester = Semester(icon: semesterImage, title: "\(season)\(year)", classes: [])
+            newSemester = Semester(icon: semesterImage, title: title, classes: [])
         }
+
+        
         if let newSemester = newSemester {
             dismiss(animated: true) {
                 if self.isEdit {
@@ -51,6 +55,28 @@ extension AddSemesterController: SelectIconDelegate {
     func chooseIcon(image: UIImage) {
         iconImageView.setImage(image, for: .normal)
     }
+
+    //methods used to retrieve indicies for getting then setting the grade and hour on edit
+    func getIndexOfSeason() -> Int {
+        var indexOfSeason = 0
+        for i in 0 ..< seasons.count {
+            if seasons[i] == season {
+                indexOfSeason = i
+            }
+        }
+        return indexOfSeason
+    }
+    
+    func getIndexOfYear() -> Int {
+        var indexOfYear = 0
+        for i in 0 ..< years.count {
+            if years[i] == year {
+                indexOfYear = i
+            }
+        }
+        return indexOfYear
+    }
+    
 }
 
 

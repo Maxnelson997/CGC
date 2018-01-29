@@ -10,7 +10,7 @@ import UIKit
 
 struct Semester {
     let icon:UIImage
-    let title:String
+    var title:String
     var classes:[SemesterClass] = []
     var selected:Bool = false
     

@@ -45,6 +45,28 @@ extension AddClassController: SelectIconDelegate {
     func chooseIcon(image: UIImage) {
         iconImageView.setImage(image, for: .normal)
     }
+    
+    //methods used to retrieve indicies for getting then setting the grade and hour on edit
+    func getGradeIndex(for string:String) -> Int {
+        var gradeIndex = 0
+        for i in 0 ..< grades.count {
+            if grades[i] == string {
+                gradeIndex = i
+            }
+        }
+        return gradeIndex
+    }
+    
+    func getHourIndex(for double:Double) -> Int {
+        var hourIndex = 0
+        for i in 0 ..< hours.count {
+            if Double(hours[i]) == double {
+                hourIndex = i
+            }
+        }
+        return hourIndex
+    }
+    
 }
 
 

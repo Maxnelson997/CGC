@@ -119,12 +119,12 @@ class AddSemesterController: UIViewController {
             pickerView.selectRow(yearIndex, inComponent: 1, animated: true)
             
             var fontSize:CGFloat = 42
-            if semesterSeasonAndYear.count > 8 {
+            if semesterSeasonAndYear.count > 10 {
                 fontSize = 25
             }
             var title = NSMutableAttributedString(string: semesterSeasonAndYear, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: fontSize)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
 
-            if let yearAsDouble = Double(year), yearAsDouble < 100 {
+                if let yearAsDouble = Double(year), yearAsDouble < 100 {
            
                 if season.count > 8 {
                     fontSize = 25
@@ -143,27 +143,7 @@ class AddSemesterController: UIViewController {
             pickerView.selectRow(getIndexOfYear(), inComponent: 0, animated: true)
         }
     }
-    
-    func getIndexOfSeason() -> Int {
-        var indexOfSeason = 0
-        for i in 0 ..< seasons.count {
-            if seasons[i] == season {
-                indexOfSeason = i
-            }
-        }
-        return indexOfSeason
-    }
-    
-    func getIndexOfYear() -> Int {
-        var indexOfYear = 0
-        for i in 0 ..< years.count {
-            if years[i] == year {
-                indexOfYear = i
-            }
-        }
-        return indexOfYear
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         view.backgroundColor = .white
     }

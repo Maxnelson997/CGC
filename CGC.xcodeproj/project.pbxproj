@@ -14,7 +14,7 @@
 		79289627201DFE8200BC22D3 /* SemestersController+ActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289626201DFE8200BC22D3 /* SemestersController+ActionModel.swift */; };
 		79289629201DFEF700BC22D3 /* SemesterClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289628201DFEF700BC22D3 /* SemesterClass.swift */; };
 		7928962B201DFF0700BC22D3 /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928962A201DFF0700BC22D3 /* Semester.swift */; };
-		7928962D201E007E00BC22D3 /* AddSemesterController+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928962C201E007E00BC22D3 /* AddSemesterController+Action.swift */; };
+		7928962D201E007E00BC22D3 /* AddSemesterController+ActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928962C201E007E00BC22D3 /* AddSemesterController+ActionModel.swift */; };
 		7928962F201E013C00BC22D3 /* CGCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928962E201E013C00BC22D3 /* CGCTextField.swift */; };
 		79289632201E9B8C00BC22D3 /* ClassesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289631201E9B8C00BC22D3 /* ClassesController.swift */; };
 		79289634201E9C2400BC22D3 /* ClassesController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289633201E9C2400BC22D3 /* ClassesController+UITableViewDelegate.swift */; };
@@ -23,7 +23,7 @@
 		7928963A201E9C7300BC22D3 /* ClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289639201E9C7300BC22D3 /* ClassCell.swift */; };
 		7928963D201EB45600BC22D3 /* AddClassController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928963C201EB45600BC22D3 /* AddClassController.swift */; };
 		7928963F201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928963E201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift */; };
-		79289641201EB47700BC22D3 /* AddClassController+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289640201EB47700BC22D3 /* AddClassController+Action.swift */; };
+		79289641201EB47700BC22D3 /* AddClassController+ActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289640201EB47700BC22D3 /* AddClassController+ActionModel.swift */; };
 		79289643201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289642201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift */; };
 		7998F38E201BC960007D9C0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F38D201BC960007D9C0E /* AppDelegate.swift */; };
 		7998F390201BC960007D9C0E /* SemestersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F38F201BC960007D9C0E /* SemestersController.swift */; };
@@ -48,7 +48,7 @@
 		79289626201DFE8200BC22D3 /* SemestersController+ActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemestersController+ActionModel.swift"; sourceTree = "<group>"; };
 		79289628201DFEF700BC22D3 /* SemesterClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterClass.swift; sourceTree = "<group>"; };
 		7928962A201DFF0700BC22D3 /* Semester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Semester.swift; sourceTree = "<group>"; };
-		7928962C201E007E00BC22D3 /* AddSemesterController+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddSemesterController+Action.swift"; sourceTree = "<group>"; };
+		7928962C201E007E00BC22D3 /* AddSemesterController+ActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddSemesterController+ActionModel.swift"; sourceTree = "<group>"; };
 		7928962E201E013C00BC22D3 /* CGCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGCTextField.swift; sourceTree = "<group>"; };
 		79289631201E9B8C00BC22D3 /* ClassesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassesController.swift; sourceTree = "<group>"; };
 		79289633201E9C2400BC22D3 /* ClassesController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassesController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 		79289639201E9C7300BC22D3 /* ClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCell.swift; sourceTree = "<group>"; };
 		7928963C201EB45600BC22D3 /* AddClassController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddClassController.swift; sourceTree = "<group>"; };
 		7928963E201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddClassController+UIPickerViewDelegate.swift"; sourceTree = "<group>"; };
-		79289640201EB47700BC22D3 /* AddClassController+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddClassController+Action.swift"; sourceTree = "<group>"; };
+		79289640201EB47700BC22D3 /* AddClassController+ActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddClassController+ActionModel.swift"; sourceTree = "<group>"; };
 		79289642201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddClassController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		7998F38A201BC960007D9C0E /* CGC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7998F38D201BC960007D9C0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,7 +92,7 @@
 			children = (
 				7998F3AE201C10A8007D9C0E /* AddSemesterController.swift */,
 				79106E76201D8EFD003F9729 /* AddSemesterController+UIPickerViewDelegate.swift */,
-				7928962C201E007E00BC22D3 /* AddSemesterController+Action.swift */,
+				7928962C201E007E00BC22D3 /* AddSemesterController+ActionModel.swift */,
 			);
 			path = AddSemester;
 			sourceTree = "<group>";
@@ -150,8 +150,8 @@
 			children = (
 				7928963C201EB45600BC22D3 /* AddClassController.swift */,
 				7928963E201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift */,
-				79289640201EB47700BC22D3 /* AddClassController+Action.swift */,
 				79289642201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift */,
+				79289640201EB47700BC22D3 /* AddClassController+ActionModel.swift */,
 			);
 			path = AddClass;
 			sourceTree = "<group>";
@@ -272,7 +272,7 @@
 				7928962B201DFF0700BC22D3 /* Semester.swift in Sources */,
 				79289632201E9B8C00BC22D3 /* ClassesController.swift in Sources */,
 				7998F3A9201BCD50007D9C0E /* AAGradientView.swift in Sources */,
-				79289641201EB47700BC22D3 /* AddClassController+Action.swift in Sources */,
+				79289641201EB47700BC22D3 /* AddClassController+ActionModel.swift in Sources */,
 				7928963A201E9C7300BC22D3 /* ClassCell.swift in Sources */,
 				79106E7E201D93BD003F9729 /* SelectIconController.swift in Sources */,
 				7998F3AB201BD371007D9C0E /* UIView+Helpers.swift in Sources */,
@@ -286,7 +286,7 @@
 				79289634201E9C2400BC22D3 /* ClassesController+UITableViewDelegate.swift in Sources */,
 				79289638201E9C3700BC22D3 /* ClassesController+ActionModel.swift in Sources */,
 				7998F3B1201C196F007D9C0E /* UIViewController+Helpers.swift in Sources */,
-				7928962D201E007E00BC22D3 /* AddSemesterController+Action.swift in Sources */,
+				7928962D201E007E00BC22D3 /* AddSemesterController+ActionModel.swift in Sources */,
 				7998F3A3201BC9AA007D9C0E /* MainTabBarController.swift in Sources */,
 				7998F38E201BC960007D9C0E /* AppDelegate.swift in Sources */,
 				79289636201E9C2D00BC22D3 /* ClassesController+Protocol.swift in Sources */,

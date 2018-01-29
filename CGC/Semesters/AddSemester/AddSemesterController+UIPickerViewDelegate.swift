@@ -37,11 +37,11 @@ extension AddSemesterController: UIPickerViewDelegate, UIPickerViewDataSource {
         } else {
             year = years[row]
         }
-        let title = NSMutableAttributedString(string: season, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42) ?? UIFont.systemFont(ofSize: 42), NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+        let title = NSMutableAttributedString(string: season, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
         let info = NSMutableAttributedString(string: "\n\(year)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
         title.append(info)
         largeNameLabel.attributedText = title
-        nameTextField.text = "\(season) \(year)"
-        nameTextField.attributedPlaceholder = NSAttributedString(string: "\(season) \(year)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 14)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.6, alpha: 1)])
+        nameTextField.text = "\(season)\(year)"
+        nameTextField.attributedPlaceholder = NSAttributedString(string: "\(season)\(year)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 14)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.6, alpha: 1)])
     }
 }

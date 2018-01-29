@@ -51,6 +51,7 @@ extension ClassesController {
         tableView.beginUpdates()
         tableView.deleteRows(at: indexes, with: .right)
         tableView.endUpdates()
+        self.footerView.alpha = 0
         handleEdit()
         calculateAllInfo()
     }
@@ -75,7 +76,6 @@ extension ClassesController {
     func setSemesterGPA() {
         guard let semester = semester else { return }
         let gpa = String(format: "%.2f", semester.getSemesterGPA())
-        
         let title = NSMutableAttributedString(string: gpa, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 40)!, NSAttributedStringKey.foregroundColor: UIColor.black])
         title.append(NSMutableAttributedString(string: "\nout of 4.0", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
         GPALabel.attributedText = title
