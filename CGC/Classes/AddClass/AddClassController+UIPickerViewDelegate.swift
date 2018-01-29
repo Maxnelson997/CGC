@@ -39,7 +39,7 @@ extension AddClassController: UIPickerViewDelegate, UIPickerViewDataSource {
         } else {
             hour = hours[row]
         }
-        let title = NSMutableAttributedString(string: nameLabel.text ?? "Name", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42) ?? UIFont.systemFont(ofSize: 42), NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+        let title = NSMutableAttributedString(string: nameTextField.text ?? "Name", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42) ?? UIFont.systemFont(ofSize: 42), NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
         title.append(NSMutableAttributedString(string: "\n\(grade)\n\(hour) hours", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
         largeNameLabel.attributedText = title
     }

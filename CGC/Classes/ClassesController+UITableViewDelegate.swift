@@ -54,6 +54,13 @@ extension ClassesController {
             cell.handleEdit()
         } else {
             //open class
+            let ACC = AddClassController()
+            ACC.delegate = self
+            ACC.index = indexPath.item
+            ACC.classToEdit = classes[indexPath.item]
+            ACC.isEdit = true
+            let ACC_NAV = CustomNavController(rootViewController: ACC)
+            present(ACC_NAV, animated: true, completion: nil)
         }
     }
     

@@ -52,16 +52,7 @@ extension SemestersController: IndexDelegate, AddSemesterDelegate, UpdateSemeste
     }
     
     func saveSemester(semester: Semester, at index: Int) {
-//        for i in 0 ..< semesters.count {
-//            if semesters[i].title == semester.title {
-//                //replace it bit.
-//                semesters[i] = semester
-//            }
-//        }
-        if semesters[index].title == semester.title {
-            //replace it bit.
-            semesters[index] = semester
-        }
+        semesters[index] = semester
         calculateAllInfo()
     }
 }

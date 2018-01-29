@@ -84,6 +84,7 @@ class ClassCell: UITableViewCell {
         //        b.backgroundColor = .grayButton
         b.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         b.setTitle("open", for: .normal)
+        b.isUserInteractionEnabled = false
         b.setTitleColor(.white, for: .normal)
         b.titleLabel?.font = UIFont.init(name: "Futura-Bold", size: 12)
         return b

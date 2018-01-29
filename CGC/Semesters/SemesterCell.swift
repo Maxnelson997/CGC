@@ -87,6 +87,7 @@ class SemesterCell: UITableViewCell {
         let b = UIButton()
         b.layer.cornerRadius = 10
         b.layer.masksToBounds = true
+        b.isUserInteractionEnabled = false
 //        b.backgroundColor = .grayButton
         b.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         b.setTitle("open", for: .normal)

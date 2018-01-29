@@ -14,11 +14,18 @@ extension AddClassController: SelectIconDelegate {
         if let iconImage = iconImageView.imageView?.image {
             classImage = iconImage
         }
-        guard let title = nameTextField.text else { return /*alert that user*/ }
+        var title = nameTextField.text ?? ""
+        if title.count == 0 { title = "class" }
         guard let hoursDouble = Double(hour) else { return }
         let newClass = SemesterClass(icon: classImage, title: title, grade: grade, creditHours: hoursDouble)
         dismiss(animated: true) {
-            self.delegate?.addClass(clas: newClass)
+            if self.isEdit {
+                guard let index = self.index else { return }
+                self.delegate?.addClass(clas: newClass, at: index)
+            } else {
+                self.delegate?.addClass(clas: newClass, at: -1)
+            }
+            
         }
     }
     
