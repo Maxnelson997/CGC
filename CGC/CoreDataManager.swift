@@ -23,4 +23,17 @@ struct CoreDataManager {
     }()
     
 
+    func fetchSemesters() -> [Semester] {
+        let context = persistentContainer.viewContext
+        
+        let fetchRequest = NSFetchRequest<Semester>(entityName: "Semester")
+        
+        do {
+            let companies = try context.fetch(fetchRequest)
+            return companies
+        } catch let error {
+            print("failed to fetch companies from core data:",error)
+            return []
+        }
+    }
 }

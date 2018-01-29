@@ -80,6 +80,7 @@ class SemestersController: UITableViewController {
 //            Semester(icon: #imageLiteral(resourceName: "astronaut"), title: "Spring 18", classes: [SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "Math", grade: "A-", creditHours: 6),SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "English", grade: "A", creditHours: 3)]),
         ]
         
+        semesters = CoreDataManager.shared.fetchSemesters()
         calculateAllInfo()
         
         view.backgroundColor = .clear
