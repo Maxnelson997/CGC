@@ -25,7 +25,6 @@ extension AddClassController: SelectIconDelegate {
             } else {
                 self.delegate?.addClass(clas: newClass, at: -1)
             }
-            
         }
     }
     

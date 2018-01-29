@@ -52,9 +52,8 @@ class AddSemesterController: UIViewController {
     
     let largeNameLabel:TabbedRightLabel = {
         let label = TabbedRightLabel()
-        let title = NSMutableAttributedString(string: "Fall", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42) ?? UIFont.systemFont(ofSize: 42), NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
-        let info = NSMutableAttributedString(string: "\n2019", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
-        title.append(info)
+        let title = NSMutableAttributedString(string: "Fall", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+        title.append(NSMutableAttributedString(string: "\n2019", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
         label.attributedText = title
         label.textAlignment = .right
         label.numberOfLines = 0
@@ -76,15 +75,58 @@ class AddSemesterController: UIViewController {
         return p
     }()
     
+    var isEdit:Bool = false
+    var semesterToEdit:Semester?
+    var index:Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "New Semester"
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(handleSave))
         setupCancelButton()
         setupUI()
         pickerView.dataSource = self
         pickerView.delegate = self
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))
+        
+        if isEdit {
+            navigationItem.title = "Edit Semester"
+            guard let semester = semesterToEdit else { return }
+            
+            var seasonIndex = 0
+            var yearIndex = 0
+            let semesterSeasonAndYear = semester.title
+          
+            let indexStartOfText = semesterSeasonAndYear.index(semesterSeasonAndYear.startIndex, offsetBy: semesterSeasonAndYear.count - 2)
+            let indexEndOfText = semesterSeasonAndYear.index(semesterSeasonAndYear.endIndex, offsetBy: -2)
+            
+            let season = String(semesterSeasonAndYear[..<indexEndOfText])
+            let year = String(semesterSeasonAndYear[indexStartOfText...])
+            
+            print(semesterSeasonAndYear)
+            print(season)
+            print(year)
+            
+            for i in 0 ..< seasons.count {
+                if seasons[i] == season {
+                    seasonIndex = i
+                }
+            }
+            for i in 0 ..< years.count {
+                if years[i] == year {
+                    yearIndex = i
+                }
+            }
+            pickerView.selectRow(seasonIndex, inComponent: 0, animated: true)
+            pickerView.selectRow(yearIndex, inComponent: 1, animated: true)
+            
+            let title = NSMutableAttributedString(string: season, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+            title.append(NSMutableAttributedString(string: "\n\(year)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
+            largeNameLabel.attributedText = title
+            nameTextField.text = semester.title
+            iconImageView.setImage(semester.icon, for: .normal)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

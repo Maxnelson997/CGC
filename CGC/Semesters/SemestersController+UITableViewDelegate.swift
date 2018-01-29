@@ -59,6 +59,25 @@ extension SemestersController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+            self.semesters.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .bottom)
+        }
+        deleteAction.backgroundColor = .lightRed
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (handleSwipeEdit, indexPath) in
+            let ASC = AddSemesterController()
+            ASC.delegate = self
+            ASC.index = indexPath.item
+            ASC.semesterToEdit = self.semesters[indexPath.item]
+            ASC.isEdit = true
+            let ASC_NAV = CustomNavController(rootViewController: ASC)
+            self.present(ASC_NAV, animated: true, completion: nil)
+        }
+        editAction.backgroundColor = .darkBlue
+        return [deleteAction, editAction]
+    }
+    
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
 //        if !isEditingSemesters { footerView.alpha = 0 }
         return footerView

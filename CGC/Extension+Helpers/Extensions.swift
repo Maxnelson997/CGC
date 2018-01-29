@@ -26,6 +26,7 @@ func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
 
 
 
+
 extension UIColor {
     open class var g1:UIColor { return UIColor.init(rgb: 0x498AC3 )}
     open class var g0:UIColor { return UIColor.init(rgb: 0x8D9AFC )}
@@ -41,7 +42,11 @@ extension UIColor {
     static var purpleBG: UIColor { return UIColor.init(rgb: 0x6B22FF) }
     static var blackPointEight: UIColor { return UIColor.black.withAlphaComponent(0.8) }
     
-    
+    static let tealColor = UIColor(red: 48/255, green: 164/255, blue: 182/255, alpha: 1)
+    static let lightRed = UIColor(red: 247/255, green: 66/255, blue: 82/255, alpha: 1)
+    static let darkBlue = UIColor(red: 9/255, green: 45/255, blue: 64/255, alpha: 1)
+
+//    static let lightBlue = UIColor(red: 218/255, green: 235/255, blue: 243/255, alpha: 1)
     
     
     

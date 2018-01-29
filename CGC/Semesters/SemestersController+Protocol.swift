@@ -13,7 +13,7 @@ protocol IndexDelegate {
 }
 
 protocol AddSemesterDelegate {
-    func addSemester(semester: Semester)
+    func addSemester(semester: Semester, at semesterIndex:Int)
 }
 
 protocol UpdateSemesterDelegate {
@@ -36,20 +36,25 @@ extension SemestersController: IndexDelegate, AddSemesterDelegate, UpdateSemeste
     }
     
     
-    func addSemester(semester: Semester) {
+    func addSemester(semester: Semester, at semesterIndex:Int) {
         DispatchQueue.main.async {
-            self.semesters.append(semester)
-            let newIndexPath = IndexPath(row: self.semesters.count - 1, section: 0)
-            self.tableView.beginUpdates()
-            
-            self.tableView.insertRows(at: [newIndexPath], with: .right)
-            self.tableView.endUpdates()
+            if semesterIndex != -1 {
+                self.semesters[semesterIndex] = semester
+                self.tableView.reloadData()
+            } else {
+                self.semesters.append(semester)
+                let newIndexPath = IndexPath(row: self.semesters.count - 1, section: 0)
+                self.tableView.beginUpdates()
+                self.tableView.insertRows(at: [newIndexPath], with: .right)
+                self.tableView.endUpdates()
+            }
             self.footerView.alpha = 0
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {
             self.calculateAllInfo()
         }
     }
+    
     
     func saveSemester(semester: Semester, at index: Int) {
         semesters[index] = semester

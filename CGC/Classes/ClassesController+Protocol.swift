@@ -9,7 +9,7 @@
 import UIKit
 
 protocol AddClassDelegate {
-    func addClass(clas: SemesterClass, at index:Int?)
+    func addClass(clas: SemesterClass, at classIndex:Int?)
 }
 
 extension ClassesController: IndexDelegate, AddClassDelegate {

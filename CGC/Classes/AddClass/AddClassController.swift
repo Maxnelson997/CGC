@@ -74,15 +74,7 @@ class AddClassController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if isEdit {
-            navigationItem.title = "Edit Class"
-            guard let clas = classToEdit else { return }
-            let title = NSMutableAttributedString(string: clas.title, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
-            title.append(NSMutableAttributedString(string: "\n\(clas.grade)\n\(clas.creditHours) hours", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
-            largeNameLabel.attributedText = title
-            nameTextField.text = clas.title
-            iconImageView.setImage(clas.icon, for: .normal)
-        } else { navigationItem.title = "New Class" }
+        navigationItem.title = "New Class"
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(handleSave))
         setupCancelButton()
@@ -108,6 +100,14 @@ class AddClassController: UIViewController {
             }
             pickerView.selectRow(gradeIndex, inComponent: 0, animated: true)
             pickerView.selectRow(hourIndex, inComponent: 1, animated: true)
+            
+            navigationItem.title = "Edit Class"
+            let title = NSMutableAttributedString(string: clas.title, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+            title.append(NSMutableAttributedString(string: "\n\(clas.grade)\n\(clas.creditHours) hours", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
+            largeNameLabel.attributedText = title
+            nameTextField.text = clas.title
+            iconImageView.setImage(clas.icon, for: .normal)
+            
         }
     }
     

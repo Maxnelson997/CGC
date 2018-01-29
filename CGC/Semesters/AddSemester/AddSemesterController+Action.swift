@@ -16,7 +16,12 @@ extension AddSemesterController: SelectIconDelegate {
         }
         let newSemester = Semester(icon: semesterImage, title: "\(season) \(year)", classes: [])
         dismiss(animated: true) {
-            self.delegate?.addSemester(semester: newSemester)
+            if self.isEdit {
+                guard let index = self.index else { return }
+                self.delegate?.addSemester(semester: newSemester, at: index)
+            } else {
+                self.delegate?.addSemester(semester: newSemester, at: -1)
+            }
         }
     }
     
@@ -28,6 +33,8 @@ extension AddSemesterController: SelectIconDelegate {
         let SIC_NAV = CustomNavController(rootViewController: SIC)
         present(SIC_NAV, animated: true, completion: nil)
     }
+    
+
     
     @objc func dismissTextField() {
         nameTextField.resignFirstResponder()
