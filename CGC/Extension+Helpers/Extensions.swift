@@ -37,6 +37,10 @@ extension UIColor {
     static var appleBlue: UIColor { return UIColor.init(rgb: 0x007AFF) }
     static var lightBlue: UIColor { return UIColor.init(rgb: 0x98FFEF) }
     static var lighterBlue: UIColor { return UIColor.init(rgb: 0xD6F6FF) }
+    static var astronautBlue: UIColor { return UIColor.init(rgb: 0x58B4D0) }
+    static var aplGreen: UIColor { return UIColor.init(rgb: 0x70EC89) }
+    static var ppBlue: UIColor { return UIColor.init(rgb: 0x9BFCF3) }
+    static var alienRed: UIColor { return UIColor.init(rgb: 0xCF5861) }
     static var grayButton: UIColor { return UIColor.init(rgb: 0xEFEFF4) }
     static var yellowBG: UIColor { return UIColor.init(rgb: 0xBCFF43) }
     static var purpleBG: UIColor { return UIColor.init(rgb: 0x6B22FF) }

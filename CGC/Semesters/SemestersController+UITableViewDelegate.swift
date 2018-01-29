@@ -19,7 +19,7 @@ extension SemestersController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 100
+        return 150
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -32,7 +32,7 @@ extension SemestersController {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 50
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -69,7 +69,9 @@ extension SemestersController {
             })
         }
         deleteAction.backgroundColor = .lightRed
+
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (handleSwipeEdit, indexPath) in
+            
             let ASC = AddSemesterController()
             ASC.delegate = self
             ASC.index = indexPath.item
@@ -78,7 +80,7 @@ extension SemestersController {
             let ASC_NAV = CustomNavController(rootViewController: ASC)
             self.present(ASC_NAV, animated: true, completion: nil)
         }
-        editAction.backgroundColor = .darkBlue
+        editAction.backgroundColor = UIColor.black.withAlphaComponent(0.8)//.aplGreen
         return [deleteAction, editAction]
     }
     

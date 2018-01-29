@@ -18,7 +18,7 @@ class SemestersController: UITableViewController {
     lazy var footerView:UIView = {
         let footerView = UIStackView()
         let bg = UIView()
-        bg.backgroundColor = UIColor.appleBlue.withAlphaComponent(0.2)
+        bg.backgroundColor = UIColor.aplGreen.withAlphaComponent(0.2)
         footerView.addSubview(bg)
         bg.anchorEntireView(to: footerView)
         footerView.axis = .horizontal

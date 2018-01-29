@@ -13,8 +13,8 @@ class SettingsController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        view.backgroundColor = .yellow
+        navigationItem.title = "More Stuff"
+        view.backgroundColor = .clear
     }
     
     override func didReceiveMemoryWarning() {

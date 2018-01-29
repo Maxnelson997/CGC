@@ -75,7 +75,7 @@ extension ClassesController {
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in
             self.openClass(at: indexPath.item)
         }
-        editAction.backgroundColor = .darkBlue
+        editAction.backgroundColor = UIColor.black.withAlphaComponent(0.8)//.aplGreen
         return [deleteAction, editAction]
     }
     

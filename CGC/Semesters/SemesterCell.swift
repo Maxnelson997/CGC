@@ -16,8 +16,8 @@ class SemesterCell: UITableViewCell {
     @objc func handleEdit() {
         sel = !sel
         delegate?.setSemesterSelected(at: tag - 1)
-        let fill:(UIColor,UIColor) = sel ? (.appleBlue,.appleBlue) : (UIColor.black.withAlphaComponent(0.8),.clear)
-        let selectedViewFill:UIColor = sel ? UIColor.appleBlue.withAlphaComponent(0.2) : .clear
+        let fill:(UIColor,UIColor) = sel ? (UIColor.aplGreen.withAlphaComponent(0.8),.aplGreen) : (UIColor.black.withAlphaComponent(0.8),.clear)
+        let selectedViewFill:UIColor = sel ? UIColor.aplGreen.withAlphaComponent(0.2) : .clear
         UIView.animate(withDuration: 0.1, animations: {
             self.editButton.backgroundColor = fill.1
             self.editButton.layer.borderColor = fill.0.cgColor
@@ -89,9 +89,9 @@ class SemesterCell: UITableViewCell {
         b.layer.masksToBounds = true
         b.isUserInteractionEnabled = false
 //        b.backgroundColor = .grayButton
-        b.backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        b.backgroundColor = UIColor.aplGreen.withAlphaComponent(0.8)
         b.setTitle("open", for: .normal)
-        b.setTitleColor(.white, for: .normal)
+        b.setTitleColor(.black, for: .normal)
         b.titleLabel?.font = UIFont.init(name: "Futura-Bold", size: 12)
         return b
     }()
@@ -102,7 +102,7 @@ class SemesterCell: UITableViewCell {
         b.layer.masksToBounds = true
         b.backgroundColor = .clear
         b.layer.borderWidth = 4
-        b.layer.borderColor = UIColor.black.withAlphaComponent(0.8).cgColor
+        b.layer.borderColor = UIColor.aplGreen.withAlphaComponent(0.8).cgColor
         b.addTarget(self, action: #selector(self.handleEdit), for: [.touchUpInside])
         return b
     }()

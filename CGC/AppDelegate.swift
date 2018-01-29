@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
         UINavigationBar.appearance().tintColor = .black
         UINavigationBar.appearance().isTranslucent = false
-        UINavigationBar.appearance().barTintColor = .grayButton
+        UINavigationBar.appearance().barTintColor = .aplGreen//.grayButton
         UINavigationBar.appearance().prefersLargeTitles = true
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
         UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         window?.rootViewController = tab
-        let backgroundGradient = AAGradientView(frame: UIScreen.main.bounds, colors: [.lightBlue, .white], locations: [-0.5, 1])
+        let backgroundGradient = AAGradientView(frame: UIScreen.main.bounds, colors: [.white, .white], locations: [-0.5, 1])
         window?.insertSubview(backgroundGradient, at: 0)
         return true
     }
