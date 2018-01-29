@@ -25,6 +25,7 @@
 		7928963F201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928963E201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift */; };
 		79289641201EB47700BC22D3 /* AddClassController+ActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289640201EB47700BC22D3 /* AddClassController+ActionModel.swift */; };
 		79289643201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289642201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift */; };
+		79289645201FCA3A00BC22D3 /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289644201FCA3A00BC22D3 /* DefaultValues.swift */; };
 		7998F38E201BC960007D9C0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F38D201BC960007D9C0E /* AppDelegate.swift */; };
 		7998F390201BC960007D9C0E /* SemestersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F38F201BC960007D9C0E /* SemestersController.swift */; };
 		7998F396201BC960007D9C0E /* CGC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7998F394201BC960007D9C0E /* CGC.xcdatamodeld */; };
@@ -59,6 +60,7 @@
 		7928963E201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddClassController+UIPickerViewDelegate.swift"; sourceTree = "<group>"; };
 		79289640201EB47700BC22D3 /* AddClassController+ActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddClassController+ActionModel.swift"; sourceTree = "<group>"; };
 		79289642201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddClassController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
+		79289644201FCA3A00BC22D3 /* DefaultValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
 		7998F38A201BC960007D9C0E /* CGC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7998F38D201BC960007D9C0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7998F38F201BC960007D9C0E /* SemestersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemestersController.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				7998F3AA201BD371007D9C0E /* UIView+Helpers.swift */,
 				7998F3B0201C196F007D9C0E /* UIViewController+Helpers.swift */,
 				7928962E201E013C00BC22D3 /* CGCTextField.swift */,
+				79289644201FCA3A00BC22D3 /* DefaultValues.swift */,
 			);
 			path = "Extension+Helpers";
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				79289634201E9C2400BC22D3 /* ClassesController+UITableViewDelegate.swift in Sources */,
 				79289638201E9C3700BC22D3 /* ClassesController+ActionModel.swift in Sources */,
 				7998F3B1201C196F007D9C0E /* UIViewController+Helpers.swift in Sources */,
+				79289645201FCA3A00BC22D3 /* DefaultValues.swift in Sources */,
 				7928962D201E007E00BC22D3 /* AddSemesterController+ActionModel.swift in Sources */,
 				7998F3A3201BC9AA007D9C0E /* MainTabBarController.swift in Sources */,
 				7998F38E201BC960007D9C0E /* AppDelegate.swift in Sources */,

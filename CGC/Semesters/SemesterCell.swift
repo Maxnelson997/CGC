@@ -50,7 +50,7 @@ class SemesterCell: UITableViewCell {
             self.editButton.layer.borderColor = UIColor.black.withAlphaComponent(0.8).cgColor
             var infoString:String = ""
             let gpa = String(format: "%.2f", s.getSemesterGPA())
-            if s.classes.count > 1 && s.classes.count != 0 {
+            if s.classes.count > 1 || s.classes.count == 0 {
                 infoString = "\(gpa)\n\(s.classes.count) classes"
             } else {
                 infoString = "\(gpa)\n\(s.classes.count) class"

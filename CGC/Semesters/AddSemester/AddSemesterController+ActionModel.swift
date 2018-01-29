@@ -12,7 +12,8 @@ extension AddSemesterController: SelectIconDelegate {
     @objc func handleSave() {
         var newSemester:Semester?
         var semesterImage = UIImage()
-        guard let title = nameTextField.text else { return }
+        guard var title = nameTextField.text else { return }
+        if title.count == 0 { title = "Spring 18"}
         if let iconImage = iconImageView.imageView?.image {
             semesterImage = iconImage
         }
@@ -20,6 +21,9 @@ extension AddSemesterController: SelectIconDelegate {
             newSemester = semesterToEdit
             newSemester?.title = title
         } else {
+            if !iconSelected {
+                semesterImage = DefaultValues.shared.icon
+            }
             newSemester = Semester(icon: semesterImage, title: title, classes: [])
         }
 
@@ -37,6 +41,7 @@ extension AddSemesterController: SelectIconDelegate {
     }
     
     @objc func handleAddIcon() {
+        iconSelected = true
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
         let SIC = SelectIconController(collectionViewLayout: layout)

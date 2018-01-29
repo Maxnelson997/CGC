@@ -16,7 +16,7 @@ class AddSemesterController: UIViewController {
     
     //pickerview data
     var season = "Spring"
-    var year = "2018"
+    var year = "18"
     var seasons:[String] = ["Spring ", "Sum ", "Fall ", "Winter "]
     var years:[String] = {
         var s = [String]()
@@ -37,6 +37,8 @@ class AddSemesterController: UIViewController {
     let nameLabel = TitleLabel(text: "Name", size: 18, alignment: .left)
     let seasonLabel = TitleLabel(text: "Season", size: 18, alignment: .left)
     let yearLabel = TitleLabel(text: "Year", size: 18, alignment: .center)
+    
+    var iconSelected:Bool = false
     
     lazy var iconImageView:UIButton = {
         let button = UIButton()
