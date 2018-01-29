@@ -33,6 +33,13 @@ extension SemestersController: IndexDelegate, AddSemesterDelegate, UpdateSemeste
         } else {
             assert(false, "out of range")
         }
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        
+        do {
+            try context.save()
+        } catch let err {
+            print("failed to save context with removed semester:",err)
+        }
     }
     
     

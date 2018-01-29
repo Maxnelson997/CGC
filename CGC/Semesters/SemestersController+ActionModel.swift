@@ -39,14 +39,29 @@ extension SemestersController {
     
     @objc func handleDelete() {
         guard self.indexes.count > 0 else { return }
-        //filter out selected semesters. obliterate them.
+        let semestersToDelete = semesters.filter { $0.selected }
+        //delete semesters from core data
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        for s in semestersToDelete {
+            context.delete(s)
+        }
+        
         semesters = semesters.filter { !$0.selected }
+        //filter out selected semesters. obliterate them.
+       
         tableView.beginUpdates()
         tableView.deleteRows(at: indexes, with: .right)
         tableView.endUpdates()
         handleEdit()
         calculateAllInfo()
+        
+        do {
+            try context.save()
+        } catch let err {
+            print("failed to save context with removed semester:",err)
+        }
     }
+    
     
     @objc func handleDisable() {
         print("trying to disable")

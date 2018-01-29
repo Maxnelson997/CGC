@@ -61,12 +61,22 @@ extension SemestersController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+            let semester = self.semesters[indexPath.row]
             self.semesters.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .right)
             self.footerView.alpha = 0
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4, execute: {
                 self.calculateAllInfo()
             })
+        
+            //delete semester from core data
+            let context = CoreDataManager.shared.persistentContainer.viewContext
+            context.delete(semester)
+            do {
+                try context.save()
+            } catch let err {
+                print("failed to save context with removed semester:",err)
+            }
         }
         deleteAction.backgroundColor = .lightRed
 
