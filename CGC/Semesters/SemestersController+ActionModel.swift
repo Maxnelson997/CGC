@@ -29,16 +29,7 @@ extension SemestersController {
         }
         tableView.reloadData()
     }
-    
-    @objc func handleSwipeEdit() {
-//        let ASC = AddSemesterController()
-//        ASC.delegate = self
-//        let ASC_NAV = CustomNavController(rootViewController: ASC)
-//        present(ASC_NAV, animated: true, completion: nil)
-//
-        print("handling edit - action")
-    }
-    
+
     @objc func handleAdd() {
         let ASC = AddSemesterController()
         ASC.delegate = self

@@ -10,17 +10,24 @@ import UIKit
 
 extension AddSemesterController: SelectIconDelegate {
     @objc func handleSave() {
-        var semesterImage = UIImage()
-        if let iconImage = iconImageView.imageView?.image {
-            semesterImage = iconImage
+        var newSemester:Semester?
+        if isEdit {
+            newSemester = semesterToEdit
+        } else {
+            var semesterImage = UIImage()
+            if let iconImage = iconImageView.imageView?.image {
+                semesterImage = iconImage
+            }
+            newSemester = Semester(icon: semesterImage, title: "\(season)\(year)", classes: [])
         }
-        let newSemester = Semester(icon: semesterImage, title: "\(season) \(year)", classes: [])
-        dismiss(animated: true) {
-            if self.isEdit {
-                guard let index = self.index else { return }
-                self.delegate?.addSemester(semester: newSemester, at: index)
-            } else {
-                self.delegate?.addSemester(semester: newSemester, at: -1)
+        if let newSemester = newSemester {
+            dismiss(animated: true) {
+                if self.isEdit {
+                    guard let index = self.index else { return }
+                    self.delegate?.addSemester(semester: newSemester, at: index)
+                } else {
+                    self.delegate?.addSemester(semester: newSemester, at: -1)
+                }
             }
         }
     }

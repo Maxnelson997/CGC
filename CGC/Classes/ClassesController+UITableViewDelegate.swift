@@ -54,18 +54,44 @@ extension ClassesController {
             cell.handleEdit()
         } else {
             //open class
-            let ACC = AddClassController()
-            ACC.delegate = self
-            ACC.index = indexPath.item
-            ACC.classToEdit = classes[indexPath.item]
-            ACC.isEdit = true
-            let ACC_NAV = CustomNavController(rootViewController: ACC)
-            present(ACC_NAV, animated: true, completion: nil)
+            openClass(at: indexPath.item)
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+            self.classes.remove(at: indexPath.row)
+            self.semester?.classes = self.classes
+            guard let semester = self.semester else { return }
+            guard let index = self.index else { return }
+            self.delegate?.saveSemester(semester: semester, at: index)
+            self.tableView.deleteRows(at: [indexPath], with: .bottom)
+            self.footerView.alpha = 0
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4, execute: {
+                self.calculateAllInfo()
+            })
+        }
+        deleteAction.backgroundColor = .lightRed
+        let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in
+            self.openClass(at: indexPath.item)
+        }
+        editAction.backgroundColor = .darkBlue
+        return [deleteAction, editAction]
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         //        if !isEditingSemesters { footerView.alpha = 0 }
         return footerView
+    }
+    
+    //open class used within didSelectRowAt and editActionsForRowAt
+    func openClass(at index:Int) {
+        let ACC = AddClassController()
+        ACC.delegate = self
+        ACC.index = index
+        ACC.classToEdit = classes[index]
+        ACC.isEdit = true
+        let ACC_NAV = CustomNavController(rootViewController: ACC)
+        present(ACC_NAV, animated: true, completion: nil)
     }
 }

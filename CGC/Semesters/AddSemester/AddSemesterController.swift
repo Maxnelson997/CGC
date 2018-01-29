@@ -17,7 +17,7 @@ class AddSemesterController: UIViewController {
     //pickerview data
     var season = "Spring"
     var year = "2018"
-    var seasons:[String] = ["Spring", "Sum", "Fall", "Winter"]
+    var seasons:[String] = ["Spring ", "Sum ", "Fall ", "Winter "]
     var years:[String] = {
         var s = [String]()
         for i in 1 ..< 41 {
@@ -103,11 +103,7 @@ class AddSemesterController: UIViewController {
             
             let season = String(semesterSeasonAndYear[..<indexEndOfText])
             let year = String(semesterSeasonAndYear[indexStartOfText...])
-            
-            print(semesterSeasonAndYear)
-            print(season)
-            print(year)
-            
+
             for i in 0 ..< seasons.count {
                 if seasons[i] == season {
                     seasonIndex = i
@@ -118,15 +114,54 @@ class AddSemesterController: UIViewController {
                     yearIndex = i
                 }
             }
+            
             pickerView.selectRow(seasonIndex, inComponent: 0, animated: true)
             pickerView.selectRow(yearIndex, inComponent: 1, animated: true)
             
-            let title = NSMutableAttributedString(string: season, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
-            title.append(NSMutableAttributedString(string: "\n\(year)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
+            var fontSize:CGFloat = 42
+            if semesterSeasonAndYear.count > 8 {
+                fontSize = 25
+            }
+            var title = NSMutableAttributedString(string: semesterSeasonAndYear, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: fontSize)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+
+            if let yearAsDouble = Double(year), yearAsDouble < 100 {
+           
+                if season.count > 8 {
+                    fontSize = 25
+                }
+                self.season = season
+                self.year = year
+                title = NSMutableAttributedString(string: season, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: fontSize)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+                title.append(NSMutableAttributedString(string: "\n\(year)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
+            }
+
             largeNameLabel.attributedText = title
             nameTextField.text = semester.title
             iconImageView.setImage(semester.icon, for: .normal)
+            
+            pickerView.selectRow(getIndexOfSeason(), inComponent: 0, animated: true)
+            pickerView.selectRow(getIndexOfYear(), inComponent: 0, animated: true)
         }
+    }
+    
+    func getIndexOfSeason() -> Int {
+        var indexOfSeason = 0
+        for i in 0 ..< seasons.count {
+            if seasons[i] == season {
+                indexOfSeason = i
+            }
+        }
+        return indexOfSeason
+    }
+    
+    func getIndexOfYear() -> Int {
+        var indexOfYear = 0
+        for i in 0 ..< years.count {
+            if years[i] == year {
+                indexOfYear = i
+            }
+        }
+        return indexOfYear
     }
     
     override func viewWillAppear(_ animated: Bool) {
