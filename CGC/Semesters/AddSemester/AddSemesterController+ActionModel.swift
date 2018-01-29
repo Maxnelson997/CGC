@@ -21,7 +21,7 @@ extension AddSemesterController: SelectIconDelegate {
         if let iconImage = iconImageView.imageView?.image {
             semesterImage = iconImage
         }
-        if !iconSelected {
+        if !iconSelected && !isEdit {
             semesterImage = DefaultValues.shared.icon
         }
       

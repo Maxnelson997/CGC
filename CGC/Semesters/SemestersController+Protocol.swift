@@ -46,6 +46,14 @@ extension SemestersController: IndexDelegate, AddSemesterDelegate, UpdateSemeste
     func addSemester(semester: Semester, at semesterIndex:Int) {
         DispatchQueue.main.async {
             if semesterIndex != -1 {
+                //delete semester and replace in core data
+                let context = CoreDataManager.shared.persistentContainer.viewContext
+                context.delete(self.semesters[semesterIndex])
+                do {
+                    try context.save()
+                } catch let err {
+                    print("failed to save context with removed semester:",err)
+                }
                 self.semesters[semesterIndex] = semester
                 self.tableView.reloadData()
             } else {
