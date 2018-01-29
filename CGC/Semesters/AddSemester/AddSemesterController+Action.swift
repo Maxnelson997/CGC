@@ -8,13 +8,13 @@
 
 import UIKit
 
-extension AddSemesterController {
+extension AddSemesterController: SelectIconDelegate {
     @objc func handleSave() {
         var semesterImage = UIImage()
         if let iconImage = iconImageView.imageView?.image {
             semesterImage = iconImage
         }
-        let newSemester = Semester(icon: semesterImage, title: "\(season) \(year)", classes: [SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "Robotics", grade: "A-", creditHours: 4)])
+        let newSemester = Semester(icon: semesterImage, title: "\(season) \(year)", classes: [])
         dismiss(animated: true) {
             self.delegate?.addSemester(semester: newSemester)
         }

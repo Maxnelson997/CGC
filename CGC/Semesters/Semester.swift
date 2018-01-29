@@ -30,6 +30,7 @@ struct Semester {
     
     func getSemesterGPA() -> Double {
         var pointsEarned:Double = 0.0
+        if classes.count == 0 { return 0 }
         for c in classes {
             pointsEarned += c.creditHours * c.getClassGPA()
         }

@@ -60,7 +60,8 @@ extension SemestersController {
     
     func calculateGlobalGPA() {
         let pointsCredits = getPointsCredits()
-        let gpa = pointsCredits.0 / pointsCredits.1
+        var gpa = pointsCredits.0 / pointsCredits.1
+        if gpa.isNaN { gpa = 0 }
         let gpaString = String(format: "%.2f", gpa)
         
         let GPAtitle = NSMutableAttributedString(string: gpaString, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 40)!, NSAttributedStringKey.foregroundColor: UIColor.black])
@@ -85,6 +86,7 @@ extension SemestersController {
      func getPointsCredits() -> (Double,Double) {
         var totalPointsEarned:Double = 0.0
         var totalCreditsEarned:Double = 0.0
+        
         for i in 0 ..< semesters.count {
             for c in semesters[i].classes {
                 totalPointsEarned += c.creditHours * c.getClassGPA()

@@ -16,6 +16,11 @@
 		7928962B201DFF0700BC22D3 /* Semester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928962A201DFF0700BC22D3 /* Semester.swift */; };
 		7928962D201E007E00BC22D3 /* AddSemesterController+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928962C201E007E00BC22D3 /* AddSemesterController+Action.swift */; };
 		7928962F201E013C00BC22D3 /* CGCTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7928962E201E013C00BC22D3 /* CGCTextField.swift */; };
+		79289632201E9B8C00BC22D3 /* ClassesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289631201E9B8C00BC22D3 /* ClassesController.swift */; };
+		79289634201E9C2400BC22D3 /* ClassesController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289633201E9C2400BC22D3 /* ClassesController+UITableViewDelegate.swift */; };
+		79289636201E9C2D00BC22D3 /* ClassesController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289635201E9C2D00BC22D3 /* ClassesController+Protocol.swift */; };
+		79289638201E9C3700BC22D3 /* ClassesController+ActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289637201E9C3700BC22D3 /* ClassesController+ActionModel.swift */; };
+		7928963A201E9C7300BC22D3 /* ClassCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289639201E9C7300BC22D3 /* ClassCell.swift */; };
 		7998F38E201BC960007D9C0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F38D201BC960007D9C0E /* AppDelegate.swift */; };
 		7998F390201BC960007D9C0E /* SemestersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F38F201BC960007D9C0E /* SemestersController.swift */; };
 		7998F396201BC960007D9C0E /* CGC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7998F394201BC960007D9C0E /* CGC.xcdatamodeld */; };
@@ -41,6 +46,11 @@
 		7928962A201DFF0700BC22D3 /* Semester.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Semester.swift; sourceTree = "<group>"; };
 		7928962C201E007E00BC22D3 /* AddSemesterController+Action.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddSemesterController+Action.swift"; sourceTree = "<group>"; };
 		7928962E201E013C00BC22D3 /* CGCTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGCTextField.swift; sourceTree = "<group>"; };
+		79289631201E9B8C00BC22D3 /* ClassesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassesController.swift; sourceTree = "<group>"; };
+		79289633201E9C2400BC22D3 /* ClassesController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassesController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		79289635201E9C2D00BC22D3 /* ClassesController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassesController+Protocol.swift"; sourceTree = "<group>"; };
+		79289637201E9C3700BC22D3 /* ClassesController+ActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ClassesController+ActionModel.swift"; sourceTree = "<group>"; };
+		79289639201E9C7300BC22D3 /* ClassCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClassCell.swift; sourceTree = "<group>"; };
 		7998F38A201BC960007D9C0E /* CGC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7998F38D201BC960007D9C0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7998F38F201BC960007D9C0E /* SemestersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemestersController.swift; sourceTree = "<group>"; };
@@ -83,12 +93,11 @@
 			isa = PBXGroup;
 			children = (
 				79106E75201D8EDF003F9729 /* AddSemester */,
-				7998F3AC201C0251007D9C0E /* SemesterCell.swift */,
 				7998F38F201BC960007D9C0E /* SemestersController.swift */,
 				79289622201DFD9E00BC22D3 /* SemestersController+UITableViewDelegate.swift */,
 				79289624201DFE5800BC22D3 /* SemestersController+Protocol.swift */,
 				79289626201DFE8200BC22D3 /* SemestersController+ActionModel.swift */,
-				79289628201DFEF700BC22D3 /* SemesterClass.swift */,
+				7998F3AC201C0251007D9C0E /* SemesterCell.swift */,
 				7928962A201DFF0700BC22D3 /* Semester.swift */,
 			);
 			path = Semesters;
@@ -114,6 +123,19 @@
 			path = "Extension+Helpers";
 			sourceTree = "<group>";
 		};
+		79289630201E9B8200BC22D3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				79289631201E9B8C00BC22D3 /* ClassesController.swift */,
+				79289633201E9C2400BC22D3 /* ClassesController+UITableViewDelegate.swift */,
+				79289635201E9C2D00BC22D3 /* ClassesController+Protocol.swift */,
+				79289637201E9C3700BC22D3 /* ClassesController+ActionModel.swift */,
+				79289628201DFEF700BC22D3 /* SemesterClass.swift */,
+				79289639201E9C7300BC22D3 /* ClassCell.swift */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		7998F381201BC960007D9C0E = {
 			isa = PBXGroup;
 			children = (
@@ -133,6 +155,7 @@
 		7998F38C201BC960007D9C0E /* CGC */ = {
 			isa = PBXGroup;
 			children = (
+				79289630201E9B8200BC22D3 /* Classes */,
 				7998F38D201BC960007D9C0E /* AppDelegate.swift */,
 				7998F3A2201BC9AA007D9C0E /* MainTabBarController.swift */,
 				79106E7D201D93BD003F9729 /* SelectIconController.swift */,
@@ -225,7 +248,9 @@
 				7998F3AD201C0251007D9C0E /* SemesterCell.swift in Sources */,
 				7998F3AF201C10A8007D9C0E /* AddSemesterController.swift in Sources */,
 				7928962B201DFF0700BC22D3 /* Semester.swift in Sources */,
+				79289632201E9B8C00BC22D3 /* ClassesController.swift in Sources */,
 				7998F3A9201BCD50007D9C0E /* AAGradientView.swift in Sources */,
+				7928963A201E9C7300BC22D3 /* ClassCell.swift in Sources */,
 				79106E7E201D93BD003F9729 /* SelectIconController.swift in Sources */,
 				7998F3AB201BD371007D9C0E /* UIView+Helpers.swift in Sources */,
 				7998F390201BC960007D9C0E /* SemestersController.swift in Sources */,
@@ -234,10 +259,13 @@
 				79289629201DFEF700BC22D3 /* SemesterClass.swift in Sources */,
 				79289623201DFD9E00BC22D3 /* SemestersController+UITableViewDelegate.swift in Sources */,
 				7928962F201E013C00BC22D3 /* CGCTextField.swift in Sources */,
+				79289634201E9C2400BC22D3 /* ClassesController+UITableViewDelegate.swift in Sources */,
+				79289638201E9C3700BC22D3 /* ClassesController+ActionModel.swift in Sources */,
 				7998F3B1201C196F007D9C0E /* UIViewController+Helpers.swift in Sources */,
 				7928962D201E007E00BC22D3 /* AddSemesterController+Action.swift in Sources */,
 				7998F3A3201BC9AA007D9C0E /* MainTabBarController.swift in Sources */,
 				7998F38E201BC960007D9C0E /* AppDelegate.swift in Sources */,
+				79289636201E9C2D00BC22D3 /* ClassesController+Protocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

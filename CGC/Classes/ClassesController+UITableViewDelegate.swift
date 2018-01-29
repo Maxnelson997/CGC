@@ -1,14 +1,16 @@
 //
-//  SemestersController+UITableViewDelegate.swift
+//  ClassesController+UITableViewDelegate.swift
 //  CGC
 //
 //  Created by Max Nelson on 1/28/18.
 //  Copyright © 2018 AsherApps. All rights reserved.
 //
 
+
+
 import UIKit
 
-extension SemestersController {
+extension ClassesController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIStackView()
         view.axis = .horizontal
@@ -23,7 +25,7 @@ extension SemestersController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return semesters.count
+        return classes.count
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -36,29 +38,27 @@ extension SemestersController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SemesterCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! ClassCell
         cell.tag = indexPath.item + 1
-        cell.semester = semesters[indexPath.item]
+        cell.clas = classes[indexPath.item]
         cell.delegate = self
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
-        cell.isEditingCell = isEditingSemesters
+        cell.isEditingCell = isEditingClasses
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if isEditingSemesters {
-            let cell = tableView.cellForRow(at: indexPath) as! SemesterCell
+        if isEditingClasses {
+            let cell = tableView.cellForRow(at: indexPath) as! ClassCell
             cell.handleEdit()
         } else {
-            let classesController = ClassesController()
-            classesController.semester = semesters[indexPath.row]
-            navigationController?.pushViewController(classesController, animated: true)
+            //open class
         }
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        if !isEditingSemesters { footerView.alpha = 0 }
+        //        if !isEditingSemesters { footerView.alpha = 0 }
         return footerView
     }
 }

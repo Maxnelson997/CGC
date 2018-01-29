@@ -13,6 +13,7 @@ struct SemesterClass {
     let title:String
     let grade:String
     let creditHours:Double
+    var selected:Bool = false
     
     init(icon:UIImage, title:String, grade:String, creditHours:Double) {
         self.icon = icon

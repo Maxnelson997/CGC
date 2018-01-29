@@ -1,15 +1,15 @@
 //
-//  SemesterCell.swift
+//  ClassCell.swift
 //  CGC
 //
-//  Created by Max Nelson on 1/26/18.
+//  Created by Max Nelson on 1/28/18.
 //  Copyright © 2018 AsherApps. All rights reserved.
 //
 
 import UIKit
 
-class SemesterCell: UITableViewCell {
-
+class ClassCell: UITableViewCell {
+    
     var sel:Bool = false
     var delegate:IndexDelegate?
     
@@ -23,7 +23,7 @@ class SemesterCell: UITableViewCell {
             self.editButton.layer.borderColor = fill.0.cgColor
             self.selectedView.backgroundColor = selectedViewFill
         })
- 
+        
     }
     
     var isEditingCell: Bool? {
@@ -35,28 +35,22 @@ class SemesterCell: UITableViewCell {
                 self.editButton.transform = CGAffineTransform(translationX: width, y: 0)
                 self.icon.transform = CGAffineTransform(translationX: width-20, y: 0)
                 self.infoLabel.transform = CGAffineTransform(translationX: width-20, y: 0)
-//                self.openButton.transform = CGAffineTransform(translationX: width-20, y: 0)
+                //                self.openButton.transform = CGAffineTransform(translationX: width-20, y: 0)
             }, completion: nil)
         }
     }
-
-    var semester:Semester? {
+    
+    var clas:SemesterClass? {
         didSet {
-            guard let s = semester else { return }
-            icon.setImage(s.icon, for: .normal)
-            sel = s.selected
+            guard let c = clas else { return }
+            print(c)
+            icon.setImage(c.icon, for: .normal)
+            sel = c.selected
             self.selectedView.backgroundColor = .clear
             self.editButton.backgroundColor = .clear
             self.editButton.layer.borderColor = UIColor.black.withAlphaComponent(0.8).cgColor
-            var infoString:String = ""
-            let gpa = String(format: "%.2f", s.getSemesterGPA())
-            if s.classes.count > 1 && s.classes.count != 0 {
-                infoString = "\(gpa)\n\(s.classes.count) classes"
-            } else {
-                infoString = "\(gpa)\n\(s.classes.count) class"
-            }
-            let title = NSMutableAttributedString(string: s.title, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 18)!, NSAttributedStringKey.foregroundColor: UIColor.black])
-            let info = NSMutableAttributedString(string: "\n\(infoString)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)! ,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
+            let title = NSMutableAttributedString(string: c.title, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 18)!, NSAttributedStringKey.foregroundColor: UIColor.black])
+            let info = NSMutableAttributedString(string: "\n\(c.grade)\n\(Int(c.creditHours)) credit hours", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)! ,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
             title.append(info)
             infoLabel.attributedText = title
         }
@@ -87,7 +81,7 @@ class SemesterCell: UITableViewCell {
         let b = UIButton()
         b.layer.cornerRadius = 10
         b.layer.masksToBounds = true
-//        b.backgroundColor = .grayButton
+        //        b.backgroundColor = .grayButton
         b.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         b.setTitle("open", for: .normal)
         b.setTitleColor(.white, for: .normal)
@@ -120,7 +114,7 @@ class SemesterCell: UITableViewCell {
         addSubview(infoLabel)
         addSubview(openButton)
         addSubview(selectedView)
-
+        
         icon.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: nil, paddingTop: 10, paddingLeft: 10, paddingBottom: 10, paddingRight: 10, width: 50, height: 50)
         infoLabel.anchor(top: topAnchor, left: icon.rightAnchor, bottom: bottomAnchor, right: openButton.leftAnchor, paddingTop: 2, paddingLeft: 0, paddingBottom: 2, paddingRight: 10, width: 0, height: 0)
         openButton.anchor(top: nil, left: nil, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddingBottom: 0, paddingRight: 16, width: 50, height: 20)

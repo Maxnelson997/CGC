@@ -1,5 +1,5 @@
 //
-//  SemestersController+Delegate.swift
+//  ClassesController+Protocol.swift
 //  CGC
 //
 //  Created by Max Nelson on 1/28/18.
@@ -8,20 +8,16 @@
 
 import UIKit
 
-protocol IndexDelegate {
-    func setSemesterSelected(at index:Int)
+protocol AddClassDelegate {
+    func addClass(clas: SemesterClass)
 }
 
-protocol AddSemesterDelegate {
-    func addSemester(semester: Semester)
-}
-
-extension SemestersController: IndexDelegate, AddSemesterDelegate {
+extension ClassesController: IndexDelegate, AddClassDelegate {
     func setSemesterSelected(at index:Int) {
         print("selected index:",index)
-        if index <= semesters.count {
-            semesters[index].selected = !semesters[index].selected
-            if semesters[index].selected {
+        if index <= classes.count {
+            classes[index].selected = !classes[index].selected
+            if classes[index].selected {
                 indexes.append(IndexPath(row: index, section: 0))
             } else {
                 indexes = indexes.filter { $0.row != index }
@@ -31,10 +27,10 @@ extension SemestersController: IndexDelegate, AddSemesterDelegate {
         }
     }
     
-    func addSemester(semester: Semester) {
+    func addClass(clas: SemesterClass) {
         DispatchQueue.main.async {
-            self.semesters.append(semester)
-            let newIndexPath = IndexPath(row: self.semesters.count - 1, section: 0)
+            self.classes.append(clas)
+            let newIndexPath = IndexPath(row: self.classes.count - 1, section: 0)
             self.tableView.beginUpdates()
             
             self.tableView.insertRows(at: [newIndexPath], with: .right)

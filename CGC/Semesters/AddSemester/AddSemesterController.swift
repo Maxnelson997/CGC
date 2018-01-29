@@ -12,7 +12,7 @@ protocol SelectIconDelegate {
     func chooseIcon(image:UIImage)
 }
 
-class AddSemesterController: UIViewController, SelectIconDelegate {
+class AddSemesterController: UIViewController {
     
     //pickerview data
     var season = "Spring"
