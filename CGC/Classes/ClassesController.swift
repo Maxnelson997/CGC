@@ -16,6 +16,7 @@ class ClassesController: UITableViewController {
     var isEditingClasses:Bool = false
     
     var semester:Semester?
+    var delegate:UpdateSemesterDelegate?
     
     lazy var footerView:UIView = {
         let footerView = UIStackView()

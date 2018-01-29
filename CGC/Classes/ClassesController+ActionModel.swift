@@ -41,8 +41,13 @@ extension ClassesController {
     
     @objc func handleDelete() {
         guard self.indexes.count > 0 else { return }
-        //filter out selected semesters. obliterate them.
+        //filter out selected classes. obliterate them.
         classes = classes.filter { !$0.selected }
+        //overwrite semester classes
+        semester?.classes = classes
+        guard let semester = semester else { return }
+        
+        delegate?.saveSemester(semester: semester)
         tableView.beginUpdates()
         tableView.deleteRows(at: indexes, with: .right)
         tableView.endUpdates()

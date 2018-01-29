@@ -76,9 +76,9 @@ class SemestersController: UITableViewController {
         super.viewDidLoad()
         
         semesters = [
-            Semester(icon: #imageLiteral(resourceName: "alien-1"), title: "ONE", classes: [SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "class title", grade: "A-", creditHours: 3)]),
+            Semester(icon: #imageLiteral(resourceName: "alien-1"), title: "ONE", classes: [SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "class boi", grade: "A-", creditHours: 3)]),
             Semester(icon: #imageLiteral(resourceName: "alien-1"), title: "ONE", classes: []),
-            Semester(icon: #imageLiteral(resourceName: "astronaut"), title: "TWO", classes: [SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "class title", grade: "A-", creditHours: 6),SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "class title", grade: "A", creditHours: 3)]),
+            Semester(icon: #imageLiteral(resourceName: "astronaut"), title: "TWO", classes: [SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "class swag", grade: "A-", creditHours: 6),SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "class title", grade: "A", creditHours: 3)]),
         ]
         
         calculateAllInfo()

@@ -16,7 +16,11 @@ protocol AddSemesterDelegate {
     func addSemester(semester: Semester)
 }
 
-extension SemestersController: IndexDelegate, AddSemesterDelegate {
+protocol UpdateSemesterDelegate {
+    func saveSemester(semester: Semester)
+}
+
+extension SemestersController: IndexDelegate, AddSemesterDelegate, UpdateSemesterDelegate {
     func setSemesterSelected(at index:Int) {
         print("selected index:",index)
         if index <= semesters.count {
@@ -44,5 +48,26 @@ extension SemestersController: IndexDelegate, AddSemesterDelegate {
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {
             self.calculateAllInfo()
         }
+    }
+    
+    func saveSemester(semester: Semester) {
+        print("old")
+        semesters.forEach { (s) in
+            print(s)
+        }
+
+        for i in 0 ..< semesters.count {
+            if semesters[i].title == semester.title {
+                //replace it bit.
+                semesters[i] = semester
+            }
+        }
+
+        print("new")
+        semesters.forEach { (s) in
+            print(s)
+        }
+        
+        calculateAllInfo()
     }
 }
