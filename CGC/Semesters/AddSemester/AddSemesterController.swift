@@ -79,7 +79,7 @@ class AddSemesterController: UIViewController {
     
     var isEdit:Bool = false
     var semesterToEdit:Semester?
-    var index:Int?
+    var index:Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,7 +98,7 @@ class AddSemesterController: UIViewController {
             
             var seasonIndex = 0
             var yearIndex = 0
-            let semesterSeasonAndYear = semester.title
+            let semesterSeasonAndYear = semester.title!
           
             let indexStartOfText = semesterSeasonAndYear.index(semesterSeasonAndYear.startIndex, offsetBy: semesterSeasonAndYear.count - 2)
             let indexEndOfText = semesterSeasonAndYear.index(semesterSeasonAndYear.endIndex, offsetBy: -2)
@@ -139,7 +139,10 @@ class AddSemesterController: UIViewController {
 
             largeNameLabel.attributedText = title
             nameTextField.text = semester.title
-            iconImageView.setImage(semester.icon, for: .normal)
+            if let imageData = semester.icon {
+                iconImageView.setImage(UIImage(data: imageData), for: .normal)
+            }
+//            iconImageView.setImage(semester.icon, for: .normal)
             
             pickerView.selectRow(getIndexOfSeason(), inComponent: 0, animated: true)
             pickerView.selectRow(getIndexOfYear(), inComponent: 0, animated: true)

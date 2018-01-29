@@ -64,7 +64,7 @@ extension ClassesController {
             self.tableView.deleteRows(at: [indexPath], with: .bottom)
             self.footerView.alpha = 0
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4, execute: {
-                self.semester?.classes = self.classes
+//                self.semester?.classes = self.classes
                 guard let semester = self.semester else { return }
                 guard let index = self.index else { return }
                 self.delegate?.saveSemester(semester: semester, at: index)

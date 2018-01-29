@@ -70,30 +70,31 @@ extension SemestersController {
     }
     
     func calculateGlobalStats() {
-        var classCount = 0
-        var creditHoursCount = 0
-        for s in semesters {
-            classCount += s.classes.count
-            creditHoursCount += Int(s.getSemesterClassesCreditHours())
-        }
-        
-        let title = NSMutableAttributedString(string: "Your Stats", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 18)!, NSAttributedStringKey.foregroundColor: UIColor.black])
-        title.append(NSMutableAttributedString(string: "\nSemesters: \(semesters.count)\nClasses: \(classCount)\nCredit Hours: \(creditHoursCount)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
-        userInfoLabel.attributedText = title
-        tableView.reloadData()
+//        var classCount = 0
+//        var creditHoursCount = 0
+//        for s in semesters {
+//            classCount += s.classes.count
+//            creditHoursCount += Int(s.getSemesterClassesCreditHours())
+//        }
+//
+//        let title = NSMutableAttributedString(string: "Your Stats", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 18)!, NSAttributedStringKey.foregroundColor: UIColor.black])
+//        title.append(NSMutableAttributedString(string: "\nSemesters: \(semesters.count)\nClasses: \(classCount)\nCredit Hours: \(creditHoursCount)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
+//        userInfoLabel.attributedText = title
+//        tableView.reloadData()
     }
     
      func getPointsCredits() -> (Double,Double) {
-        var totalPointsEarned:Double = 0.0
-        var totalCreditsEarned:Double = 0.0
-        
-        for i in 0 ..< semesters.count {
-            for c in semesters[i].classes {
-                totalPointsEarned += c.creditHours * c.getClassGPA()
-                totalCreditsEarned += c.creditHours
-            }
-        }
-        return (totalPointsEarned, totalCreditsEarned)
+//        var totalPointsEarned:Double = 0.0
+//        var totalCreditsEarned:Double = 0.0
+//        
+//        for i in 0 ..< semesters.count {
+//            for c in semesters[i].classes {
+//                totalPointsEarned += c.creditHours * c.getClassGPA()
+//                totalCreditsEarned += c.creditHours
+//            }
+//        }
+//        return (totalPointsEarned, totalCreditsEarned)
+        return (0,0)
     }
 
 }

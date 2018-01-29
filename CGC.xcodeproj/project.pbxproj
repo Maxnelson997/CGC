@@ -26,6 +26,7 @@
 		79289641201EB47700BC22D3 /* AddClassController+ActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289640201EB47700BC22D3 /* AddClassController+ActionModel.swift */; };
 		79289643201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289642201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift */; };
 		79289645201FCA3A00BC22D3 /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289644201FCA3A00BC22D3 /* DefaultValues.swift */; };
+		79289647201FD91300BC22D3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289646201FD91300BC22D3 /* CoreDataManager.swift */; };
 		7998F38E201BC960007D9C0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F38D201BC960007D9C0E /* AppDelegate.swift */; };
 		7998F390201BC960007D9C0E /* SemestersController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F38F201BC960007D9C0E /* SemestersController.swift */; };
 		7998F396201BC960007D9C0E /* CGC.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7998F394201BC960007D9C0E /* CGC.xcdatamodeld */; };
@@ -61,6 +62,7 @@
 		79289640201EB47700BC22D3 /* AddClassController+ActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddClassController+ActionModel.swift"; sourceTree = "<group>"; };
 		79289642201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddClassController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		79289644201FCA3A00BC22D3 /* DefaultValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
+		79289646201FD91300BC22D3 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		7998F38A201BC960007D9C0E /* CGC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7998F38D201BC960007D9C0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7998F38F201BC960007D9C0E /* SemestersController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemestersController.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				7998F399201BC960007D9C0E /* LaunchScreen.storyboard */,
 				7998F39C201BC960007D9C0E /* Info.plist */,
 				7998F394201BC960007D9C0E /* CGC.xcdatamodeld */,
+				79289646201FD91300BC22D3 /* CoreDataManager.swift */,
 			);
 			path = CGC;
 			sourceTree = "<group>";
@@ -275,6 +278,7 @@
 				7928962B201DFF0700BC22D3 /* Semester.swift in Sources */,
 				79289632201E9B8C00BC22D3 /* ClassesController.swift in Sources */,
 				7998F3A9201BCD50007D9C0E /* AAGradientView.swift in Sources */,
+				79289647201FD91300BC22D3 /* CoreDataManager.swift in Sources */,
 				79289641201EB47700BC22D3 /* AddClassController+ActionModel.swift in Sources */,
 				7928963A201E9C7300BC22D3 /* ClassCell.swift in Sources */,
 				79106E7E201D93BD003F9729 /* SelectIconController.swift in Sources */,

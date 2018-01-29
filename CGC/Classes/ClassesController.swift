@@ -83,9 +83,9 @@ class ClassesController: UITableViewController {
         
         view.backgroundColor = .clear
         guard let semester = semester else { return }
-        classes = semester.classes
+//        classes = semester.classes
         
-        calculateAllInfo()
+//        calculateAllInfo()
         
         view.backgroundColor = .clear
         navigationItem.title = "Classes"

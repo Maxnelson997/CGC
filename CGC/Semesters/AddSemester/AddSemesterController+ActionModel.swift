@@ -7,38 +7,41 @@
 //
 
 import UIKit
+import CoreData
 
 extension AddSemesterController: SelectIconDelegate {
     @objc func handleSave() {
-        var newSemester:Semester?
+        
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        let newSemester = NSEntityDescription.insertNewObject(forEntityName: "Semester", into: context) as! Semester
+
         var semesterImage = UIImage()
         guard var title = nameTextField.text else { return }
         if title.count == 0 { title = "Spring 18"}
         if let iconImage = iconImageView.imageView?.image {
             semesterImage = iconImage
         }
-        if isEdit {
-            newSemester = semesterToEdit
-            newSemester?.title = title
-        } else {
-            if !iconSelected {
-                semesterImage = DefaultValues.shared.icon
-            }
-            newSemester = Semester(icon: semesterImage, title: title, classes: [])
+        if !iconSelected {
+            semesterImage = DefaultValues.shared.icon
         }
-
-        
-        if let newSemester = newSemester {
+      
+        let imageData = UIImagePNGRepresentation(semesterImage)
+        newSemester.icon = imageData
+        newSemester.title = title
+        newSemester.selected = false
+    
+        //perform the save
+        do {
+            try context.save()
+            //successfuly saved to coredata
             dismiss(animated: true) {
-                if self.isEdit {
-                    guard let index = self.index else { return }
-                    self.delegate?.addSemester(semester: newSemester, at: index)
-                } else {
-                    self.delegate?.addSemester(semester: newSemester, at: -1)
-                }
+                self.delegate?.addSemester(semester: newSemester, at: self.index)
             }
+        } catch let error {
+            print("failed to save company context in coredata:",error)
         }
     }
+
     
     @objc func handleAddIcon() {
         iconSelected = true

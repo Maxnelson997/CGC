@@ -34,7 +34,7 @@ extension ClassesController: IndexDelegate, AddClassDelegate {
             } else {
                 self.classes.append(clas)
             }
-            self.semester?.classes = self.classes
+//            self.semester?.classes = self.classes
             guard let semester = self.semester else { return }
             guard let index = self.index else { return }
             self.delegate?.saveSemester(semester: semester, at: index)

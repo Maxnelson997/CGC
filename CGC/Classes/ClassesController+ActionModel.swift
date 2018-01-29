@@ -44,7 +44,7 @@ extension ClassesController {
         //filter out selected classes. obliterate them.
         classes = classes.filter { !$0.selected }
         //overwrite semester classes
-        semester?.classes = classes
+//        semester?.classes = classes
         guard let semester = semester else { return }
         guard let index = index else { return }
         delegate?.saveSemester(semester: semester, at: index)
@@ -69,16 +69,16 @@ extension ClassesController {
     func setSemesterInfo() {
         guard let semester = semester else { return }
         let title = NSMutableAttributedString(string: "\(semester.title) stats", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 18)!, NSAttributedStringKey.foregroundColor: UIColor.black])
-        title.append(NSMutableAttributedString(string: "\nClasses: \(semester.classes.count)\nCredit Hours: \(Int(semester.getSemesterClassesCreditHours()))", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)! ,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
+//        title.append(NSMutableAttributedString(string: "\nClasses: \(semester.classes.count)\nCredit Hours: \(Int(semester.getSemesterClassesCreditHours()))", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)! ,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
         userInfoLabel.attributedText = title
     }
     
     func setSemesterGPA() {
         guard let semester = semester else { return }
-        let gpa = String(format: "%.2f", semester.getSemesterGPA())
-        let title = NSMutableAttributedString(string: gpa, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 40)!, NSAttributedStringKey.foregroundColor: UIColor.black])
-        title.append(NSMutableAttributedString(string: "\nout of 4.0", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
-        GPALabel.attributedText = title
+//        let gpa = String(format: "%.2f", semester.getSemesterGPA())
+//        let title = NSMutableAttributedString(string: gpa, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 40)!, NSAttributedStringKey.foregroundColor: UIColor.black])
+//        title.append(NSMutableAttributedString(string: "\nout of 4.0", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
+//        GPALabel.attributedText = title
     }
 
 }
