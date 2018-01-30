@@ -130,7 +130,7 @@ class AddSemesterController: UIViewController {
 
                 if let yearAsDouble = Double(year), yearAsDouble < 100 {
            
-                if season.count > 8 {
+                if season.count > 7 {
                     fontSize = 25
                 }
                 self.season = season
