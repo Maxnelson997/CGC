@@ -50,13 +50,23 @@ struct CoreDataManager {
 
     //get gpa for this semester
     func getSemesterGPA(semester: Semester) -> Double {
+        let pointsEarned = getSemesterPoints(semester: semester)
+        return pointsEarned / getSemesterClassesCreditHours(semester: semester)
+    }
+    
+    func getClassCount(for semester: Semester) -> Int {
+        guard let semesterClasses = semester.semesterClasses?.allObjects as? [SemesterClass] else { return 0 }
+        return semesterClasses.count
+    }
+    
+    func getSemesterPoints(semester: Semester) -> Double {
         guard let semesterClasses = semester.semesterClasses?.allObjects as? [SemesterClass] else { return 0 }
         var pointsEarned:Double = 0.0
         if semesterClasses.count == 0 { return 0 }
         for c in semesterClasses {
             pointsEarned += c.creditHours * getClassGPA(clas: c)
         }
-        return pointsEarned / getSemesterClassesCreditHours(semester: semester)
+        return pointsEarned
     }
     
     //get points for this class
