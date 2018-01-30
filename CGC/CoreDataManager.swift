@@ -84,7 +84,7 @@ struct CoreDataManager {
 
     
     func createSemesterClass(title: String, icon: UIImage, grade: String, creditHours: Double, semester: Semester) -> (SemesterClass?, Error?) {
-    
+        
         let context = persistentContainer.viewContext
         let semesterClass = NSEntityDescription.insertNewObject(forEntityName: "SemesterClass", into: context) as! SemesterClass
         semesterClass.title = title
@@ -98,4 +98,18 @@ struct CoreDataManager {
             print("failed to add semester class to core data",err); return (nil, err)
         }
     }
+    
+    func createSemester(title: String, icon: UIImage) -> (Semester?, Error?) {
+        let context = persistentContainer.viewContext
+        let semester = NSEntityDescription.insertNewObject(forEntityName: "Semester", into: context) as! Semester
+        semester.icon = UIImagePNGRepresentation(icon)
+        semester.title = title
+        do {
+            try context.save(); return (semester, nil)
+        } catch let err {
+            print("failed to add semester class to core data",err); return (nil, err)
+        }
+    }
+    
+
 }

@@ -19,7 +19,7 @@ extension SemestersController {
             navigationItem.rightBarButtonItem = .none
         }
         indexes = []
-        for var sem in semesters {
+        for sem in semesters {
             sem.selected = false
         }
         isEditingSemesters = !isEditingSemesters

@@ -79,7 +79,6 @@ class AddSemesterController: UIViewController {
     
     var isEdit:Bool = false
     var semesterToEdit:Semester?
-    var index:Int = -1
     
     override func viewDidLoad() {
         super.viewDidLoad()

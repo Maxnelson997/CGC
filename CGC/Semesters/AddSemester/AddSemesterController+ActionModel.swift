@@ -10,11 +10,17 @@ import UIKit
 import CoreData
 
 extension AddSemesterController: SelectIconDelegate {
+    
     @objc func handleSave() {
-        
-        let context = CoreDataManager.shared.persistentContainer.viewContext
-        let newSemester = NSEntityDescription.insertNewObject(forEntityName: "Semester", into: context) as! Semester
+        if isEdit {
+            saveClassEdit()
+        } else {
+            saveNewClass()
+        }
+    }
 
+    fileprivate func saveClassEdit() {
+        //redundant af. fix dis.
         var semesterImage = UIImage()
         guard var title = nameTextField.text else { return }
         if title.count == 0 { title = "Spring 18"}
@@ -24,25 +30,48 @@ extension AddSemesterController: SelectIconDelegate {
         if !iconSelected && !isEdit {
             semesterImage = DefaultValues.shared.icon
         }
-      
-        let imageData = UIImagePNGRepresentation(semesterImage)
-        newSemester.icon = imageData
-        newSemester.title = title
-        newSemester.selected = false
-    
-        //perform the save
+        //update
+        guard let semester = semesterToEdit else { return }
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        semester.icon = UIImagePNGRepresentation(semesterImage)
+        semester.title = title
+        semester.selected = false
+        //save
         do {
             try context.save()
-            //successfuly saved to coredata
+        } catch let err {
+            print("failed to add semester class to core data",err)
+        }
+        dismiss(animated: true, completion: {
+            self.delegate?.editSemester(semester: semester)
+        })
+    }
+
+    fileprivate func saveNewClass() {
+        //redundant af. fix dis.
+        var semesterImage = UIImage()
+        guard var title = nameTextField.text else { return }
+        if title.count == 0 { title = "Spring 18"}
+        if let iconImage = iconImageView.imageView?.image {
+            semesterImage = iconImage
+        }
+        if !iconSelected && !isEdit {
+            semesterImage = DefaultValues.shared.icon
+        }
+        //create new semester object and stuff in core data
+        let newClassTuple = CoreDataManager.shared.createSemester(title: title, icon: semesterImage)
+        if let err = newClassTuple.1 {
+            //tell dat user wtf is up.
+            print(err)
+        } else if let clas = newClassTuple.0 {
+            //save
             dismiss(animated: true) {
-                self.delegate?.addSemester(semester: newSemester, at: self.index)
+                self.delegate?.addSemester(semester: semester)
             }
-        } catch let error {
-            print("failed to save company context in coredata:",error)
         }
     }
 
-    
+
     @objc func handleAddIcon() {
         iconSelected = true
         let layout = UICollectionViewFlowLayout()

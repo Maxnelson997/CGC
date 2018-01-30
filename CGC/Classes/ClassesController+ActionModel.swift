@@ -17,7 +17,7 @@ extension ClassesController {
             navigationItem.rightBarButtonItems = [UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(self.handleEdit))]
         }
         indexes = []
-        for var clas in classes {
+        for clas in classes {
             clas.selected = false
         }
         isEditingClasses = !isEditingClasses

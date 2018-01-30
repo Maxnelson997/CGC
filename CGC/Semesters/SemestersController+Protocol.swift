@@ -13,7 +13,8 @@ protocol IndexDelegate {
 }
 
 protocol AddSemesterDelegate {
-    func addSemester(semester: Semester, at semesterIndex:Int)
+    func addSemester(semester: Semester)
+    func editSemester(semester: Semester)
 }
 
 protocol UpdateSemesterDelegate {
@@ -42,26 +43,23 @@ extension SemestersController: IndexDelegate, AddSemesterDelegate, UpdateSemeste
         }
     }
     
-    
-    func addSemester(semester: Semester, at semesterIndex:Int) {
+    func addSemester(semester: Semester) {
         DispatchQueue.main.async {
-            if semesterIndex != -1 {
-                //delete semester and replace in core data
-                let context = CoreDataManager.shared.persistentContainer.viewContext
-                context.delete(self.semesters[semesterIndex])
-                do {
-                    try context.save()
-                } catch let err {
-                    print("failed to save context with removed semester:",err)
-                }
-                self.semesters[semesterIndex] = semester
-                self.tableView.reloadData()
-            } else {
-                self.semesters.append(semester)
-                let newIndexPath = IndexPath(row: self.semesters.count - 1, section: 0)
-                self.tableView.beginUpdates()
-                self.tableView.insertRows(at: [newIndexPath], with: .right)
-                self.tableView.endUpdates()
+            self.semesters.append(semester)
+            let newIndexPath = IndexPath(row: self.semesters.count - 1, section: 0)
+            self.tableView.insertRows(at: [newIndexPath], with: .right)
+            self.footerView.alpha = 0
+        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {
+            self.calculateAllInfo()
+        }
+    }
+    
+    func editSemester(semester: Semester) {
+        DispatchQueue.main.async {
+            if let row = self.semesters.index(of: semester) {
+                let reloadIndexPath = IndexPath(row: row, section: 0)
+                self.tableView.reloadRows(at: [reloadIndexPath], with: .right)
             }
             self.footerView.alpha = 0
         }
@@ -70,10 +68,8 @@ extension SemestersController: IndexDelegate, AddSemesterDelegate, UpdateSemeste
         }
     }
     
-    
     func saveSemester(semester: Semester, at index: Int) {
         semesters[index] = semester
-
         calculateAllInfo()
     }
 }
