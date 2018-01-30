@@ -79,7 +79,7 @@ extension SemestersController {
         if gpa.isNaN { gpa = 0 }
         let gpaString = String(format: "%.2f", gpa)
         
-        let GPAtitle = NSMutableAttributedString(string: gpaString, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 40)!, NSAttributedStringKey.foregroundColor: UIColor.black])
+        let GPAtitle = NSMutableAttributedString(string: gpaString, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 50)!, NSAttributedStringKey.foregroundColor: UIColor.black])
         GPAtitle.append(NSMutableAttributedString(string: "\nout of 4.0", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
         GPALabel.attributedText = GPAtitle
     }

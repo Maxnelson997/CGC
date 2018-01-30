@@ -15,7 +15,7 @@ protocol SelectIconDelegate {
 class AddSemesterController: UIViewController {
     
     //pickerview data
-    var season = "Spring"
+    var season = "Spring "
     var year = "18"
     var seasons:[String] = ["Spring ", "Sum ", "Fall ", "Winter "]
     var years:[String] = {
@@ -54,8 +54,8 @@ class AddSemesterController: UIViewController {
     
     let largeNameLabel:TabbedRightLabel = {
         let label = TabbedRightLabel()
-        let title = NSMutableAttributedString(string: "Fall", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
-        title.append(NSMutableAttributedString(string: "\n2019", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
+        let title = NSMutableAttributedString(string: "Spring", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 42)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+        title.append(NSMutableAttributedString(string: "\n18", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
         label.attributedText = title
         label.textAlignment = .right
         label.numberOfLines = 0
@@ -90,6 +90,9 @@ class AddSemesterController: UIViewController {
         pickerView.dataSource = self
         pickerView.delegate = self
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))
+        
+//        pickerView.selectRow(0, inComponent: 0, animated: true)
+        pickerView.selectRow(17, inComponent: 1, animated: true)
         
         if isEdit {
             navigationItem.title = "Edit Semester"

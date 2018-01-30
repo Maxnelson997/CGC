@@ -79,7 +79,7 @@ extension ClassesController {
         guard let semester = semester else { return }
         let semesterGPA = CoreDataManager.shared.getSemesterGPA(semester: semester)
         let gpa = String(format: "%.2f", semesterGPA)
-        let title = NSMutableAttributedString(string: gpa, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 40)!, NSAttributedStringKey.foregroundColor: UIColor.black])
+        let title = NSMutableAttributedString(string: gpa, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 50)!, NSAttributedStringKey.foregroundColor: UIColor.black])
         title.append(NSMutableAttributedString(string: "\nout of 4.0", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
         GPALabel.attributedText = title
     }

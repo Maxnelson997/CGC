@@ -55,7 +55,7 @@ class AddClassController: UIViewController {
     let nameTextField:CGCTextField = {
         let tf = CGCTextField()
         tf.paddingLeft = 8
-        tf.attributedPlaceholder = NSAttributedString(string: "Type here or pick a season & year", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 14)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.6, alpha: 1)])
+        tf.attributedPlaceholder = NSAttributedString(string: "Math 101", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 14)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.6, alpha: 1)])
         return tf
     }()
     
@@ -83,6 +83,10 @@ class AddClassController: UIViewController {
         pickerView.dataSource = self
         pickerView.delegate = self
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTextField)))
+        
+        pickerView.selectRow(1, inComponent: 0, animated: true)
+        pickerView.selectRow(3, inComponent: 1, animated: true)
+        
         
         if isEdit {
             guard let clas = classToEdit else { return }

@@ -106,7 +106,8 @@ struct CoreDataManager {
         semester.icon = UIImagePNGRepresentation(icon)
         semester.title = title
         do {
-            try context.save(); return (semester, nil)
+            try context.save()
+            return (semester, nil)
         } catch let err {
             print("failed to add semester class to core data",err); return (nil, err)
         }
