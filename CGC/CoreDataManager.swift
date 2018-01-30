@@ -51,7 +51,8 @@ struct CoreDataManager {
     //get gpa for this semester
     func getSemesterGPA(semester: Semester) -> Double {
         let pointsEarned = getSemesterPoints(semester: semester)
-        return pointsEarned / getSemesterClassesCreditHours(semester: semester)
+        let gpa = pointsEarned / getSemesterClassesCreditHours(semester: semester)
+        return gpa.isNaN ? 0 : gpa
     }
     
     func getClassCount(for semester: Semester) -> Int {

@@ -63,7 +63,7 @@ extension AddSemesterController: SelectIconDelegate {
         if let err = newClassTuple.1 {
             //tell dat user wtf is up.
             print(err)
-        } else if let clas = newClassTuple.0 {
+        } else if let semester = newClassTuple.0 {
             //save
             dismiss(animated: true) {
                 self.delegate?.addSemester(semester: semester)

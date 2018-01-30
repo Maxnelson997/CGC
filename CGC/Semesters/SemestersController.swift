@@ -72,6 +72,12 @@ class SemestersController: UITableViewController {
     }()
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        semesters = CoreDataManager.shared.fetchSemesters()
+        calculateAllInfo()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -79,10 +85,7 @@ class SemestersController: UITableViewController {
 //            Semester(icon: #imageLiteral(resourceName: "alien-1"), title: "Fall 19", classes: [SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "Computer Networks", grade: "A-", creditHours: 3)]),
 //            Semester(icon: #imageLiteral(resourceName: "astronaut"), title: "Spring 18", classes: [SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "Math", grade: "A-", creditHours: 6),SemesterClass(icon: #imageLiteral(resourceName: "robot"), title: "English", grade: "A", creditHours: 3)]),
         ]
-        
-        semesters = CoreDataManager.shared.fetchSemesters()
-        calculateAllInfo()
-        
+    
         view.backgroundColor = .clear
         navigationItem.title = "Semesters"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(self.handleEdit))
