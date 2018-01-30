@@ -43,14 +43,16 @@ class ClassCell: UITableViewCell {
     var clas:SemesterClass? {
         didSet {
             guard let c = clas else { return }
-            print(c)
-            icon.setImage(c.icon, for: .normal)
+            guard let iconData = c.icon else { return }
+            if let img = UIImage(data: iconData) {
+                icon.setImage(img, for: .normal)
+            }
             sel = c.selected
             self.selectedView.backgroundColor = .clear
             self.editButton.backgroundColor = .clear
             self.editButton.layer.borderColor = UIColor.black.withAlphaComponent(0.8).cgColor
-            let title = NSMutableAttributedString(string: c.title, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 18)!, NSAttributedStringKey.foregroundColor: UIColor.black])
-            let info = NSMutableAttributedString(string: "\n\(c.grade)\n\(Int(c.creditHours)) credit hours", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)! ,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
+            let title = NSMutableAttributedString(string: String(describing: c.title!), attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 18)!, NSAttributedStringKey.foregroundColor: UIColor.black])
+            let info = NSMutableAttributedString(string: "\n\(String(describing: c.grade!))\n\(Int(c.creditHours)) credit hours", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)! ,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
             title.append(info)
             infoLabel.attributedText = title
         }

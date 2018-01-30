@@ -69,7 +69,7 @@ class AddClassController: UIViewController {
     
     var isEdit:Bool = false
     var classToEdit:SemesterClass?
-    var index:Int?
+    var semester:Semester?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,21 +86,25 @@ class AddClassController: UIViewController {
         
         if isEdit {
             guard let clas = classToEdit else { return }
- 
-            pickerView.selectRow(getGradeIndex(for: clas.grade), inComponent: 0, animated: true)
+            
+            pickerView.selectRow(getGradeIndex(for: String(describing: clas.grade!)), inComponent: 0, animated: true)
             pickerView.selectRow(getHourIndex(for: clas.creditHours), inComponent: 1, animated: true)
         
             var fontSize:CGFloat = 42
-            if clas.title.count > 8 {
+            guard let titleText = clas.title else { return }
+            if titleText.count > 8 {
                 fontSize = 25
             }
             
             navigationItem.title = "Edit Class"
-            let title = NSMutableAttributedString(string: clas.title, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: fontSize)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
-            title.append(NSMutableAttributedString(string: "\n\(clas.grade)\n\(Int(clas.creditHours)) hours", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
+            let title = NSMutableAttributedString(string: titleText, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: fontSize)!, NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
+            title.append(NSMutableAttributedString(string: "\n\(String(describing: clas.grade!))\n\(Int(clas.creditHours)) hours", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
             largeNameLabel.attributedText = title
             nameTextField.text = clas.title
-            iconImageView.setImage(clas.icon, for: .normal)
+            if let img = UIImage(data: clas.icon!) {
+                iconImageView.setImage(img, for: .normal)
+            }
+            
             
         }
     }

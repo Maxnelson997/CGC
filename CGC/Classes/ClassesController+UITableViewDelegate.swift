@@ -88,7 +88,7 @@ extension ClassesController {
     func openClass(at index:Int) {
         let ACC = AddClassController()
         ACC.delegate = self
-        ACC.index = index
+        ACC.semester = semester
         ACC.classToEdit = classes[index]
         ACC.isEdit = true
         let ACC_NAV = CustomNavController(rootViewController: ACC)

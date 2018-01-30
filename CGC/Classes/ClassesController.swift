@@ -78,11 +78,16 @@ class ClassesController: UITableViewController {
         view.backgroundColor = .white
     }
     
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         view.backgroundColor = .clear
         guard let semester = semester else { return }
+        
+        guard let semesterClasses = semester.semesterClasses?.allObjects as? [SemesterClass] else { return }
+        classes = semesterClasses
 //        classes = semester.classes
         
 //        calculateAllInfo()

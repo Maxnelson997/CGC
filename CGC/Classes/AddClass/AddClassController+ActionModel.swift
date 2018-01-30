@@ -10,6 +10,15 @@ import UIKit
 
 extension AddClassController: SelectIconDelegate {
     @objc func handleSave() {
+        if isEdit {
+            saveClassEdit()
+        } else {
+            saveNewClass()
+        }
+    }
+    
+    fileprivate func saveClassEdit() {
+        //redundant af. fix dis.
         var classImage = UIImage()
         if let iconImage = iconImageView.imageView?.image {
             classImage = iconImage
@@ -17,13 +26,42 @@ extension AddClassController: SelectIconDelegate {
         var title = nameTextField.text ?? ""
         if title.count == 0 { title = "class" }
         guard let hoursDouble = Double(hour) else { return }
-        let newClass = SemesterClass(icon: classImage, title: title, grade: grade, creditHours: hoursDouble)
-        dismiss(animated: true) {
-            if self.isEdit {
-                guard let index = self.index else { return }
-                self.delegate?.addClass(clas: newClass, at: index)
-            } else {
-                self.delegate?.addClass(clas: newClass, at: -1)
+        //
+        guard let clas = classToEdit else { return }
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        clas.title = title
+        clas.icon = UIImagePNGRepresentation(classImage)
+        clas.grade = grade
+        clas.creditHours = hoursDouble
+        do {
+            try context.save()
+        } catch let err {
+            print("failed to add semester class to core data",err)
+        }
+        dismiss(animated: true, completion: {
+            self.delegate?.editClass(clas: clas)
+        })
+    }
+    
+    fileprivate func saveNewClass() {
+        //see. dis redundant af. fix it.
+        var classImage = UIImage()
+        if let iconImage = iconImageView.imageView?.image {
+            classImage = iconImage
+        }
+        var title = nameTextField.text ?? ""
+        if title.count == 0 { title = "class" }
+        guard let semester = semester else { return }
+        guard let hoursDouble = Double(hour) else { return }
+        //
+        let newClassTuple = CoreDataManager.shared.createSemesterClass(title: title, icon: classImage, grade: grade, creditHours: hoursDouble, semester: semester)
+        if let err = newClassTuple.1 {
+            //tell dat user wtf is up.
+            print(err)
+        } else if let clas = newClassTuple.0 {
+            //save
+            dismiss(animated: true) {
+                self.delegate?.addClass(clas: clas)
             }
         }
     }
@@ -54,6 +92,7 @@ extension AddClassController: SelectIconDelegate {
                 gradeIndex = i
             }
         }
+        grade = grades[gradeIndex]
         return gradeIndex
     }
     
@@ -64,6 +103,7 @@ extension AddClassController: SelectIconDelegate {
                 hourIndex = i
             }
         }
+        hour = hours[hourIndex]
         return hourIndex
     }
     

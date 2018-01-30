@@ -73,6 +73,7 @@ extension SemestersController: IndexDelegate, AddSemesterDelegate, UpdateSemeste
     
     func saveSemester(semester: Semester, at index: Int) {
         semesters[index] = semester
+
         calculateAllInfo()
     }
 }

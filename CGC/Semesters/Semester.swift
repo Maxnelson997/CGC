@@ -38,22 +38,7 @@ import UIKit
 //    }
 //}
 //
-//func getSemesterClassesCreditHours(semester: Semester) -> Double {
-//    var creditHours:Double = 0
-//    for c in classes {
-//        creditHours += c.creditHours
-//    }
-//    return creditHours
-//}
 //
-//func getSemesterGPA(semester: Semester) -> Double {
-//    var pointsEarned:Double = 0.0
-//
-//    if classes.count == 0 { return 0 }
-//    for c in classes {
-//        pointsEarned += c.creditHours * c.getClassGPA()
-//    }
-//    return pointsEarned / getSemesterClassesCreditHours()
-//}
+
 
 
