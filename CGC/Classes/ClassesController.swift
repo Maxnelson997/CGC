@@ -88,9 +88,8 @@ class ClassesController: UITableViewController {
         
         guard let semesterClasses = semester.semesterClasses?.allObjects as? [SemesterClass] else { return }
         classes = semesterClasses
-//        classes = semester.classes
         
-//        calculateAllInfo()
+        calculateAllInfo()
         
         view.backgroundColor = .clear
         navigationItem.title = "Classes"

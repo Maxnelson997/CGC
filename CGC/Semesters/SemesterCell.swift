@@ -47,20 +47,21 @@ class SemesterCell: UITableViewCell {
                 icon.setImage(UIImage(data: imageData), for: .normal)
             }
             sel = s.selected
-            
             self.selectedView.backgroundColor = .clear
             self.editButton.backgroundColor = .clear
             self.editButton.layer.borderColor = UIColor.black.withAlphaComponent(0.8).cgColor
-//            var infoString:String = ""
-//            let gpa = String(format: "%.2f", s.getSemesterGPA())
-//            if s.classes.count > 1 || s.classes.count == 0 {
-//                infoString = "\(gpa)\n\(s.classes.count) classes"
-//            } else {
-//                infoString = "\(gpa)\n\(s.classes.count) class"
-//            }
+            var infoString:String = ""
+            let gpa = String(format: "%.2f", CoreDataManager.shared.getSemesterGPA(semester: s))
+            let semesterClassCount = CoreDataManager.shared.getClassCount(for: s)
+            infoString = "\(gpa)\n\(semesterClassCount)"
+            if semesterClassCount > 1 || semesterClassCount == 0 {
+                infoString += " classes"
+            } else {
+                infoString += " class"
+            }
             let title = NSMutableAttributedString(string: s.title!, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 18)!, NSAttributedStringKey.foregroundColor: UIColor.black])
-//            let info = NSMutableAttributedString(string: "\n\(infoString)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)! ,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
-//            title.append(info)
+            let info = NSMutableAttributedString(string: "\n\(infoString)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)! ,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)])
+            title.append(info)
             infoLabel.attributedText = title
         }
     }
