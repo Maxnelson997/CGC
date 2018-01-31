@@ -111,8 +111,7 @@ class SettingsController: UITableViewController {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
         let themeController = ThemeController(collectionViewLayout: layout)
-//        navigationController?.pushViewController(themeController, animated: true)
-        let themeNav = UINavigationController(rootViewController: themeController)
+        let themeNav = CustomNavController(rootViewController: themeController)
         present(themeNav, animated: true, completion: nil)
     }
     
