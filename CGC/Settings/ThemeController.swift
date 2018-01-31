@@ -79,27 +79,27 @@ class ThemeController:UICollectionViewController {
         let c = DefaultValues.shared.colors
         
         let themeSetOne = ThemeSet(
-            title: "Tight",
+            title: "Classic",
             themes: [
-                Theme(title: "Bitchin\nBlue", color: c[0], titleColor: .white),
-                Theme(title: "Gottem\nGreen", color: c[1], titleColor: .black),
-                Theme(title: "Godly\nGolden", color: c[2], titleColor: .black),
+                Theme(title: "Got Green", color: c[7], titleColor: .black),
+                Theme(title: "But Blue", color: c[8], titleColor: .white),
+                Theme(title: "Boring Billy", color: c[3], titleColor: .appleBlue),
             ]
         )
         let themeSetTwo = ThemeSet(
-            title: "Tight",
+            title: "Bright AF",
             themes: [
-                Theme(title: "Boring Billy", color: c[3], titleColor: .black),
+                Theme(title: "Godly\nGolden", color: c[2], titleColor: .black),
                 Theme(title: "Optimal Orange", color: c[4], titleColor: .white),
                 Theme(title: "Teal Tacos", color: c[5], titleColor: .white),
             ]
         )
         let themeSetThree = ThemeSet(
-            title: "Tight",
+            title: "Litty as a kitty",
             themes: [
+                Theme(title: "Bitchin\nBlue", color: c[0], titleColor: .white),
+                Theme(title: "Gottem\nGreen", color: c[1], titleColor: .black),
                 Theme(title: "Radical Red", color: c[6], titleColor: .white),
-                Theme(title: "Got Green", color: c[7], titleColor: .black),
-                Theme(title: "But Blue", color: c[8], titleColor: .white),
                 Theme(title: "Poppin Purple", color: c[9], titleColor: .white)
             ]
         )

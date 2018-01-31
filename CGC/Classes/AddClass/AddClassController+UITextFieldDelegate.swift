@@ -13,7 +13,7 @@ extension AddClassController: UITextFieldDelegate {
         var text = nameTextField.text ?? ""
         if text.count == 0 { text = "Class" }
         var fontSize:CGFloat = 42
-        if text.count > 8 {
+        if text.count > 6 {
             fontSize = 25
         }
         let title = NSMutableAttributedString(string: text, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: fontSize) ?? UIFont.systemFont(ofSize: 42), NSAttributedStringKey.foregroundColor: UIColor.black.withAlphaComponent(0.8)])
@@ -21,3 +21,5 @@ extension AddClassController: UITextFieldDelegate {
         largeNameLabel.attributedText = title
     }
 }
+
+

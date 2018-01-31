@@ -115,6 +115,13 @@ class SettingsController: UITableViewController {
         present(themeNav, animated: true, completion: nil)
     }
     
+    @objc func quickSuggestionTapped() {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+        let QSC = QuickSuggestionController()
+        let QSV = CustomNavController(rootViewController: QSC)
+        present(QSV, animated: true, completion: nil)
+    }
     
     @objc func defaultSelector() {
         print("trying to perform option action")

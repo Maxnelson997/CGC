@@ -16,15 +16,29 @@ class SemesterCell: UITableViewCell {
     
     @objc func handleEdit() {
         sel = !sel
+        if c.isEqual(UIColor.grayButton) {
+            veryHacky()
+        } else {
+            delegate?.setSemesterSelected(at: tag - 1)
+            let fill:(UIColor,UIColor) = sel ? (c.withAlphaComponent(0.8),c) : (UIColor.black.withAlphaComponent(0.8),.clear)
+            let selectedViewFill:UIColor = sel ? c.withAlphaComponent(0.2) : .clear
+            UIView.animate(withDuration: 0.1, animations: {
+                self.editButton.backgroundColor = fill.1
+                self.editButton.layer.borderColor = fill.0.cgColor
+                self.selectedView.backgroundColor = selectedViewFill
+            })
+        }
+    }
+    
+    func veryHacky() {
         delegate?.setSemesterSelected(at: tag - 1)
-        let fill:(UIColor,UIColor) = sel ? (c.withAlphaComponent(0.8),c) : (UIColor.black.withAlphaComponent(0.8),.clear)
-        let selectedViewFill:UIColor = sel ? c.withAlphaComponent(0.2) : .clear
+        let fill:(UIColor,UIColor) = sel ? (UIColor.appleBlue.withAlphaComponent(0.8),UIColor.appleBlue) : (UIColor.black.withAlphaComponent(0.8),.clear)
+        let selectedViewFill:UIColor = sel ? UIColor.appleBlue.withAlphaComponent(0.2) : .clear
         UIView.animate(withDuration: 0.1, animations: {
             self.editButton.backgroundColor = fill.1
             self.editButton.layer.borderColor = fill.0.cgColor
             self.selectedView.backgroundColor = selectedViewFill
         })
- 
     }
     
     var isEditingCell: Bool? {

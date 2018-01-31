@@ -218,6 +218,7 @@ extension CoreDataManager {
             DefaultValues.shared.themeTitleColor = titleColorIndex == 1 ? .black : .white
             DefaultValues.shared.themeColor = DefaultValues.shared.colors[colorIndex]
             DefaultValues.shared.theme = t
+            if DefaultValues.shared.themeColor.isEqual(UIColor.grayButton) { DefaultValues.shared.themeTitleColor = .appleBlue }
             (UIApplication.shared.delegate as! AppDelegate).setUITabBarTheme()
         } catch let err {
             print("failed to fetch theme color index:",err)

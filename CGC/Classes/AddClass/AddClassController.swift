@@ -96,7 +96,7 @@ class AddClassController: UIViewController {
         
             var fontSize:CGFloat = 42
             guard let titleText = clas.title else { return }
-            if titleText.count > 7 {
+            if titleText.count > 6 {
                 fontSize = 25
             }
             
