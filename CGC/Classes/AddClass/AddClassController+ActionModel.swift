@@ -82,6 +82,7 @@ extension AddClassController: SelectIconDelegate {
     //protocol/Delegate method
     func chooseIcon(image: UIImage) {
         iconImageView.setImage(image, for: .normal)
+        iconImageView.popAnimation()
     }
     
     //methods used to retrieve indicies for getting then setting the grade and hour on edit

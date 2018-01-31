@@ -28,8 +28,13 @@ class TitleLabel: UILabel {
         super.init(frame: frame)
     }
     
-    init(text:String, size:CGFloat = 12, alignment:NSTextAlignment = .left) {
+    
+    var insets:UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    init(text:String, size:CGFloat = 12, alignment:NSTextAlignment = .left, insets:UIEdgeInsets? = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) {
         super.init(frame: .zero)
+        if let insets = insets {
+            self.insets = insets
+        }
         textAlignment = alignment
         attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: size)!, NSAttributedStringKey.foregroundColor: UIColor.black])
         numberOfLines = 0
@@ -37,6 +42,10 @@ class TitleLabel: UILabel {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
     }
 }
 

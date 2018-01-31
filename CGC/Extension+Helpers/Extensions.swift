@@ -78,47 +78,15 @@ extension UIColor {
     
 }
 
-enum SoundEffect:String {
-    case smallTap
-}
-
-extension UIButton {
-    open func addTarget(_ target: Any?, action: Selector, for controlEvents: UIControlEvents, playSound:Bool) {
-        super.addTarget(target, action: action, for: controlEvents)
-        //        if playSound {
-        //            self.addTarget(self, action: #selector(self.play), for: .touchUpInside)
-        //        }
-    }
-}
-
 extension UIView {
     
+    func popAnimation() {
+        transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            self.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }, completion: nil)
+    }
     
-    
-    //    @objc func play() {
-    //        var bombSoundEffect: AVAudioPlayer?
-    //        let path = Bundle.main.path(forResource: "zapsplat_household_vacuum_cleaner_plastic_power_button_large_press_14906.mp3", ofType: nil)!
-    //        let url = URL(fileURLWithPath: path)
-    //
-    //        do {
-    //            bombSoundEffect = try AVAudioPlayer(contentsOf: url)
-    //            bombSoundEffect?.volume = 1.0
-    //            bombSoundEffect!.play()
-    //        } catch let err {
-    //            print("unable to load sound file:",err)
-    //        }
-    //        bombSoundEffect!.prepareToPlay()
-    //
-    //        bombSoundEffect!.play()
-    //    }
-    
-    
-    //    func anchorToCenter(of:UIView) {
-    //        translatesAutoresizingMaskIntoConstraints = false
-    //        centerXAnchor.constraint(equalTo: of.centerXAnchor).isActive = true
-    //        centerYAnchor.constraint(equalTo: of.centerYAnchor).isActive = true
-    //    }
-    //
     func anchor(top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?, paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         if let top = top {

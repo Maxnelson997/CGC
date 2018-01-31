@@ -33,9 +33,22 @@ struct CoreDataManager {
             let semesters = try context.fetch(fetchRequest)
             return semesters
         } catch let error {
-            print("failed to fetch companies from core data:",error)
+            print("failed to fetch semesters from core data:",error)
             return []
         }
+    }
+    
+    func fetchAllClasses() -> [SemesterClass] {
+        var classes = [SemesterClass]()
+        let semesters = fetchSemesters()
+        for semester in semesters {
+            if let semesterClasses = semester.semesterClasses?.allObjects as? [SemesterClass] {
+                for clas in semesterClasses {
+                    classes.append(clas)
+                }
+            }
+        }
+        return classes
     }
     
     //get credit hours for this semester
@@ -82,8 +95,37 @@ struct CoreDataManager {
         guard let grade = clas.grade else { return 0 }
         return letters[grade]!
     }
+    
+    //clear all semesters
+    //remember predicates. maybe delete by year etc.
+    func clearSemesters() {
+        let context = persistentContainer.viewContext
+        do {
+            let semesters = fetchSemesters()
+            semesters.forEach { (semester) in
+                context.delete(semester)
+            }
+            try context.save()
+        } catch let err {
+            print("error saving/removing/deleting semesters in/from core data:",err)
+        }
+    }
 
     
+    func clearClasses() {
+        let context = persistentContainer.viewContext
+        do {
+            let classes = fetchAllClasses()
+            classes.forEach { (clas) in
+                context.delete(clas)
+            }
+            try context.save()
+        } catch let err {
+            print("error saving/removing/deleting classes in/from core data:",err)
+        }
+    }
+
+    //create a semester class and store in core data
     func createSemesterClass(title: String, icon: UIImage, grade: String, creditHours: Double, semester: Semester) -> (SemesterClass?, Error?) {
         
         let context = persistentContainer.viewContext
@@ -100,6 +142,7 @@ struct CoreDataManager {
         }
     }
     
+    //create a semester and store in core data
     func createSemester(title: String, icon: UIImage) -> (Semester?, Error?) {
         let context = persistentContainer.viewContext
         let semester = NSEntityDescription.insertNewObject(forEntityName: "Semester", into: context) as! Semester
