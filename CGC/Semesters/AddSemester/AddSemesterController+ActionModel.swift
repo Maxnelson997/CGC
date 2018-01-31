@@ -75,7 +75,7 @@ extension AddSemesterController: SelectIconDelegate {
     @objc func handleAddIcon() {
         iconSelected = true
         let layout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 50, left: 50, bottom: 50, right: 50)
+        layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
         let SIC = SelectIconController(collectionViewLayout: layout)
         SIC.delegate = self
         let SIC_NAV = CustomNavController(rootViewController: SIC)

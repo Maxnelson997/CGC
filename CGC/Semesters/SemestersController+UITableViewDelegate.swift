@@ -22,6 +22,17 @@ extension SemestersController {
         return 100
     }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return footerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if isEditingSemesters {
+            return 30
+        }
+        return 0
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return semesters.count
     }
@@ -57,25 +68,15 @@ extension SemestersController {
             navigationController?.pushViewController(classesController, animated: true)
         }
     }
+
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
-            self.footerView.alpha = 0
             let semester = self.semesters[indexPath.row]
             self.semesters.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .right)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4, execute: {
-                self.calculateAllInfo()
-                self.footerView.alpha = 0
-            })
-            //delete semester from core data
-            let context = CoreDataManager.shared.persistentContainer.viewContext
-            context.delete(semester)
-            do {
-                try context.save()
-            } catch let err {
-                print("failed to save context with removed semester:",err)
-            }
+            self.tableView.deleteRows(at: [indexPath], with: .bottom)
+            CoreDataManager.shared.deleteSemesters(semesters: [semester])
+            self.calculateAllInfo()
         }
         deleteAction.backgroundColor = .lightRed
 
@@ -91,8 +92,5 @@ extension SemestersController {
         editAction.backgroundColor = UIColor.black.withAlphaComponent(0.8)//.aplGreen
         return [deleteAction, editAction]
     }
-    
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return footerView
-    }
+
 }

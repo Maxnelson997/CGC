@@ -42,18 +42,23 @@ extension ClassesController {
     
     @objc func handleDelete() {
         guard self.indexes.count > 0 else { return }
-        //filter out selected classes. obliterate them.
+        //filter out selected classes. obliterate them
+        let classesToDelete = classes.filter { $0.selected }
+        let context = CoreDataManager.shared.persistentContainer.viewContext
+        for clas in classesToDelete {
+            context.delete(clas)
+        }
+        //filter to only selected classes for temp storage. core data has been saved.
         classes = classes.filter { !$0.selected }
-        //overwrite semester classes
-//        semester?.classes = classes
-        guard let semester = semester else { return }
-        guard let index = index else { return }
-        delegate?.saveSemester(semester: semester, at: index)
         tableView.beginUpdates()
         tableView.deleteRows(at: indexes, with: .right)
         tableView.endUpdates()
-        self.footerView.alpha = 0
         handleEdit()
+        do {
+            try context.save()
+        } catch let err {
+            print("failed to save context with removed semester:",err)
+        }
         calculateAllInfo()
     }
     

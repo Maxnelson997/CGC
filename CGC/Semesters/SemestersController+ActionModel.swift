@@ -45,21 +45,15 @@ extension SemestersController {
         for s in semestersToDelete {
             context.delete(s)
         }
-        
         semesters = semesters.filter { !$0.selected }
-        //filter out selected semesters. obliterate them.
-       
-        tableView.beginUpdates()
         tableView.deleteRows(at: indexes, with: .right)
-        tableView.endUpdates()
         handleEdit()
-        calculateAllInfo()
-        
         do {
             try context.save()
         } catch let err {
             print("failed to save context with removed semester:",err)
         }
+        calculateAllInfo()
     }
     
     
@@ -95,7 +89,6 @@ extension SemestersController {
         let title = NSMutableAttributedString(string: "Your Stats", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 18)!, NSAttributedStringKey.foregroundColor: UIColor.black])
         title.append(NSMutableAttributedString(string: "\nSemesters: \(semesters.count)\nClasses: \(classCount)\nCredit Hours: \(creditHoursCount)", attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura", size: 12)!,NSAttributedStringKey.foregroundColor: UIColor(white: 0.5, alpha: 1)]))
         userInfoLabel.attributedText = title
-        tableView.reloadData()
     }
     
      func getPointsCredits() -> (Double,Double) {
@@ -109,7 +102,6 @@ extension SemestersController {
         
         return (totalPointsEarned, totalCreditsEarned)
     }
-
 }
 
 let letters:[String:Double] = [

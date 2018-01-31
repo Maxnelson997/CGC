@@ -24,6 +24,17 @@ extension ClassesController {
         return 100
     }
     
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return footerView
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if isEditingClasses {
+            return 30
+        }
+        return 0
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return classes.count
     }
@@ -53,24 +64,17 @@ extension ClassesController {
             let cell = tableView.cellForRow(at: indexPath) as! ClassCell
             cell.handleEdit()
         } else {
-            //open class
             openClass(at: indexPath.item)
         }
     }
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
-                        self.footerView.alpha = 0
+            let classToDelete = self.classes[indexPath.item]
             self.classes.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .bottom)
-
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4, execute: {
-//                self.semester?.classes = self.classes
-                guard let semester = self.semester else { return }
-                guard let index = self.index else { return }
-                self.delegate?.saveSemester(semester: semester, at: index)
-                self.footerView.alpha = 0
-            })
+            CoreDataManager.shared.deleteClasses(classes: [classToDelete])
+            self.calculateAllInfo()
         }
         deleteAction.backgroundColor = .lightRed
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (_, indexPath) in
@@ -78,11 +82,6 @@ extension ClassesController {
         }
         editAction.backgroundColor = UIColor.black.withAlphaComponent(0.8)//.aplGreen
         return [deleteAction, editAction]
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        //        if !isEditingSemesters { footerView.alpha = 0 }
-        return footerView
     }
     
     //open class used within didSelectRowAt and editActionsForRowAt
@@ -95,4 +94,5 @@ extension ClassesController {
         let ACC_NAV = CustomNavController(rootViewController: ACC)
         present(ACC_NAV, animated: true, completion: nil)
     }
+    
 }

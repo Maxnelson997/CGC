@@ -155,6 +155,30 @@ struct CoreDataManager {
             print("failed to add semester class to core data",err); return (nil, err)
         }
     }
+    
+    func deleteClasses(classes: [SemesterClass]) {
+        let context = persistentContainer.viewContext
+        for clas in classes {
+            context.delete(clas)
+        }
+        do {
+            try context.save()
+        } catch let err {
+            print("error deleting classes from coredata:",err)
+        }
+    }
+    
+    func deleteSemesters(semesters: [Semester]) {
+        let context = persistentContainer.viewContext
+        for s in semesters {
+            context.delete(s)
+        }
+        do {
+            try context.save()
+        } catch let err {
+            print("error deleting semesters from coredata:",err)
+        }
+    }
 
 }
 
