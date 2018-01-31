@@ -18,8 +18,8 @@ func confirmationPopup(title: String, message: String, confirmTitle:String = "co
     return alertController
 }
 
-func messagePop(title: String) -> UIAlertController {
-    let alertController = UIAlertController(title: title, message: "", preferredStyle: .alert)
+func messagePop(title: String, message:String? = "") -> UIAlertController {
+    let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
     alertController.addAction(UIAlertAction(title: "ok", style: .default, handler: nil))
     return alertController
 }
@@ -123,6 +123,19 @@ class SettingsController: UITableViewController {
         present(QSV, animated: true, completion: nil)
     }
     
+    @objc func instagramTapped() {
+        let instagram = URL(string: "instagram://user?username=maxcodes")!
+        if UIApplication.shared.canOpenURL(instagram) {
+            UIApplication.shared.open(instagram, options: ["":""], completionHandler: { _ in
+
+            })
+        }
+    }
+    
+    @objc func aboutTapped() {
+        
+    }
+    
     @objc func defaultSelector() {
         print("trying to perform option action")
     }
@@ -155,9 +168,9 @@ class SettingsController: UITableViewController {
             Option(title: "Theme", icon: #imageLiteral(resourceName: "alien"), selector: #selector(themeTapped)),
         ]
         let thirdOptions = [
-            Option(title: "Quick Suggestion", icon: #imageLiteral(resourceName: "alien-1"), selector: #selector(defaultSelector)),
-            Option(title: "Instagram", icon: #imageLiteral(resourceName: "ufo"), selector: #selector(defaultSelector)),
-            Option(title: "About", icon: #imageLiteral(resourceName: "astronaut"), selector: #selector(defaultSelector))
+            Option(title: "Quick Suggestion", icon: #imageLiteral(resourceName: "alien-1"), selector: #selector(quickSuggestionTapped)),
+            Option(title: "Instagram", icon: #imageLiteral(resourceName: "ufo"), selector: #selector(instagramTapped)),
+            Option(title: "About", icon: #imageLiteral(resourceName: "astronaut"), selector: #selector(aboutTapped))
         ]
         let firstSection = OptionSection(title: "Storage", options: firstOptions)
         let secondSection = OptionSection(title: "Customize", options: secondOptions)
