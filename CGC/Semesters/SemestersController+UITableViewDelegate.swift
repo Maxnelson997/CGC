@@ -60,14 +60,14 @@ extension SemestersController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+            self.footerView.alpha = 0
             let semester = self.semesters[indexPath.row]
             self.semesters.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .right)
-            self.footerView.alpha = 0
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4, execute: {
                 self.calculateAllInfo()
+                self.footerView.alpha = 0
             })
-        
             //delete semester from core data
             let context = CoreDataManager.shared.persistentContainer.viewContext
             context.delete(semester)
@@ -80,7 +80,7 @@ extension SemestersController {
         deleteAction.backgroundColor = .lightRed
 
         let editAction = UITableViewRowAction(style: .normal, title: "Edit") { (handleSwipeEdit, indexPath) in
-            
+            self.isEditingSemesterInfo = true
             let ASC = AddSemesterController()
             ASC.delegate = self
             ASC.semesterToEdit = self.semesters[indexPath.item]
@@ -93,7 +93,6 @@ extension SemestersController {
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        if !isEditingSemesters { footerView.alpha = 0 }
         return footerView
     }
 }

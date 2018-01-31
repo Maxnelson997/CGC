@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 func confirmationPopup(title: String, message: String, confirmTitle:String = "confirm", completion: @escaping () -> ()) -> UIAlertController {
     let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
     alertController.addAction(UIAlertAction(title: "cancel", style: .default, handler: nil))
@@ -26,6 +27,11 @@ func messagePop(title: String) -> UIAlertController {
 class SettingCell:UITableViewCell {
     
     var settingsController:SettingsController?
+    let bg:UIView = {
+        let v = UIView()
+        v.backgroundColor = UIColor.init(red: 200, green: 200, blue: 200).withAlphaComponent(0.1)
+        return v
+    }()
     
     var option:Option? {
         didSet {
@@ -52,8 +58,11 @@ class SettingCell:UITableViewCell {
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        addSubview(bg)
         addSubview(iconImageView)
         addSubview(optionLabel)
+        
+        bg.anchorEntireView(to: self)
         
         iconImageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         iconImageView.widthAnchor.constraint(equalToConstant: 32).isActive = true
@@ -96,6 +105,17 @@ class SettingsController: UITableViewController {
         tableView.separatorStyle = .none
     }
     
+    var isSelectingTheme:Bool = false
+    
+    @objc func themeTapped() {
+        let layout = UICollectionViewFlowLayout()
+//        layout.sectionInset = UIEdgeInsets(top: 0, left: 50, bottom: 50, right: 50)
+        let themeController = ThemeController(collectionViewLayout: layout)
+//        navigationController?.pushViewController(themeController, animated: true)
+        let themeNav = UINavigationController(rootViewController: themeController)
+        present(themeNav, animated: true, completion: nil)
+    }
+    
     
     @objc func defaultSelector() {
         print("trying to perform option action")
@@ -125,13 +145,13 @@ class SettingsController: UITableViewController {
             Option(title: "Clear classes", icon: #imageLiteral(resourceName: "telescope"), selector: #selector(clearClasses)),
         ]
         let secondOptions = [
-            Option(title: "Set grade values", icon: #imageLiteral(resourceName: "shooting-star"), selector: #selector(defaultSelector)),
-            Option(title: "Theme", icon: #imageLiteral(resourceName: "alien"), selector: #selector(defaultSelector)),
+//            Option(title: "Set grade values", icon: #imageLiteral(resourceName: "shooting-star"), selector: #selector(defaultSelector)),
+            Option(title: "Theme", icon: #imageLiteral(resourceName: "alien"), selector: #selector(themeTapped)),
         ]
         let thirdOptions = [
             Option(title: "Quick Suggestion", icon: #imageLiteral(resourceName: "alien-1"), selector: #selector(defaultSelector)),
-            Option(title: "About", icon: #imageLiteral(resourceName: "astronaut"), selector: #selector(defaultSelector)),
-            Option(title: "Instagram", icon: #imageLiteral(resourceName: "ufo"), selector: #selector(defaultSelector))
+            Option(title: "Instagram", icon: #imageLiteral(resourceName: "ufo"), selector: #selector(defaultSelector)),
+            Option(title: "About", icon: #imageLiteral(resourceName: "astronaut"), selector: #selector(defaultSelector))
         ]
         let firstSection = OptionSection(title: "Storage", options: firstOptions)
         let secondSection = OptionSection(title: "Customize", options: secondOptions)
@@ -179,4 +199,6 @@ extension SettingsController {
     }
 
 }
+
+
 

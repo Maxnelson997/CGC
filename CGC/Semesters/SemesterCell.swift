@@ -12,12 +12,13 @@ class SemesterCell: UITableViewCell {
 
     var sel:Bool = false
     var delegate:IndexDelegate?
+    var c:UIColor = DefaultValues.shared.themeColor
     
     @objc func handleEdit() {
         sel = !sel
         delegate?.setSemesterSelected(at: tag - 1)
-        let fill:(UIColor,UIColor) = sel ? (UIColor.aplGreen.withAlphaComponent(0.8),.aplGreen) : (UIColor.black.withAlphaComponent(0.8),.clear)
-        let selectedViewFill:UIColor = sel ? UIColor.aplGreen.withAlphaComponent(0.2) : .clear
+        let fill:(UIColor,UIColor) = sel ? (c.withAlphaComponent(0.8),c) : (UIColor.black.withAlphaComponent(0.8),.clear)
+        let selectedViewFill:UIColor = sel ? c.withAlphaComponent(0.2) : .clear
         UIView.animate(withDuration: 0.1, animations: {
             self.editButton.backgroundColor = fill.1
             self.editButton.layer.borderColor = fill.0.cgColor
@@ -42,6 +43,10 @@ class SemesterCell: UITableViewCell {
 
     var semester:Semester? {
         didSet {
+            //set theme
+            c = DefaultValues.shared.themeColor
+            openButton.backgroundColor = c
+            //set theme
             guard let s = semester else { return }
             if let imageData = s.icon {
                 icon.setImage(UIImage(data: imageData), for: .normal)
@@ -87,13 +92,13 @@ class SemesterCell: UITableViewCell {
         return label
     }()
     
-    let openButton:UIButton = {
+    lazy var openButton:UIButton = {
         let b = UIButton()
         b.layer.cornerRadius = 10
         b.layer.masksToBounds = true
         b.isUserInteractionEnabled = false
 //        b.backgroundColor = .grayButton
-        b.backgroundColor = UIColor.aplGreen.withAlphaComponent(0.8)
+        b.backgroundColor = c
         b.setTitle("open", for: .normal)
         b.setTitleColor(.black, for: .normal)
         b.titleLabel?.font = UIFont.init(name: "Futura-Bold", size: 12)
@@ -106,7 +111,7 @@ class SemesterCell: UITableViewCell {
         b.layer.masksToBounds = true
         b.backgroundColor = .clear
         b.layer.borderWidth = 4
-        b.layer.borderColor = UIColor.aplGreen.withAlphaComponent(0.8).cgColor
+        b.layer.borderColor = c.cgColor
         b.addTarget(self, action: #selector(self.handleEdit), for: [.touchUpInside])
         return b
     }()

@@ -50,6 +50,15 @@ extension UIColor {
     static let lightRed = UIColor(red: 247/255, green: 66/255, blue: 82/255, alpha: 1)
     static let darkBlue = UIColor(red: 9/255, green: 45/255, blue: 64/255, alpha: 1)
 
+    static var orangeTheme: UIColor { return UIColor.init(rgb: 0xF3902A) }
+    static var radicalRed: UIColor { return UIColor.init(rgb: 0xE44246) }
+    static var gotGreen: UIColor { return UIColor.init(rgb: 0x90FA5D) }
+    static var butBlue: UIColor { return UIColor.init(rgb: 0x3898FC) }
+    static var poppinPurple: UIColor { return UIColor.init(rgb: 0xD2277E) }
+    
+    
+    
+
 //    static let lightBlue = UIColor(red: 218/255, green: 235/255, blue: 243/255, alpha: 1)
     
     

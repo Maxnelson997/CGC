@@ -40,6 +40,7 @@
 		7998F3AD201C0251007D9C0E /* SemesterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3AC201C0251007D9C0E /* SemesterCell.swift */; };
 		7998F3AF201C10A8007D9C0E /* AddSemesterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3AE201C10A8007D9C0E /* AddSemesterController.swift */; };
 		7998F3B1201C196F007D9C0E /* UIViewController+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F3B0201C196F007D9C0E /* UIViewController+Helpers.swift */; };
+		79D66DFF202155580072080E /* ThemeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79D66DFE202155580072080E /* ThemeController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,6 +79,7 @@
 		7998F3AC201C0251007D9C0E /* SemesterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SemesterCell.swift; sourceTree = "<group>"; };
 		7998F3AE201C10A8007D9C0E /* AddSemesterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSemesterController.swift; sourceTree = "<group>"; };
 		7998F3B0201C196F007D9C0E /* UIViewController+Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Helpers.swift"; sourceTree = "<group>"; };
+		79D66DFE202155580072080E /* ThemeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			isa = PBXGroup;
 			children = (
 				7998F3A6201BCC44007D9C0E /* SettingsController.swift */,
+				79D66DFE202155580072080E /* ThemeController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				7928963F201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift in Sources */,
 				7998F3AD201C0251007D9C0E /* SemesterCell.swift in Sources */,
 				7998F3AF201C10A8007D9C0E /* AddSemesterController.swift in Sources */,
+				79D66DFF202155580072080E /* ThemeController.swift in Sources */,
 				79289643201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift in Sources */,
 				7928962B201DFF0700BC22D3 /* Semester.swift in Sources */,
 				79289632201E9B8C00BC22D3 /* ClassesController.swift in Sources */,

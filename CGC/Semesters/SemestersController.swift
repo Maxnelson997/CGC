@@ -14,11 +14,13 @@ class SemestersController: UITableViewController {
     var semesters = [Semester]()
     var cellId:String = "cellId"
     var isEditingSemesters:Bool = false
+    var isEditingSemesterInfo:Bool = false
+    var c = DefaultValues.shared.themeColor
     
     lazy var footerView:UIView = {
         let footerView = UIStackView()
         let bg = UIView()
-        bg.backgroundColor = UIColor.aplGreen.withAlphaComponent(0.2)
+        bg.backgroundColor = c.withAlphaComponent(0.2)
         footerView.addSubview(bg)
         bg.anchorEntireView(to: footerView)
         footerView.axis = .horizontal
@@ -71,16 +73,24 @@ class SemestersController: UITableViewController {
         return label
     }()
     
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        calculateAllInfo()
+        c = DefaultValues.shared.themeColor
+        footerView.subviews.first?.backgroundColor = c.withAlphaComponent(0.2)
+        if !isEditingSemesterInfo {
+            calculateAllInfo()
+        } else {
+            isEditingSemesterInfo = false
+        }
     }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        semesters = CoreDataManager.shared.fetchSemesters()
 
+        semesters = CoreDataManager.shared.fetchSemesters()
+//        calculateAllInfo()
+        
         view.backgroundColor = .clear
         navigationItem.title = "Semesters"
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Edit", style: .plain, target: self, action: #selector(self.handleEdit))

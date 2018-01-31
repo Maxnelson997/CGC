@@ -25,7 +25,6 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     func setupViewControllers() {
         let semestersNavController = templateNavController(rootViewController: semestersController, unselectedImage: #imageLiteral(resourceName: "semesters"), selectedImage: #imageLiteral(resourceName: "semesters"))
         let settingsNavController = templateNavController(rootViewController: settingsController, unselectedImage: #imageLiteral(resourceName: "settings"), selectedImage: #imageLiteral(resourceName: "settings"))
-    
         viewControllers = [semestersNavController, settingsNavController]
 //        UITabBar.appearance().tintColor = UIColor.init(rgb: 0x00FFEB)
 //        tabBar.backgroundImage = getImageWithColor(color: .clear, size: CGSize(width: 100, height: 100))

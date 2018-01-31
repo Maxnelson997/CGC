@@ -155,6 +155,43 @@ struct CoreDataManager {
             print("failed to add semester class to core data",err); return (nil, err)
         }
     }
-    
 
+}
+
+extension CoreDataManager {
+    //theme stuff
+    func saveTheme(index: Int) {
+        let context = persistentContainer.viewContext
+        if let t = DefaultValues.shared.theme {
+            //update
+            t.colorIndex = Int16(index)
+        } else {
+            //new object
+            let theme = NSEntityDescription.insertNewObject(forEntityName: "ThemeColor", into: context) as! ThemeColor
+            theme.colorIndex = Int16(index)
+        }
+        
+        do {
+            try context.save()
+        } catch let err {
+            print("failed to save theme color index in core data",err)
+        }
+    }
+
+    func getTheme() {
+        let context = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<ThemeColor>(entityName: "ThemeColor")
+        do {
+            let theme = try context.fetch(fetchRequest)
+            let t = theme.first
+            guard let index = t?.colorIndex else { return }
+
+            let colorIndex = Int(index)
+            DefaultValues.shared.themeColor = DefaultValues.shared.colors[colorIndex]
+            DefaultValues.shared.theme = t
+            (UIApplication.shared.delegate as! AppDelegate).setUITabBarTheme()
+        } catch let err {
+            print("failed to fetch theme color index:",err)
+        }
+    }
 }

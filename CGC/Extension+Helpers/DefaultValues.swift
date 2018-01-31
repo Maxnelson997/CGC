@@ -14,5 +14,19 @@ class DefaultValues {
     
     var icon = #imageLiteral(resourceName: "saturn")
     var semesterTitle = "Spring 18"
+    var themeColor:UIColor = .aplGreen
+    var colors:[UIColor] = [
+        .appleBlue,
+        .aplGreen,
+        UIColor.yellow.withAlphaComponent(0.8),
+        .grayButton,
+        .orangeTheme,
+        .tealColor,
+        .radicalRed,
+        .gotGreen,
+        .butBlue,
+        .poppinPurple
+    ]
+    var theme:ThemeColor?
 
 }

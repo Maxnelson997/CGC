@@ -14,8 +14,12 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="semester" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Semester" inverseName="semesterClasses" inverseEntity="Semester" syncable="YES"/>
     </entity>
+    <entity name="ThemeColor" representedClassName="ThemeColor" syncable="YES" codeGenerationType="class">
+        <attribute name="colorIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Semester" positionX="-317" positionY="27" width="128" height="103"/>
         <element name="SemesterClass" positionX="-126" positionY="-27" width="128" height="133"/>
+        <element name="ThemeColor" positionX="-216" positionY="45" width="128" height="60"/>
     </elements>
 </model>

@@ -13,13 +13,13 @@ extension AddSemesterController: SelectIconDelegate {
     
     @objc func handleSave() {
         if isEdit {
-            saveClassEdit()
+            saveSemesterEdit()
         } else {
-            saveNewClass()
+            saveNewSemester()
         }
     }
 
-    fileprivate func saveClassEdit() {
+    fileprivate func saveSemesterEdit() {
         //redundant af. fix dis.
         var semesterImage = UIImage()
         guard var title = nameTextField.text else { return }
@@ -47,7 +47,7 @@ extension AddSemesterController: SelectIconDelegate {
         })
     }
 
-    fileprivate func saveNewClass() {
+    fileprivate func saveNewSemester() {
         //redundant af. fix dis.
         var semesterImage = UIImage()
         guard var title = nameTextField.text else { return }

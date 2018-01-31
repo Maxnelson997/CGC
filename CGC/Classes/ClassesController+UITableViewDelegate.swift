@@ -60,9 +60,10 @@ extension ClassesController {
     
     override func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: .destructive, title: "Delete") { (_, indexPath) in
+                        self.footerView.alpha = 0
             self.classes.remove(at: indexPath.row)
             self.tableView.deleteRows(at: [indexPath], with: .bottom)
-            self.footerView.alpha = 0
+
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4, execute: {
 //                self.semester?.classes = self.classes
                 guard let semester = self.semester else { return }

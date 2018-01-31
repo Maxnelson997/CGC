@@ -12,12 +12,13 @@ class ClassCell: UITableViewCell {
     
     var sel:Bool = false
     var delegate:IndexDelegate?
-    
+    var c = DefaultValues.shared.themeColor
     @objc func handleEdit() {
+        c = DefaultValues.shared.themeColor
         sel = !sel
         delegate?.setSemesterSelected(at: tag - 1)
-        let fill:(UIColor,UIColor) = sel ? (.appleBlue,.appleBlue) : (UIColor.black.withAlphaComponent(0.8),.clear)
-        let selectedViewFill:UIColor = sel ? UIColor.appleBlue.withAlphaComponent(0.2) : .clear
+        let fill:(UIColor,UIColor) = sel ? (c.withAlphaComponent(0.8),c) : (UIColor.black.withAlphaComponent(0.8),.clear)
+        let selectedViewFill:UIColor = sel ? c.withAlphaComponent(0.2) : .clear
         UIView.animate(withDuration: 0.1, animations: {
             self.editButton.backgroundColor = fill.1
             self.editButton.layer.borderColor = fill.0.cgColor
@@ -42,6 +43,10 @@ class ClassCell: UITableViewCell {
     
     var clas:SemesterClass? {
         didSet {
+            //set theme
+            c = DefaultValues.shared.themeColor
+            openButton.backgroundColor = c
+            //set theme
             guard let c = clas else { return }
             guard let iconData = c.icon else { return }
             if let img = UIImage(data: iconData) {
@@ -87,7 +92,7 @@ class ClassCell: UITableViewCell {
         b.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         b.setTitle("open", for: .normal)
         b.isUserInteractionEnabled = false
-        b.setTitleColor(.white, for: .normal)
+        b.setTitleColor(.black, for: .normal)
         b.titleLabel?.font = UIFont.init(name: "Futura-Bold", size: 12)
         return b
     }()

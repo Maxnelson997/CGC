@@ -73,12 +73,13 @@ class ClassesController: UITableViewController {
         return label
     }()
     
+    var c = DefaultValues.shared.themeColor
     
     override func viewWillAppear(_ animated: Bool) {
+        c = DefaultValues.shared.themeColor
+        footerView.subviews.first?.backgroundColor = c.withAlphaComponent(0.2)
         view.backgroundColor = .white
     }
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +90,7 @@ class ClassesController: UITableViewController {
         guard let semesterClasses = semester.semesterClasses?.allObjects as? [SemesterClass] else { return }
         classes = semesterClasses
         
+        c = DefaultValues.shared.themeColor
         calculateAllInfo()
         
         view.backgroundColor = .clear

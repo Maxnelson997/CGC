@@ -15,12 +15,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     let tab = MainTabBarController()
     
+    func setTheme(theme: Theme) {
+        DefaultValues.shared.themeColor = theme.color
+        setUITabBarTheme()
+        //save it in core data
+        if let index = DefaultValues.shared.colors.index(of: theme.color) {
+            CoreDataManager.shared.saveTheme(index: index)
+        }
+    }
+    
+    func setUITabBarTheme() {
+        let c = DefaultValues.shared.themeColor
+        UINavigationBar.appearance().barTintColor = c
+        UITabBar.appearance().tintColor = c
+        UITabBar.appearance().backgroundColor = .clear
+        if c.isEqual(UIColor.yellow.withAlphaComponent(0.8)) || c.isEqual(UIColor.grayButton) {
+            UITabBar.appearance().tintColor = UIColor.appleBlue
+            UITabBar.appearance().backgroundColor = c
+        }
+    }
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
     
         UINavigationBar.appearance().tintColor = .black
         UINavigationBar.appearance().isTranslucent = false
         UINavigationBar.appearance().barTintColor = .aplGreen//.grayButton
+        UITabBar.appearance().tintColor = .aplGreen
         UINavigationBar.appearance().prefersLargeTitles = true
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
         UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
@@ -29,6 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.rootViewController = tab
         let backgroundGradient = AAGradientView(frame: UIScreen.main.bounds, colors: [.white, .white], locations: [-0.5, 1])
         window?.insertSubview(backgroundGradient, at: 0)
+        //get theme
+        CoreDataManager.shared.getTheme()
         return true
     }
 

@@ -79,6 +79,7 @@ extension SelectIconController: UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
         dismiss(animated: true) {
              self.delegate?.chooseIcon(image: self.icons[indexPath.item])
         }
