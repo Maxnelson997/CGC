@@ -55,6 +55,10 @@ extension UIColor {
     static var gotGreen: UIColor { return UIColor.init(rgb: 0x90FA5D) }
     static var butBlue: UIColor { return UIColor.init(rgb: 0x3898FC) }
     static var poppinPurple: UIColor { return UIColor.init(rgb: 0xD2277E) }
+    static var gitCommitGreen: UIColor { return UIColor.init(rgb: 0x5CFF90) }
+    static var garbageGolden: UIColor { return UIColor.init(rgb: 0xE4BB47) }
+    
+    
     
     
     

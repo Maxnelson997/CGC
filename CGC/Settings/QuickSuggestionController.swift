@@ -45,7 +45,7 @@ class QuickSuggestionController: UIViewController, UITextViewDelegate {
         view.backgroundColor = .white
         feedback.delegate = self
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Send It", style: .done, target: self, action: #selector(handleSend))
-        setupCancelButton()
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(handleDismiss))
         setupUI()
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(dismissTF)))
     }
@@ -62,13 +62,17 @@ class QuickSuggestionController: UIViewController, UITextViewDelegate {
         feedback.resignFirstResponder()
     }
     
+    @objc func handleDismiss() {
+        dismissTF()
+        dismiss(animated: true, completion: nil)
+    }
+    
     private func setupUI() {
         view.addSubview(label)
         view.addSubview(feedback)
         
         label.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 30, paddingLeft: 62, paddingBottom: 0, paddingRight: 58, width: 0, height: 0)
         feedback.anchor(top: label.bottomAnchor, left: view.leftAnchor, bottom: nil, right: view.rightAnchor, paddingTop: 20, paddingLeft: 58, paddingBottom: 0, paddingRight: 58, width: 0, height: 165)
-        
         
     }
 }

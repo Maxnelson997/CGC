@@ -81,15 +81,15 @@ class ThemeController:UICollectionViewController {
         let themeSetOne = ThemeSet(
             title: "Classic",
             themes: [
-                Theme(title: "Got Green", color: c[7], titleColor: .black),
-                Theme(title: "But Blue", color: c[8], titleColor: .white),
+                Theme(title: "Gottem! Green", color: c[7], titleColor: .black),
+                Theme(title: "Bitchin Blue", color: c[8], titleColor: .white),
                 Theme(title: "Boring Billy", color: c[3], titleColor: .appleBlue),
             ]
         )
         let themeSetTwo = ThemeSet(
             title: "Bright AF",
             themes: [
-                Theme(title: "Godly\nGolden", color: c[2], titleColor: .black),
+                Theme(title: "Godly Golden", color: c[2], titleColor: .black),
                 Theme(title: "Optimal Orange", color: c[4], titleColor: .white),
                 Theme(title: "Teal Tacos", color: c[5], titleColor: .white),
             ]
@@ -97,16 +97,25 @@ class ThemeController:UICollectionViewController {
         let themeSetThree = ThemeSet(
             title: "Litty as a kitty",
             themes: [
-                Theme(title: "Bitchin\nBlue", color: c[0], titleColor: .white),
-                Theme(title: "Gottem\nGreen", color: c[1], titleColor: .black),
+                Theme(title: "Blue, Boi!", color: c[0], titleColor: .white),
+                Theme(title: "Got Green", color: c[1], titleColor: .black),
                 Theme(title: "Radical Red", color: c[6], titleColor: .white),
-                Theme(title: "Poppin Purple", color: c[9], titleColor: .white)
+                Theme(title: "Poppin Purple", color: c[9], titleColor: .white),
+                Theme(title: "Git Commit Green", color: c[10], titleColor: .black)
+            ]
+        )
+        let themeSetFour = ThemeSet(
+            title: "broski",
+            themes: [
+                Theme(title: "Garbage Golden", color: c[11], titleColor: .white),
+                Theme(title: "Garbage Golden Reversed", color: c[11], titleColor: .black),
             ]
         )
         
         themeSets.append(themeSetOne)
         themeSets.append(themeSetTwo)
         themeSets.append(themeSetThree)
+        themeSets.append(themeSetFour)
         
         navigationItem.title = "Pick a Theme"
         collectionView?.delegate = self

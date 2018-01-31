@@ -27,7 +27,9 @@ class DefaultValues {
         .radicalRed,
         .gotGreen,
         .butBlue,
-        .poppinPurple
+        .poppinPurple,
+        .gitCommitGreen,
+        .garbageGolden
     ]
     var theme:ThemeColor?
 
