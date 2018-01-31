@@ -33,7 +33,6 @@ extension ClassesController: IndexDelegate, AddClassDelegate {
                 let reloadIndexPath = IndexPath(row: row, section: 0)
                 self.tableView.reloadRows(at: [reloadIndexPath], with: .right)
             }
-            self.footerView.alpha = 0
         }
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.4) {
             self.calculateAllInfo()

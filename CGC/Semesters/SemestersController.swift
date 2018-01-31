@@ -78,10 +78,13 @@ class SemestersController: UITableViewController {
         c = DefaultValues.shared.themeColor
         footerView.subviews.first?.backgroundColor = c.withAlphaComponent(0.2)
         if !isEditingSemesterInfo {
-            calculateAllInfo()
+            calculateAllInfo() // semester classes were potentially modified
+            tableView.reloadData()
+            DefaultValues.shared.themeWasChanged = false
         } else {
             isEditingSemesterInfo = false
         }
+
     }
 
     

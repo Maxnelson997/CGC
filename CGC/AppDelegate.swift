@@ -16,19 +16,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let tab = MainTabBarController()
     
     func setTheme(theme: Theme) {
+        DefaultValues.shared.themeWasChanged = true
         DefaultValues.shared.themeColor = theme.color
+        DefaultValues.shared.themeTitleColor = theme.titleColor
         setUITabBarTheme()
         //save it in core data
         if let index = DefaultValues.shared.colors.index(of: theme.color) {
-            CoreDataManager.shared.saveTheme(index: index)
+            CoreDataManager.shared.saveTheme(index: index, black: theme.titleColor == .black ? 1 : 0)
         }
     }
     
     func setUITabBarTheme() {
         let c = DefaultValues.shared.themeColor
+        let ttc = DefaultValues.shared.themeTitleColor
         UINavigationBar.appearance().barTintColor = c
         UITabBar.appearance().tintColor = c
         UITabBar.appearance().backgroundColor = .clear
+        UINavigationBar.appearance().titleTextAttributes = [NSAttributedStringKey.foregroundColor: ttc]
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: ttc]
+        UINavigationBar.appearance().tintColor = ttc
         if c.isEqual(UIColor.yellow.withAlphaComponent(0.8)) || c.isEqual(UIColor.grayButton) {
             UITabBar.appearance().tintColor = UIColor.appleBlue
             UITabBar.appearance().backgroundColor = c

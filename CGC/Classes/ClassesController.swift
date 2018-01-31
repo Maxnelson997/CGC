@@ -79,6 +79,10 @@ class ClassesController: UITableViewController {
         c = DefaultValues.shared.themeColor
         footerView.subviews.first?.backgroundColor = c.withAlphaComponent(0.2)
         view.backgroundColor = .white
+        if DefaultValues.shared.themeWasChanged {
+            tableView.reloadData()
+            DefaultValues.shared.themeWasChanged = false
+        }
     }
     
     override func viewDidLoad() {

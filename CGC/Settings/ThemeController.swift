@@ -11,6 +11,7 @@ import UIKit
 struct Theme {
     var title:String
     var color:UIColor
+    var titleColor:UIColor
 }
 
 class ThemeCell:UICollectionViewCell {
@@ -19,7 +20,11 @@ class ThemeCell:UICollectionViewCell {
         didSet {
             guard let theme = theme else { return }
             icon.backgroundColor = theme.color
-            themeTitle.attributedText = NSMutableAttributedString(string: theme.title, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 16)!, NSAttributedStringKey.foregroundColor: UIColor.black])
+        
+            let paragraph = NSMutableParagraphStyle()
+            paragraph.alignment = .center
+            themeTitle.attributedText = NSMutableAttributedString(string: theme.title, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 16)!, NSAttributedStringKey.foregroundColor: theme.titleColor, NSAttributedStringKey.paragraphStyle: paragraph])
+            themeTitle.numberOfLines = 0
         }
     }
     
@@ -39,12 +44,13 @@ class ThemeCell:UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        addSubview(themeTitle)
+    
         addSubview(icon)
-        themeTitle.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 0, height: 40)
-        icon.anchor(top: themeTitle.bottomAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
+        addSubview(themeTitle)
+//        themeTitle.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 0, height: 60)
         
+        icon.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
+        themeTitle.anchorEntireView(to: icon, withInsets: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -75,35 +81,26 @@ class ThemeController:UICollectionViewController {
         let themeSetOne = ThemeSet(
             title: "Tight",
             themes: [
-                Theme(title: "Bitchin Blue", color: c[0]),
-                Theme(title: "Gottem Green", color: c[1]),
-                Theme(title: "Godly Golden", color: c[2]),
-                
-                Theme(title: "Boring Billy", color: c[3]),
-                Theme(title: "Optimal Orange", color: c[4]),
-                Theme(title: "Teal Tacos", color: c[5]),
-                
-                Theme(title: "Radical Red", color: c[6]),
-                Theme(title: "Got Green", color: c[7]),
-                Theme(title: "But Blue", color: c[8]),
-                Theme(title: "Poppin Purple", color: c[9])
+                Theme(title: "Bitchin\nBlue", color: c[0], titleColor: .white),
+                Theme(title: "Gottem\nGreen", color: c[1], titleColor: .black),
+                Theme(title: "Godly\nGolden", color: c[2], titleColor: .black),
             ]
         )
         let themeSetTwo = ThemeSet(
             title: "Tight",
             themes: [
-                Theme(title: "Boring Billy", color: c[3]),
-                Theme(title: "Optimal Orange", color: c[4]),
-                Theme(title: "Teal Tacos", color: c[5]),
+                Theme(title: "Boring Billy", color: c[3], titleColor: .black),
+                Theme(title: "Optimal Orange", color: c[4], titleColor: .white),
+                Theme(title: "Teal Tacos", color: c[5], titleColor: .white),
             ]
         )
         let themeSetThree = ThemeSet(
             title: "Tight",
             themes: [
-                Theme(title: "Radical Red", color: c[6]),
-                Theme(title: "Got Green", color: c[7]),
-                Theme(title: "But Blue", color: c[8]),
-                Theme(title: "Poppin Purple", color: c[9])
+                Theme(title: "Radical Red", color: c[6], titleColor: .white),
+                Theme(title: "Got Green", color: c[7], titleColor: .black),
+                Theme(title: "But Blue", color: c[8], titleColor: .white),
+                Theme(title: "Poppin Purple", color: c[9], titleColor: .white)
             ]
         )
         
@@ -140,7 +137,7 @@ extension ThemeController: UICollectionViewDelegateFlowLayout {
         // on width: -16 for left and right inset, -16 for space between cells equal to left & right insets
         // on height: + 40 for label height. this keeps the color a square
         let width = collectionView.frame.width/3 - 32
-        let height = width + 40
+        let height = width + 0
         return CGSize(width: width, height: height)
     }
     

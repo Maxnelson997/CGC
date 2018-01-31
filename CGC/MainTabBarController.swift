@@ -44,6 +44,11 @@ func templateNavController(rootViewController:UIViewController = UIViewControlle
 }
 
 class CustomNavController:UINavigationController {
-    override var preferredStatusBarStyle: UIStatusBarStyle { return .default }
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        if DefaultValues.shared.themeTitleColor == .white {
+             return .lightContent
+        }
+        return .default
+    }
 }
 

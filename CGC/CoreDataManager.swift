@@ -184,15 +184,17 @@ struct CoreDataManager {
 
 extension CoreDataManager {
     //theme stuff
-    func saveTheme(index: Int) {
+    func saveTheme(index: Int, black: Int) {
         let context = persistentContainer.viewContext
         if let t = DefaultValues.shared.theme {
             //update
             t.colorIndex = Int16(index)
+            t.titleColorIndex = Int16(black)
         } else {
             //new object
             let theme = NSEntityDescription.insertNewObject(forEntityName: "ThemeColor", into: context) as! ThemeColor
             theme.colorIndex = Int16(index)
+            theme.titleColorIndex = Int16(black)
         }
         
         do {
@@ -209,8 +211,11 @@ extension CoreDataManager {
             let theme = try context.fetch(fetchRequest)
             let t = theme.first
             guard let index = t?.colorIndex else { return }
+            guard let black = t?.titleColorIndex else { return }
 
             let colorIndex = Int(index)
+            let titleColorIndex = Int(black)
+            DefaultValues.shared.themeTitleColor = titleColorIndex == 1 ? .black : .white
             DefaultValues.shared.themeColor = DefaultValues.shared.colors[colorIndex]
             DefaultValues.shared.theme = t
             (UIApplication.shared.delegate as! AppDelegate).setUITabBarTheme()

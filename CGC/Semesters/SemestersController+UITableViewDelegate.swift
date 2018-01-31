@@ -50,6 +50,7 @@ extension SemestersController {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! SemesterCell
         cell.tag = indexPath.item + 1
         cell.semester = semesters[indexPath.item]
+        cell.openButton.setTitleColor(DefaultValues.shared.themeTitleColor, for: .normal)
         cell.delegate = self
         cell.backgroundColor = .clear
         cell.selectionStyle = .none
