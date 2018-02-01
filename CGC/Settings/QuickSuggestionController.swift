@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class QuickSuggestionController: UIViewController, UITextViewDelegate {
     
@@ -54,7 +55,21 @@ class QuickSuggestionController: UIViewController, UITextViewDelegate {
         if feedback.text == "Say what you want to see in the next version, hit Send It, then come back an update later and you might see it." || feedback.text.isEmpty || feedback.text == " " {
             present(messagePop(title: "Hold up..", message: "type something first broski. cmon."), animated: true, completion: nil)
         } else {
-            present(messagePop(title: "Wooo!", message: "your amazing ideas have been sent to the developer"), animated: true, completion: nil)
+            sendUsingFirebase()
+        }
+    }
+    
+    fileprivate func sendUsingFirebase() {
+        let ref = Database.database().reference()
+        let values:[String:Any] = ["suggestion": feedback.text]
+        ref.child("QuickSuggestions").childByAutoId().updateChildValues(values) { (err, ref) in
+            if let err = err {
+                print("error sending feedback:",err)
+                self.present(messagePop(title: "Dang Dood", message: "your amazing ideas couldn't be sent. Try again."), animated: true, completion: nil)
+                return
+            }
+            self.present(messagePop(title: "Wooo!", message: "your amazing ideas have been sent to the developer"), animated: true, completion: nil)
+            self.feedback.text = ""
         }
     }
     
@@ -66,6 +81,11 @@ class QuickSuggestionController: UIViewController, UITextViewDelegate {
         dismissTF()
         dismiss(animated: true, completion: nil)
     }
+    
+
+
+  
+
     
     private func setupUI() {
         view.addSubview(label)
