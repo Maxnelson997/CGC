@@ -1,127 +1,31 @@
 //
-//  IconsController.swift
+//  FirstLaunchController.swift
 //  CGC
 //
-//  Created by Max Nelson on 1/27/18.
+//  Created by Max Nelson on 2/2/18.
 //  Copyright © 2018 AsherApps. All rights reserved.
 //
 
 import UIKit
 
-
-class IconCell:UICollectionViewCell {
-    
-    let icon:UIButton = {
-        let button = UIButton()
-        button.imageEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        button.layer.masksToBounds = true
-        button.isUserInteractionEnabled = false
-        button.backgroundColor = UIColor.black.withAlphaComponent(0.8)
-        button.layer.cornerRadius = 15
-        return button
-    }()
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        addSubview(icon)
-        icon.anchorEntireView(to: self)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-}
-
-class IconHeader:UICollectionReusableView {
-    
-    var attributedText:NSAttributedString? {
-        didSet {
-            guard let attributedText = attributedText else { return }
-            header.attributedText = attributedText
-        }
-    }
-    
-    private let header = InsetLabel(text: "string", size: 30, alignment: .left, font: .regular, insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        addSubview(header)
-        header.anchorEntireView(to: self, withInsets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16))
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
-
-
-struct IconSet {
-    let title:String
-    let icons:[UIImage]
-    let count:Int
-    
-    init(title:String, icons:[UIImage]) {
-        self.title = title
-        self.icons = icons
-        self.count = icons.count
-    }
-}
-
-class SelectIconController:UICollectionViewController {
+class FirstLaunchController:UICollectionViewController {
     var iconSets = [IconSet]()
     var icons = [UIImage]()
-    
-    var delegate:SelectIconDelegate?
     
     var cellId = "cellId"
     var headerId = "headerId"
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-            //avatar icons
-        //    OLDAVATAR
-        //    YOUNGAVATAR
-        //    PRO
-            // etc
-        //    AUDIO
-        //    ANIMALS
-        //    EMOJI
-            // space icons
-        //    SPACE_ONE
-        //    SPACE_TWO
-        //    SPACE_THREE
-            // education icons
-        //    EDUCATION
-        //    EDU_SUBJECTS
-        //    EDU_DOPE
-        
-        
-        
 
-        let i = DefaultValues.shared
- 
         iconSets = [
             // avatars
-            IconSet(title: "Education", icons: i.EDUCATION),
-            IconSet(title: "Furry Friends", icons: i.ANIMALS),
-            IconSet(title: "Space Explorer", icons: i.SPACE_THREE),
-            IconSet(title: "Youngins", icons: i.YOUNGAVATAR),
-            IconSet(title: "Space AF", icons: i.SPACE_TWO),
-            IconSet(title: "Professionals", icons: i.PRO),
-            IconSet(title: "Audio n'stuff", icons: i.AUDIO),
-            IconSet(title: "Emoji", icons: i.EMOJI),
-            IconSet(title: "Space", icons: i.SPACE_ONE),
-            IconSet(title: "Scoo Subjects", icons: i.EDU_SUBJECTS),
-            IconSet(title: "School Enthusiast ", icons: i.EDU_DOPE),
-            IconSet(title: "Occupation", icons: i.OLDAVATAR),
+            IconSet(title: "Options", icons: DefaultValues.shared.ICON_OPTIONS),
         ]
         
         navigationItem.title = "Pick an icon"
         setupCancelButton()
-
+        
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.register(IconCell.self, forCellWithReuseIdentifier: cellId)
@@ -135,8 +39,7 @@ class SelectIconController:UICollectionViewController {
     }
 }
 
-
-extension SelectIconController: UICollectionViewDelegateFlowLayout {
+extension FirstLaunchController: UICollectionViewDelegateFlowLayout {
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return iconSets.count
@@ -155,6 +58,7 @@ extension SelectIconController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! IconCell
+        cell.icon.backgroundColor = .clear
         cell.icon.setImage(iconSets[indexPath.section].icons[indexPath.item], for: .normal)
         if iconSets[indexPath.section].title == "Emoji" {
             cell.icon.tintColor = .white
@@ -179,7 +83,7 @@ extension SelectIconController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         dismiss(animated: true) {
-             self.delegate?.chooseIcon(image: self.iconSets[indexPath.section].icons[indexPath.item])
+//            self.delegate?.chooseIcon(image: self.iconSets[indexPath.section].icons[indexPath.item])
         }
     }
 }

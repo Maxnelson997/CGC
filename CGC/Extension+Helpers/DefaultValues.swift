@@ -44,6 +44,7 @@ class DefaultValues {
 //    EDU_SUBJECTS
 //    EDU_DOPE
 //    EDUCATION
+//    EMOJI
     
     let OLDAVATAR:[UIImage] = {
         var arr = [UIImage]()
@@ -132,5 +133,22 @@ class DefaultValues {
         }
         return arr
     }()
+    
+    let EMOJI:[UIImage] = {
+        var arr = [UIImage]()
+        for i in 0 ..< 50 {
+            arr.append(UIImage(named: "emoj\(String(describing: i))")!.withRenderingMode(.alwaysTemplate))
+        }
+        return arr
+    }()
+    
+    let ICON_OPTIONS:[UIImage] = {
+        var arr = [UIImage]()
+        for i in 0 ..< 8 {
+            arr.append(UIImage(named: "option\(String(describing: i))")!)
+        }
+        return arr
+    }()
+
 
 }

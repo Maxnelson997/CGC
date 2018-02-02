@@ -168,20 +168,25 @@ class SettingsController: UITableViewController {
         }
     }
     
+//     #imageLiteral(resourceName: "s75") theme stars
+//    #imageLiteral(resourceName: "f15") pencil
+    
+//    #imageLiteral(resourceName: "e4") back to school
+//    #imageLiteral(resourceName: "emoj42")
     func setupData() {
         let firstOptions = [
-            Option(title: "Clear semesters", icon: #imageLiteral(resourceName: "crocodile"), selector: #selector(clearSemesters)),
-            Option(title: "Clear classes", icon: #imageLiteral(resourceName: "crocodile"), selector: #selector(clearClasses)),
+            Option(title: "Clear semesters", icon: #imageLiteral(resourceName: "a41"), selector: #selector(clearSemesters)),
+            Option(title: "Clear classes", icon: #imageLiteral(resourceName: "s46"), selector: #selector(clearClasses)),
         ]
         let secondOptions = [
 //            Option(title: "Set grade values", icon: #imageLiteral(resourceName: "shooting-star"), selector: #selector(defaultSelector)),
-            Option(title: "Theme", icon: #imageLiteral(resourceName: "crocodile"), selector: #selector(themeTapped)),
+            Option(title: "Theme", icon:#imageLiteral(resourceName: "s60"), selector: #selector(themeTapped)),
         ]
         let thirdOptions = [
-            Option(title: "Quick Suggestion", icon: #imageLiteral(resourceName: "crocodile"), selector: #selector(quickSuggestionTapped)),
-            Option(title: "Community", icon: #imageLiteral(resourceName: "crocodile"), selector: #selector(instagramTapped)),
-            Option(title: "About", icon: #imageLiteral(resourceName: "astronaut"), selector: #selector(aboutTapped)),
-            Option(title: "Developer website", icon: #imageLiteral(resourceName: "crocodile"), selector: #selector(websiteTapped))
+            Option(title: "Quick Suggestion", icon: #imageLiteral(resourceName: "f13"), selector: #selector(quickSuggestionTapped)),
+            Option(title: "Community", icon: #imageLiteral(resourceName: "f20"), selector: #selector(instagramTapped)),
+            Option(title: "About", icon: #imageLiteral(resourceName: "u4"), selector: #selector(aboutTapped)),
+            Option(title: "Developer website", icon: #imageLiteral(resourceName: "s45"), selector: #selector(websiteTapped))
         ]
         let firstSection = OptionSection(title: "Storage", options: firstOptions)
         let secondSection = OptionSection(title: "Customize", options: secondOptions)
