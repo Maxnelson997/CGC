@@ -133,7 +133,8 @@ class SettingsController: UITableViewController {
     }
     
     @objc func aboutTapped() {
-        
+        let aboutController = AboutController()
+        navigationController?.pushViewController(aboutController, animated: true)
     }
     
     @objc func defaultSelector() {
@@ -158,6 +159,15 @@ class SettingsController: UITableViewController {
         present(pop, animated: true, completion: nil)
     }
     
+    @objc func websiteTapped() {
+        let instagram = URL(string: "http://www.maxthedev.com")!
+        if UIApplication.shared.canOpenURL(instagram) {
+            UIApplication.shared.open(instagram, options: ["":""], completionHandler: { _ in
+                
+            })
+        }
+    }
+    
     func setupData() {
         let firstOptions = [
             Option(title: "Clear semesters", icon: #imageLiteral(resourceName: "saturn"), selector: #selector(clearSemesters)),
@@ -169,8 +179,9 @@ class SettingsController: UITableViewController {
         ]
         let thirdOptions = [
             Option(title: "Quick Suggestion", icon: #imageLiteral(resourceName: "alien-1"), selector: #selector(quickSuggestionTapped)),
-            Option(title: "Instagram", icon: #imageLiteral(resourceName: "ufo"), selector: #selector(instagramTapped)),
-            Option(title: "About", icon: #imageLiteral(resourceName: "astronaut"), selector: #selector(aboutTapped))
+            Option(title: "Community", icon: #imageLiteral(resourceName: "ufo"), selector: #selector(instagramTapped)),
+            Option(title: "About", icon: #imageLiteral(resourceName: "astronaut"), selector: #selector(aboutTapped)),
+            Option(title: "Developer website", icon: #imageLiteral(resourceName: "planet-earth"), selector: #selector(websiteTapped))
         ]
         let firstSection = OptionSection(title: "Storage", options: firstOptions)
         let secondSection = OptionSection(title: "Customize", options: secondOptions)

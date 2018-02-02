@@ -30,14 +30,18 @@ class TitleLabel: UILabel {
     
     var size:CGFloat = 12
     var insets:UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    init(text:String, size:CGFloat = 12, alignment:NSTextAlignment = .left, insets:UIEdgeInsets? = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) {
+    init(text:String, size:CGFloat = 12, alignment:NSTextAlignment = .left, font:fontType = .bold, insets:UIEdgeInsets? = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) {
         super.init(frame: .zero)
         if let insets = insets {
             self.insets = insets
         }
         self.size = size
         textAlignment = alignment
-        attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: size)!, NSAttributedStringKey.foregroundColor: UIColor.black])
+        var fontName = "Futura-Bold"
+        if font == .regular {
+            fontName = "Futura"
+        }
+        attributedText = NSMutableAttributedString(string: text, attributes: [NSAttributedStringKey.font:UIFont.init(name: fontName, size: size)!, NSAttributedStringKey.foregroundColor: UIColor.black])
         numberOfLines = 0
     }
     
@@ -47,6 +51,38 @@ class TitleLabel: UILabel {
         }
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func drawText(in rect: CGRect) {
+        super.drawText(in: UIEdgeInsetsInsetRect(rect, insets))
+    }
+}
+
+class InsetLabel: UILabel {
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+    
+    var size:CGFloat = 12
+    var insets:UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    
+    init(text:String, size:CGFloat = 12, alignment:NSTextAlignment = .left, font:fontType = .bold, insets:UIEdgeInsets? = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)) {
+        super.init(frame: .zero)
+        self.numberOfLines = 0
+        self.textAlignment = alignment
+        self.size = size
+        var fontName = "Futura-Bold"
+        if font == .regular {
+            fontName = "Futura"
+        }
+        if let insets = insets {
+            self.insets = insets
+        }
+        self.font = UIFont.init(name: fontName, size: size)
+    }
+        
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

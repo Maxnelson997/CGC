@@ -20,16 +20,18 @@ class ThemeCell:UICollectionViewCell {
         didSet {
             guard let theme = theme else { return }
             icon.backgroundColor = theme.color
-        
-            let paragraph = NSMutableParagraphStyle()
-            paragraph.alignment = .center
-            themeTitle.attributedText = NSMutableAttributedString(string: theme.title, attributes: [NSAttributedStringKey.font:UIFont.init(name: "Futura-Bold", size: 16)!, NSAttributedStringKey.foregroundColor: theme.titleColor, NSAttributedStringKey.paragraphStyle: paragraph])
-            themeTitle.numberOfLines = 0
+            themeTitle.text = theme.title
+
         }
     }
     
-    let themeTitle:TitleLabel = {
-       return TitleLabel()
+    let themeTitle:UITextView = {
+        let tv =  UITextView()
+        tv.backgroundColor = .clear
+        tv.isUserInteractionEnabled = false
+        tv.isEditable = false
+        tv.font = UIFont.init(name: "Futura-Bold", size: 12)
+        return tv
     }()
     
     let icon:UIButton = {
@@ -50,7 +52,7 @@ class ThemeCell:UICollectionViewCell {
 //        themeTitle.anchor(top: topAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 0, paddingRight: 0, width: 0, height: 60)
         
         icon.anchor(top: topAnchor, left: leftAnchor, bottom: bottomAnchor, right: rightAnchor, paddingTop: 4, paddingLeft: 4, paddingBottom: 4, paddingRight: 4, width: 0, height: 0)
-        themeTitle.anchorEntireView(to: icon, withInsets: UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4))
+        themeTitle.anchorEntireView(to: self, withInsets: UIEdgeInsets(top: 4, left: 4, bottom: 0, right: 0))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -81,7 +83,7 @@ class ThemeController:UICollectionViewController {
         let themeSetOne = ThemeSet(
             title: "Classic",
             themes: [
-                Theme(title: "Gottem! Green", color: c[7], titleColor: .black),
+                Theme(title: "Git Commit Green", color: c[10], titleColor: .black),
                 Theme(title: "Bitchin Blue", color: c[8], titleColor: .white),
                 Theme(title: "Boring Billy", color: c[3], titleColor: .appleBlue),
             ]
@@ -101,11 +103,11 @@ class ThemeController:UICollectionViewController {
                 Theme(title: "Got Green", color: c[1], titleColor: .black),
                 Theme(title: "Radical Red", color: c[6], titleColor: .white),
                 Theme(title: "Poppin Purple", color: c[9], titleColor: .white),
-                Theme(title: "Git Commit Green", color: c[10], titleColor: .black)
+                Theme(title: "Gottem! Green", color: c[7], titleColor: .black),
             ]
         )
         let themeSetFour = ThemeSet(
-            title: "broski",
+            title: "bruh",
             themes: [
                 Theme(title: "Garbage Golden", color: c[11], titleColor: .white),
                 Theme(title: "Garbage Golden Reversed", color: c[11], titleColor: .black),
@@ -145,7 +147,7 @@ extension ThemeController: UICollectionViewDelegateFlowLayout {
         // sectionInset reference comment: layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
         // on width: -16 for left and right inset, -16 for space between cells equal to left & right insets
         // on height: + 40 for label height. this keeps the color a square
-        let width = collectionView.frame.width/3 - 32
+        let width = collectionView.frame.width/3.5 - 32
         let height = width + 0
         return CGSize(width: width, height: height)
     }
@@ -157,9 +159,12 @@ extension ThemeController: UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        appDelegate.setTheme(theme: themeSets[indexPath.section].themes[indexPath.item])
-        dismiss(animated: true, completion: nil)
+        let cell = collectionView.cellForItem(at: indexPath)
+        cell?.popAnimation {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.setTheme(theme: self.themeSets[indexPath.section].themes[indexPath.item])
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     //header

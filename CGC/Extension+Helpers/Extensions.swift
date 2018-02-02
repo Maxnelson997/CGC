@@ -100,6 +100,16 @@ extension UIView {
         }, completion: nil)
     }
     
+    
+    func popAnimation(completion: @escaping () -> ()) {
+        transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 1, options: .curveEaseIn, animations: {
+            self.transform = CGAffineTransform(scaleX: 1, y: 1)
+        }) { (true) in
+            completion()
+        }
+    }
+    
     func anchor(top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?, paddingTop: CGFloat, paddingLeft: CGFloat, paddingBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat) {
         translatesAutoresizingMaskIntoConstraints = false
         if let top = top {

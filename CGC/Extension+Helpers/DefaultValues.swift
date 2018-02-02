@@ -14,7 +14,7 @@ class DefaultValues {
     
     var icon = #imageLiteral(resourceName: "saturn")
     var semesterTitle = "Spring 18"
-    var themeColor:UIColor = .aplGreen
+    var themeColor:UIColor = .gitCommitGreen
     var themeTitleColor:UIColor = .black
     var themeWasChanged:Bool = false
     var colors:[UIColor] = [

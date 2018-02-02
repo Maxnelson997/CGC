@@ -28,6 +28,7 @@
 		79289643201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289642201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift */; };
 		79289645201FCA3A00BC22D3 /* DefaultValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289644201FCA3A00BC22D3 /* DefaultValues.swift */; };
 		79289647201FD91300BC22D3 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289646201FD91300BC22D3 /* CoreDataManager.swift */; };
+		792E27E72023DC0000CEFB16 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792E27E62023DC0000CEFB16 /* AboutController.swift */; };
 		795E8B3C2022811D006E891C /* QuickSuggestionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795E8B3B2022811D006E891C /* QuickSuggestionController.swift */; };
 		795E8B402022901C006E891C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 795E8B3F2022901C006E891C /* GoogleService-Info.plist */; };
 		7998F38E201BC960007D9C0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7998F38D201BC960007D9C0E /* AppDelegate.swift */; };
@@ -69,6 +70,7 @@
 		79289642201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AddClassController+UITextFieldDelegate.swift"; sourceTree = "<group>"; };
 		79289644201FCA3A00BC22D3 /* DefaultValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultValues.swift; sourceTree = "<group>"; };
 		79289646201FD91300BC22D3 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		792E27E62023DC0000CEFB16 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		795E8B3B2022811D006E891C /* QuickSuggestionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickSuggestionController.swift; sourceTree = "<group>"; };
 		795E8B3F2022901C006E891C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7998F38A201BC960007D9C0E /* CGC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CGC.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +134,7 @@
 				7998F3A6201BCC44007D9C0E /* SettingsController.swift */,
 				79D66DFE202155580072080E /* ThemeController.swift */,
 				795E8B3B2022811D006E891C /* QuickSuggestionController.swift */,
+				792E27E62023DC0000CEFB16 /* AboutController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				79289632201E9B8C00BC22D3 /* ClassesController.swift in Sources */,
 				7998F3A9201BCD50007D9C0E /* AAGradientView.swift in Sources */,
 				79289647201FD91300BC22D3 /* CoreDataManager.swift in Sources */,
+				792E27E72023DC0000CEFB16 /* AboutController.swift in Sources */,
 				79289641201EB47700BC22D3 /* AddClassController+ActionModel.swift in Sources */,
 				7928963A201E9C7300BC22D3 /* ClassCell.swift in Sources */,
 				79106E7E201D93BD003F9729 /* SelectIconController.swift in Sources */,
