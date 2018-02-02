@@ -75,20 +75,27 @@ class SelectIconController:UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //    AUDIO
+        //    ANIMALS
+        //    SPACE_ONE
+        //    SPACE_TWO
+        //    SPACE_THREE
+        //    EDU_SUBJECTS
+        //    EDU_DOPE
+        //    EDUCATION
+
         let i = DefaultValues.shared
  
         iconSets = [
-            IconSet(title: "Animals", icons: i.ANIMALS_PACK, count: i.ANIMALS_PACK.count),
             IconSet(title: "Occupation", icons:[#imageLiteral(resourceName: "welder"),#imageLiteral(resourceName: "gentleman"),#imageLiteral(resourceName: "builder-1"),#imageLiteral(resourceName: "swat"),#imageLiteral(resourceName: "soldier"),#imageLiteral(resourceName: "showman"),#imageLiteral(resourceName: "diver"),#imageLiteral(resourceName: "scientist"),#imageLiteral(resourceName: "boy-4"),#imageLiteral(resourceName: "dj"),#imageLiteral(resourceName: "croupier"),#imageLiteral(resourceName: "soldier-1"),#imageLiteral(resourceName: "captain")], count: 10),
-            IconSet(title: "Audiooooo", icons: i.AUDIO_PACK, count: i.AUDIO_PACK.count),
-            IconSet(title: "Education", icons: i.EDU_PACK, count: i.EDU_PACK.count),
-            IconSet(title: "Space", icons: i.SPACE_ONE_PACK, count: i.SPACE_ONE_PACK.count),
-            IconSet(title: "Space V2.0", icons: i.SPACE_THREE_PACK, count: i.SPACE_THREE_PACK.count),
-            IconSet(title: "Space V3.0", icons: i.SPACE_TWO_PACK, count: i.SPACE_TWO_PACK.count),
-            
-            
-            
-            
+            IconSet(title: "Audiooooo", icons: i.AUDIO, count: i.AUDIO.count),
+            IconSet(title: "Space AF", icons: i.SPACE_ONE, count: i.SPACE_ONE.count),
+            IconSet(title: "Space", icons: i.SPACE_TWO, count: i.SPACE_TWO.count),
+            IconSet(title: "Space Explorer", icons: i.SPACE_THREE, count: i.SPACE_THREE.count),
+            IconSet(title: "Scoo Subjects", icons: i.EDU_SUBJECTS, count: i.EDU_SUBJECTS.count),
+            IconSet(title: "Education", icons: i.EDUCATION, count: i.EDUCATION.count),
+            IconSet(title: "School Enthusiast ", icons: i.EDU_DOPE, count: i.EDU_DOPE.count),
+            IconSet(title: "Animals", icons: i.ANIMALS, count: i.ANIMALS.count)
         ]
         
         navigationItem.title = "Pick an icon"
