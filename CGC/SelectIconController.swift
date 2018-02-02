@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 class IconCell:UICollectionViewCell {
     
     let icon:UIButton = {
@@ -35,19 +36,19 @@ class IconCell:UICollectionViewCell {
 
 class IconHeader:UICollectionReusableView {
     
-    var text:String? {
+    var attributedText:NSAttributedString? {
         didSet {
-            guard let text = text else { return }
-            header.text = text
+            guard let attributedText = attributedText else { return }
+            header.attributedText = attributedText
         }
     }
     
-    private let header = TitleLabel(text: "string", size: 30, alignment: .left, insets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0))
+    private let header = InsetLabel(text: "string", size: 30, alignment: .left, font: .regular, insets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview(header)
-        header.anchorEntireView(to: self)
+        header.anchorEntireView(to: self, withInsets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,6 +60,7 @@ class IconHeader:UICollectionReusableView {
 struct IconSet {
     let title:String
     let icons:[UIImage]
+    let count:Int
 }
 
 class SelectIconController:UICollectionViewController {
@@ -73,13 +75,12 @@ class SelectIconController:UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let iconSetOne = IconSet(title: "Space", icons:[#imageLiteral(resourceName: "astronaut"),#imageLiteral(resourceName: "telescope"),#imageLiteral(resourceName: "robot"),#imageLiteral(resourceName: "ufo"),#imageLiteral(resourceName: "alien-1"),#imageLiteral(resourceName: "saturn"),#imageLiteral(resourceName: "shooting-star"),#imageLiteral(resourceName: "alien"),#imageLiteral(resourceName: "lander"),#imageLiteral(resourceName: "space-shuttle-1"),#imageLiteral(resourceName: "galaxy"),#imageLiteral(resourceName: "space-suit"),#imageLiteral(resourceName: "meteorites"),#imageLiteral(resourceName: "hubble-space-telescope"),#imageLiteral(resourceName: "rocket-ship-2"),#imageLiteral(resourceName: "nasa")])
-        let iconSetTwo = IconSet(title: "Occupation", icons:[#imageLiteral(resourceName: "welder"),#imageLiteral(resourceName: "gentleman"),#imageLiteral(resourceName: "builder-1"),#imageLiteral(resourceName: "swat"),#imageLiteral(resourceName: "soldier"),#imageLiteral(resourceName: "showman"),#imageLiteral(resourceName: "diver"),#imageLiteral(resourceName: "scientist"),#imageLiteral(resourceName: "boy-4"),#imageLiteral(resourceName: "dj"),#imageLiteral(resourceName: "croupier"),#imageLiteral(resourceName: "soldier-1"),#imageLiteral(resourceName: "captain")])
-        let iconSetThree = IconSet(title: "Tech", icons:[#imageLiteral(resourceName: "memory-card"),#imageLiteral(resourceName: "pendrive"),#imageLiteral(resourceName: "plug"),#imageLiteral(resourceName: "plug-1"),#imageLiteral(resourceName: "mouse"),#imageLiteral(resourceName: "joystick"),#imageLiteral(resourceName: "projector"),#imageLiteral(resourceName: "keyboard")])
-        let iconSetFour = IconSet(title: "The Almighty Dollar", icons:[#imageLiteral(resourceName: "planet-earth"),#imageLiteral(resourceName: "wallet-1"),#imageLiteral(resourceName: "money-1"),#imageLiteral(resourceName: "hand-shake"),#imageLiteral(resourceName: "calendar-2"),#imageLiteral(resourceName: "dollar"),#imageLiteral(resourceName: "wallet"),#imageLiteral(resourceName: "money")])
-
+        let i = DefaultValues.shared
+ 
         iconSets = [
-            iconSetOne, iconSetTwo, iconSetThree, iconSetFour
+            IconSet(title: "Animals", icons: i.ANIMALS_PACK, count: i.ANIMALS_PACK.count),
+            IconSet(title: "Occupation", icons:[#imageLiteral(resourceName: "welder"),#imageLiteral(resourceName: "gentleman"),#imageLiteral(resourceName: "builder-1"),#imageLiteral(resourceName: "swat"),#imageLiteral(resourceName: "soldier"),#imageLiteral(resourceName: "showman"),#imageLiteral(resourceName: "diver"),#imageLiteral(resourceName: "scientist"),#imageLiteral(resourceName: "boy-4"),#imageLiteral(resourceName: "dj"),#imageLiteral(resourceName: "croupier"),#imageLiteral(resourceName: "soldier-1"),#imageLiteral(resourceName: "captain")], count: 10),
+            IconSet(title: "Audiooooo", icons: i.AUDIO_PACK, count: i.AUDIO_PACK.count)
         ]
         
         navigationItem.title = "Pick an icon"
@@ -119,13 +120,16 @@ extension SelectIconController: UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! IconCell
         cell.icon.setImage(iconSets[indexPath.section].icons[indexPath.item], for: .normal)
+        
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! IconHeader
-            header.text = iconSets[indexPath.section].title
+            let attributedText = NSMutableAttributedString(string: iconSets[indexPath.section].title, attributes: [NSAttributedStringKey.font: UIFont.init(name: "Futura-Bold", size: 30)!, NSAttributedStringKey.foregroundColor: UIColor.black])
+            attributedText.append(NSAttributedString(string: "\n\(String(describing: iconSets[indexPath.section].count)) icons", attributes: [NSAttributedStringKey.font: UIFont.init(name: "Futura", size: 15)!]))
+            header.attributedText = attributedText
             return header
         }
         return UICollectionReusableView()

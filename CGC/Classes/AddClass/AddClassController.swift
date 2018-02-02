@@ -22,6 +22,7 @@ class AddClassController: UIViewController {
         return s
     }()
     
+    var iconSelected:Bool = false
     var delegate:AddClassDelegate?
     
     //components

@@ -14,6 +14,29 @@ struct Theme {
     var titleColor:UIColor
 }
 
+class ThemeHeader:UICollectionReusableView {
+    
+    var text:String? {
+        didSet {
+            guard let text = text else { return }
+            header.text = text
+        }
+    }
+    
+    private let header = TitleLabel(text: "string", size: 30, alignment: .left, insets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0))
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        addSubview(header)
+        header.anchorEntireView(to: self)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+}
+
+
 class ThemeCell:UICollectionViewCell {
     
     var theme:Theme? {
@@ -123,7 +146,7 @@ class ThemeController:UICollectionViewController {
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.register(ThemeCell.self, forCellWithReuseIdentifier: cellId)
-        collectionView?.register(IconHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
+        collectionView?.register(ThemeHeader.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: headerId)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -170,7 +193,7 @@ extension ThemeController: UICollectionViewDelegateFlowLayout {
     //header
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! IconHeader
+            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! ThemeHeader
             header.text = themeSets[indexPath.section].title
             return header
         }

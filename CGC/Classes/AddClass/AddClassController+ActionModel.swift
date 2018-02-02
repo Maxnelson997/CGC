@@ -54,6 +54,9 @@ extension AddClassController: SelectIconDelegate {
         guard let semester = semester else { return }
         guard let hoursDouble = Double(hour) else { return }
         //
+        if !iconSelected && !isEdit {
+            classImage = DefaultValues.shared.icon
+        }
         let newClassTuple = CoreDataManager.shared.createSemesterClass(title: title, icon: classImage, grade: grade, creditHours: hoursDouble, semester: semester)
         if let err = newClassTuple.1 {
             //tell dat user wtf is up.
@@ -67,6 +70,7 @@ extension AddClassController: SelectIconDelegate {
     }
     
     @objc func handleAddIcon() {
+        iconSelected = true
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
         let SIC = SelectIconController(collectionViewLayout: layout)

@@ -170,18 +170,18 @@ class SettingsController: UITableViewController {
     
     func setupData() {
         let firstOptions = [
-            Option(title: "Clear semesters", icon: #imageLiteral(resourceName: "saturn"), selector: #selector(clearSemesters)),
-            Option(title: "Clear classes", icon: #imageLiteral(resourceName: "telescope"), selector: #selector(clearClasses)),
+            Option(title: "Clear semesters", icon: #imageLiteral(resourceName: "crocodile"), selector: #selector(clearSemesters)),
+            Option(title: "Clear classes", icon: #imageLiteral(resourceName: "crocodile"), selector: #selector(clearClasses)),
         ]
         let secondOptions = [
 //            Option(title: "Set grade values", icon: #imageLiteral(resourceName: "shooting-star"), selector: #selector(defaultSelector)),
-            Option(title: "Theme", icon: #imageLiteral(resourceName: "alien"), selector: #selector(themeTapped)),
+            Option(title: "Theme", icon: #imageLiteral(resourceName: "crocodile"), selector: #selector(themeTapped)),
         ]
         let thirdOptions = [
-            Option(title: "Quick Suggestion", icon: #imageLiteral(resourceName: "alien-1"), selector: #selector(quickSuggestionTapped)),
-            Option(title: "Community", icon: #imageLiteral(resourceName: "ufo"), selector: #selector(instagramTapped)),
+            Option(title: "Quick Suggestion", icon: #imageLiteral(resourceName: "crocodile"), selector: #selector(quickSuggestionTapped)),
+            Option(title: "Community", icon: #imageLiteral(resourceName: "crocodile"), selector: #selector(instagramTapped)),
             Option(title: "About", icon: #imageLiteral(resourceName: "astronaut"), selector: #selector(aboutTapped)),
-            Option(title: "Developer website", icon: #imageLiteral(resourceName: "planet-earth"), selector: #selector(websiteTapped))
+            Option(title: "Developer website", icon: #imageLiteral(resourceName: "crocodile"), selector: #selector(websiteTapped))
         ]
         let firstSection = OptionSection(title: "Storage", options: firstOptions)
         let secondSection = OptionSection(title: "Customize", options: secondOptions)
