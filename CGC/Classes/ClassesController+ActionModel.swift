@@ -33,11 +33,19 @@ extension ClassesController {
     }
     
     @objc func handleAdd() {
-        let ACC = AddClassController()
-        ACC.delegate = self
-        ACC.semester = semester
-        let ACC_NAV = CustomNavController(rootViewController: ACC)
-        present(ACC_NAV, animated: true, completion: nil)
+        if classes.count >= 4 && DefaultValues.shared.isUserFreemium {
+            let layout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+            let UPC = UpgradeController(collectionViewLayout: layout)
+            let UPC_NAV = CustomNavController(rootViewController: UPC)
+            self.navigationController?.present(UPC_NAV, animated: true, completion: nil)
+        } else {
+            let ACC = AddClassController()
+            ACC.delegate = self
+            ACC.semester = semester
+            let ACC_NAV = CustomNavController(rootViewController: ACC)
+            present(ACC_NAV, animated: true, completion: nil)
+        }
     }
     
     @objc func handleDelete() {

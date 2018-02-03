@@ -48,21 +48,24 @@ class UpgradeController:UICollectionViewController {
     var cellId = "cellId"
     var headerId = "headerId"
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         navigationItem.title = "Upgrade"
         setupCancelButton()
         
         reasons = [
-            "Unlimited Semesters",
-            "Unlimited Classes",
-            "Unlimited Icons",
-            "Unlimited Themes",
+            "Unlimited Semesters - more than 2",
+            "Unlimited Classes - more than 4",
+            "Unlimited Icons - every icon",
+            "Unlimited Themes - every theme",
             "Tuition costs you thousands of dollars",
             "And yeah, the icons are pretty dope",
-            "Restore",
-            "Get"
+            "Get",
+            "Restore"
         ]
         
         collectionView?.delegate = self
@@ -73,7 +76,7 @@ class UpgradeController:UICollectionViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        PurchaseManager.instance.fetchProducts()
         collectionView?.backgroundColor = UIColor(rgb: 0xF3F3F3)
     }
 }
@@ -97,13 +100,13 @@ extension UpgradeController: UICollectionViewDelegateFlowLayout {
         cell.reason = reasons[indexPath.item]
 //        cell.backgroundColor = .clear
 //        cell.label.textColor = .black
-        if indexPath.item == reasons.count - 2 {
+        if indexPath.item == reasons.count - 1 {
             //restore
             cell.backgroundColor = DefaultValues.shared.themeColor
             cell.label.textColor = DefaultValues.shared.themeTitleColor
             cell.label.textAlignment = .center
-        } else if indexPath.item == reasons.count - 1 {
-            //purchase
+        } else if indexPath.item == reasons.count - 2 {
+            //get
             cell.backgroundColor = UIColor.appleBlue
             cell.label.textColor = UIColor.white
             cell.label.textAlignment = .center
@@ -127,14 +130,15 @@ extension UpgradeController: UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.item == reasons.count - 2 {
+        if indexPath.item == reasons.count - 1 {
             //restore
             restore()
-        } else if indexPath.item == reasons.count - 1 {
+        } else if indexPath.item == reasons.count - 2 {
             //purchase
             purchase()
         }
     }
+
     func checkPurchases() {
         if UserDefaults.standard.bool(forKey: PurchaseManager.instance.IAP_PURCHASE_DOPE_EDITION) {
             DefaultValues.shared.isUserFreemium = false
@@ -142,6 +146,7 @@ extension UpgradeController: UICollectionViewDelegateFlowLayout {
             DefaultValues.shared.isUserFreemium = true //TESTTHIS
         }
     }
+
     func restore() {
         print("trying to restore")
         let loading = NVActivityIndicatorView(frame: CGRect(x: view.frame.width/2 - 20, y: view.frame.height/2 - 20, width: 40, height: 40), type: .ballRotateChase, color: .white)

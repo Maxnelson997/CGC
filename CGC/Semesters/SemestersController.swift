@@ -90,9 +90,19 @@ class SemestersController: UITableViewController {
 
     }
 
+    func checkPurchases() {
+        if UserDefaults.standard.bool(forKey: PurchaseManager.instance.IAP_PURCHASE_DOPE_EDITION) {
+            DefaultValues.shared.isUserFreemium = false
+        } else {
+            DefaultValues.shared.isUserFreemium = false //TESTTHIS
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        checkPurchases()
+        
         let hasntLaunched = DefaultValues.CheckLaunch()
         if hasntLaunched {
             //choose an icon

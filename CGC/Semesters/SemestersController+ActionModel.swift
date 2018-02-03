@@ -31,10 +31,18 @@ extension SemestersController {
     }
 
     @objc func handleAdd() {
-        let ASC = AddSemesterController()
-        ASC.delegate = self
-        let ASC_NAV = CustomNavController(rootViewController: ASC)
-        present(ASC_NAV, animated: true, completion: nil)
+        if semesters.count >= 2 && DefaultValues.shared.isUserFreemium {
+            let layout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+            let UPC = UpgradeController(collectionViewLayout: layout)
+            let UPC_NAV = CustomNavController(rootViewController: UPC)
+            self.navigationController?.present(UPC_NAV, animated: true, completion: nil)
+        } else {
+            let ASC = AddSemesterController()
+            ASC.delegate = self
+            let ASC_NAV = CustomNavController(rootViewController: ASC)
+            present(ASC_NAV, animated: true, completion: nil)
+        }
     }
     
     @objc func handleDelete() {

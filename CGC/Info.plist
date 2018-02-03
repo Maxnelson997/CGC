@@ -8,47 +8,10 @@
 	<string>GPYay!</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleIdentifier</key>
-	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleIcons</key>
 	<dict>
 		<key>CFBundleAlternateIcons</key>
 		<dict>
-			<key>option7</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>option7</string>
-				</array>
-			</dict>
-			<key>option6</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>option6</string>
-				</array>
-			</dict>
-			<key>option5</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>option5</string>
-				</array>
-			</dict>
-			<key>option4</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>option4</string>
-				</array>
-			</dict>
-			<key>option3</key>
-			<dict>
-				<key>CFBundleIconFiles</key>
-				<array>
-					<string>option3</string>
-				</array>
-			</dict>
 			<key>option0</key>
 			<dict>
 				<key>CFBundleIconFiles</key>
@@ -70,6 +33,41 @@
 					<string>option2</string>
 				</array>
 			</dict>
+			<key>option3</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>option3</string>
+				</array>
+			</dict>
+			<key>option4</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>option4</string>
+				</array>
+			</dict>
+			<key>option5</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>option5</string>
+				</array>
+			</dict>
+			<key>option6</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>option6</string>
+				</array>
+			</dict>
+			<key>option7</key>
+			<dict>
+				<key>CFBundleIconFiles</key>
+				<array>
+					<string>option7</string>
+				</array>
+			</dict>
 		</dict>
 		<key>CFBundlePrimaryIcon</key>
 		<dict>
@@ -81,6 +79,8 @@
 			<false/>
 		</dict>
 	</dict>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -90,7 +90,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>4.0</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>instagram</string>

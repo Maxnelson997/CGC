@@ -45,12 +45,12 @@ class PurchaseManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
                 
             case .purchasing:
                 print("state is purchasing")
-                //                SKPaymentQueue.default().finishTransaction(transaction)
-                //                if transaction.payment.productIdentifier == IAP_REMOVE_ADS {
-                //                    transactionComplete?(true)
-                //                    UserDefaults.standard.set(true, forKey: IAP_REMOVE_ADS)
-                //                    GPModel.sharedInstance.userIsFreemium = false
-            //                }
+//                    SKPaymentQueue.default().finishTransaction(transaction)
+//                    if transaction.payment.productIdentifier == IAP_PURCHASE_DOPE_EDITION {
+//                        transactionComplete?(true)
+//                        UserDefaults.standard.set(true, forKey: IAP_PURCHASE_DOPE_EDITION)
+//                        DefaultValues.shared.isUserFreemium = false
+//                }
             default:
                 print("defcase: \n")
                 print(transaction.transactionState.rawValue)

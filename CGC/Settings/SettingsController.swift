@@ -196,13 +196,13 @@ class SettingsController: UITableViewController {
     func setupData() {
         let firstOptions = [
             Option(title: "Clear semesters", icon: #imageLiteral(resourceName: "a41"), selector: #selector(clearSemesters)),
-            Option(title: "Clear classes", icon: #imageLiteral(resourceName: "s46"), selector: #selector(clearClasses)),
+            Option(title: "Clear classes", icon: #imageLiteral(resourceName: "s11"), selector: #selector(clearClasses)),
         ]
         let secondOptions = [
 //            Option(title: "Set grade values", icon: #imageLiteral(resourceName: "shooting-star"), selector: #selector(defaultSelector)),
             Option(title: "Upgrade", icon:#imageLiteral(resourceName: "s50"), selector: #selector(upgradeTapped)),
             Option(title: "Theme", icon:#imageLiteral(resourceName: "s60"), selector: #selector(themeTapped)),
-            Option(title: "App Icon", icon:#imageLiteral(resourceName: "option2"), selector: #selector(changeIconTapped)),
+            Option(title: "App Icon", icon:#imageLiteral(resourceName: "f12"), selector: #selector(changeIconTapped)),
         ]
         let thirdOptions = [
             Option(title: "Quick Suggestion", icon: #imageLiteral(resourceName: "f13"), selector: #selector(quickSuggestionTapped)),
