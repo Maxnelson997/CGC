@@ -44,7 +44,7 @@ class ThemeCell:UICollectionViewCell {
             guard let theme = theme else { return }
             icon.backgroundColor = theme.color
             themeTitle.text = theme.title
-
+            themeTitle.textColor = theme.titleColor
         }
     }
     
@@ -104,7 +104,7 @@ class ThemeController:UICollectionViewController {
         let c = DefaultValues.shared.colors
         
         let themeSetOne = ThemeSet(
-            title: "Classic",
+            title: "Free AF",
             themes: [
                 Theme(title: "Git Commit Green", color: c[10], titleColor: .black),
                 Theme(title: "Bitchin Blue", color: c[8], titleColor: .white),
@@ -184,9 +184,17 @@ extension ThemeController: UICollectionViewDelegateFlowLayout {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let cell = collectionView.cellForItem(at: indexPath)
         cell?.popAnimation {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            appDelegate.setTheme(theme: self.themeSets[indexPath.section].themes[indexPath.item])
-            self.dismiss(animated: true, completion: nil)
+            if indexPath.section != 0 && DefaultValues.shared.isUserFreemium {
+                let layout = UICollectionViewFlowLayout()
+                layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+                let UPC = UpgradeController(collectionViewLayout: layout)
+                let UPC_NAV = CustomNavController(rootViewController: UPC)
+                self.navigationController?.present(UPC_NAV, animated: true, completion: nil)
+            } else {
+                let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                appDelegate.setTheme(theme: self.themeSets[indexPath.section].themes[indexPath.item])
+                self.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
