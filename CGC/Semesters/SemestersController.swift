@@ -75,6 +75,8 @@ class SemestersController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        
         c = DefaultValues.shared.themeColor
         footerView.subviews.first?.backgroundColor = c.withAlphaComponent(0.2)
         if !isEditingSemesterInfo {
@@ -90,7 +92,15 @@ class SemestersController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        let hasntLaunched = DefaultValues.CheckLaunch()
+        if hasntLaunched {
+            //choose an icon
+            let layout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+            let FLC = FirstLaunchController(collectionViewLayout: layout)
+            let FLC_NAV = CustomNavController(rootViewController: FLC)
+            present(FLC_NAV, animated: true, completion: nil)
+        }
         semesters = CoreDataManager.shared.fetchSemesters()
 //        calculateAllInfo()
         

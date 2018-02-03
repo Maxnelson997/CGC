@@ -28,19 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
-    func ResetLaunch() {
-        UserDefaults.standard.set(false, forKey: "launchedBefore")
-    }
-    
-    func CheckLaunch() -> Bool {
-        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
-        if launchedBefore  {
-            return false //has launched
-        }
-        UserDefaults.standard.set(true, forKey: "launchedBefore")
-        return true //hasn't launched, first launch.
-    }
-    
+
     func setUITabBarTheme() {
         let c = DefaultValues.shared.themeColor
         let ttc = DefaultValues.shared.themeTitleColor
@@ -70,16 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow()
         window?.makeKeyAndVisible()
         window?.rootViewController = tab
-        let hasntLaunched = CheckLaunch()
-        ResetLaunch()
-        if hasntLaunched {
-            //choose an icon
-            let layout = UICollectionViewFlowLayout()
-            layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
-            let FLC = FirstLaunchController(collectionViewLayout: layout)
-            let FLC_NAV = CustomNavController(rootViewController: FLC)
-            tab.present(FLC_NAV, animated: true, completion: nil)
-        }
+
         let backgroundGradient = AAGradientView(frame: UIScreen.main.bounds, colors: [.white, .white], locations: [-0.5, 1])
         window?.insertSubview(backgroundGradient, at: 0)
         //get theme

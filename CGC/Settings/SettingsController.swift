@@ -168,6 +168,14 @@ class SettingsController: UITableViewController {
         }
     }
     
+    @objc func changeIconTapped() {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+        let FLC = FirstLaunchController(collectionViewLayout: layout)
+        let FLC_NAV = CustomNavController(rootViewController: FLC)
+        present(FLC_NAV, animated: true, completion: nil)
+    }
+    
 //     #imageLiteral(resourceName: "s75") theme stars
 //    #imageLiteral(resourceName: "f15") pencil
     
@@ -181,6 +189,7 @@ class SettingsController: UITableViewController {
         let secondOptions = [
 //            Option(title: "Set grade values", icon: #imageLiteral(resourceName: "shooting-star"), selector: #selector(defaultSelector)),
             Option(title: "Theme", icon:#imageLiteral(resourceName: "s60"), selector: #selector(themeTapped)),
+            Option(title: "App Icon", icon:#imageLiteral(resourceName: "appstore"), selector: #selector(changeIconTapped)),
         ]
         let thirdOptions = [
             Option(title: "Quick Suggestion", icon: #imageLiteral(resourceName: "f13"), selector: #selector(quickSuggestionTapped)),

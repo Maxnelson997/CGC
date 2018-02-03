@@ -12,7 +12,7 @@ class DefaultValues {
     
     static let shared = DefaultValues()
     
-    var icon = #imageLiteral(resourceName: "GPYAYSmallIcon")
+    var icon = #imageLiteral(resourceName: "s50")
     var semesterTitle = "Spring 18"
     var themeColor:UIColor = .gitCommitGreen
     var themeTitleColor:UIColor = .black
@@ -32,6 +32,26 @@ class DefaultValues {
         .garbageGolden
     ]
     var theme:ThemeColor?
+    
+    //magic code right here
+    static func setAppIcon(name: String?) {
+        
+        guard UIApplication.shared.supportsAlternateIcons else {
+            return
+        }
+        
+        guard let name = name else {
+            // Reset to default
+            UIApplication.shared.setAlternateIconName(nil)
+            return
+        }
+        
+        UIApplication.shared.setAlternateIconName(name){ error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
     
 //    OLDAVATAR
 //    YOUNGAVATAR
@@ -149,6 +169,20 @@ class DefaultValues {
         }
         return arr
     }()
+    
+    static func ResetLaunch() {
+        UserDefaults.standard.set(false, forKey: "launchedBefore")
+    }
+    
+    static func CheckLaunch() -> Bool {
+        let launchedBefore = UserDefaults.standard.bool(forKey: "launchedBefore")
+        if launchedBefore  {
+            return false //has launched
+        }
+        UserDefaults.standard.set(true, forKey: "launchedBefore")
+        return true //hasn't launched, first launch.
+    }
+    
 
 
 }
