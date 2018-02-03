@@ -32,8 +32,31 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
 //        UITabBar.appearance().tintColor = UIColor.init(rgb: 0x00FFEB)
 //        tabBar.backgroundImage = getImageWithColor(color: .clear, size: CGSize(width: 100, height: 100))
         guard let items = tabBar.items else { return }
+        var amt:CGFloat = 16
+        if UIDevice.current.model == "iPad" {
+            amt = 0
+        }
+        
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 1136:
+                print("iPhone 5 or 5S or 5C")
+                amt = 4
+            case 1334:
+                print("iPhone 6/6S/7/8")
+                amt = 4
+            case 2208:
+                print("iPhone 6+/6S+/7+/8+")
+                amt = 10
+            case 2436:
+                print("iPhone X")
+                amt = 16
+            default:
+                print("unknown")
+            }
+        }
         for item in items {
-            item.imageInsets = UIEdgeInsets(top: 15, left: 0, bottom: -15, right: 0)
+            item.imageInsets = UIEdgeInsets(top: amt, left: 0, bottom: amt * -1, right: 0)
         }
     }
 }

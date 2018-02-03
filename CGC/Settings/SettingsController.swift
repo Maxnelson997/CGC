@@ -200,7 +200,7 @@ class SettingsController: UITableViewController {
         ]
         let secondOptions = [
 //            Option(title: "Set grade values", icon: #imageLiteral(resourceName: "shooting-star"), selector: #selector(defaultSelector)),
-            Option(title: "Upgrade", icon:#imageLiteral(resourceName: "s71"), selector: #selector(upgradeTapped)),
+            Option(title: "Upgrade", icon:#imageLiteral(resourceName: "s50"), selector: #selector(upgradeTapped)),
             Option(title: "Theme", icon:#imageLiteral(resourceName: "s60"), selector: #selector(themeTapped)),
             Option(title: "App Icon", icon:#imageLiteral(resourceName: "option2"), selector: #selector(changeIconTapped)),
         ]
@@ -247,7 +247,7 @@ extension SettingsController {
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = TitleLabel(text: options[section].title, size: 25, alignment: .left, insets: UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0))
-        header.backgroundColor = UIColor(white: 0.5, alpha: 0)
+        header.backgroundColor = UIColor(white: 1, alpha: 1)
         return header
     }
     

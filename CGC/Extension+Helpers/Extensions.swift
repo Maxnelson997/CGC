@@ -26,6 +26,9 @@ func getImageWithColor(color: UIColor, size: CGSize) -> UIImage {
 
 
 
+func delay(_ delay: Double, closure: @escaping ()->()) {
+    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
+}
 
 extension UIColor {
     open class var g1:UIColor { return UIColor.init(rgb: 0x498AC3 )}

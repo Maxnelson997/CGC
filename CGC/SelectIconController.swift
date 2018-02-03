@@ -164,9 +164,15 @@ extension SelectIconController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
+            var iconCountString = ""
+            if indexPath.section == 0 {
+                iconCountString = "\n\(String(describing: iconSets[indexPath.section].count)) icons - these icons are free"
+            } else {
+                iconCountString = "\n\(String(describing: iconSets[indexPath.section].count)) icons - requires Dope Edition"
+            }
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! IconHeader
             let attributedText = NSMutableAttributedString(string: iconSets[indexPath.section].title, attributes: [NSAttributedStringKey.font: UIFont.init(name: "Futura-Bold", size: 30)!, NSAttributedStringKey.foregroundColor: UIColor.black])
-            attributedText.append(NSAttributedString(string: "\n\(String(describing: iconSets[indexPath.section].count)) icons", attributes: [NSAttributedStringKey.font: UIFont.init(name: "Futura", size: 15)!]))
+            attributedText.append(NSAttributedString(string: iconCountString, attributes: [NSAttributedStringKey.font: UIFont.init(name: "Futura", size: 15)!]))
             header.attributedText = attributedText
             return header
         }
@@ -178,8 +184,18 @@ extension SelectIconController: UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        dismiss(animated: true) {
-             self.delegate?.chooseIcon(image: self.iconSets[indexPath.section].icons[indexPath.item])
+        if indexPath.section != 0 && DefaultValues.shared.isUserFreemium {
+            let layout = UICollectionViewFlowLayout()
+            layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+            let UPC = UpgradeController(collectionViewLayout: layout)
+            let UPC_NAV = CustomNavController(rootViewController: UPC)
+            navigationController?.present(UPC_NAV, animated: true, completion: nil)
+        } else {
+            dismiss(animated: true) {
+                //user has paid version
+                self.delegate?.chooseIcon(image: self.iconSets[indexPath.section].icons[indexPath.item])
+            }
         }
+
     }
 }

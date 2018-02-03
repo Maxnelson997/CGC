@@ -29,20 +29,21 @@ class ClassesController: UITableViewController {
         footerView.distribution = .fillEqually
         footerView.addArrangedSubview(deleteButton)
         footerView.addArrangedSubview(UIView())
-        footerView.addArrangedSubview(disableButton)
+        footerView.addArrangedSubview(UIView())
+//        footerView.addArrangedSubview(disableButton)
         footerView.alpha = 0
         return footerView
     }()
     
-    lazy var disableButton:UIButton = {
-        let b = UIButton()
-        b.backgroundColor = .clear
-        b.setTitle("disable", for: .normal)
-        b.setTitleColor(.appleBlue, for: .normal)
-        b.titleLabel?.font = UIFont.init(name: "Futura-Bold", size: 18)
-        b.addTarget(self, action: #selector(handleDisable), for: .touchUpInside)
-        return b
-    }()
+//    lazy var disableButton:UIButton = {
+//        let b = UIButton()
+//        b.backgroundColor = .clear
+//        b.setTitle("disable", for: .normal)
+//        b.setTitleColor(.appleBlue, for: .normal)
+//        b.titleLabel?.font = UIFont.init(name: "Futura-Bold", size: 18)
+//        b.addTarget(self, action: #selector(handleDisable), for: .touchUpInside)
+//        return b
+//    }()
     
     lazy var deleteButton:UIButton = {
         let b = UIButton()

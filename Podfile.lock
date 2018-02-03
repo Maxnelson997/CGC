@@ -26,10 +26,16 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
+  - NVActivityIndicatorView (4.1.0):
+    - NVActivityIndicatorView/Presenter (= 4.1.0)
+  - NVActivityIndicatorView/Presenter (4.1.0)
+  - PopupDialog (0.6.2)
 
 DEPENDENCIES:
   - Firebase/Core
   - Firebase/Database
+  - NVActivityIndicatorView
+  - PopupDialog (~> 0.6)
 
 SPEC CHECKSUMS:
   Firebase: dbfb98ccec2dcfcd21ab9cc1b4981a3f3c8c5e26
@@ -40,7 +46,9 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   leveldb-library: '08cba283675b7ed2d99629a4bc5fd052cd2bb6a5'
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  NVActivityIndicatorView: dc4726052dc24e89fa8576d43acf9e96f61d49db
+  PopupDialog: d4336d7274a6aa3af4cb26d8b6691510eba90cc3
 
-PODFILE CHECKSUM: 0a7ca1cb62adfeff638077b0c2ecdace1cae1667
+PODFILE CHECKSUM: f744af83c9eb2fbe3caf3879ab282a09b1ca07d2
 
 COCOAPODS: 1.2.1

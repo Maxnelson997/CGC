@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import NVActivityIndicatorView
+import StoreKit
+import PopupDialog
 
 class ReasonCell:UICollectionViewCell {
     var reason:String? {
@@ -29,8 +32,8 @@ class ReasonCell:UICollectionViewCell {
         addSubview(label)
         label.anchorEntireView(to: self, withInsets: UIEdgeInsetsMake(0, 4, 0, 0))
         layer.masksToBounds = true
-        layer.cornerRadius = 8
-        backgroundColor = UIColor.black.withAlphaComponent(0.8)
+        layer.cornerRadius = 10
+        backgroundColor = UIColor.black.withAlphaComponent(0.4)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -55,11 +58,11 @@ class UpgradeController:UICollectionViewController {
             "Unlimited Semesters",
             "Unlimited Classes",
             "Unlimited Icons",
+            "Unlimited Themes",
             "Tuition costs you thousands of dollars",
-            "A dollar here will help make sure those thousands are well spent",
-            "And yeah, the Icons are pretty dope",
-            "I already purchased this!",
-            "Yeah I want it all!"
+            "And yeah, the icons are pretty dope",
+            "Restore",
+            "Get"
         ]
         
         collectionView?.delegate = self
@@ -92,28 +95,31 @@ extension UpgradeController: UICollectionViewDelegateFlowLayout {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! ReasonCell
 
         cell.reason = reasons[indexPath.item]
+//        cell.backgroundColor = .clear
+//        cell.label.textColor = .black
         if indexPath.item == reasons.count - 2 {
             //restore
-            cell.backgroundColor = UIColor.orangeTheme
-            cell.label.textColor = UIColor.white
+            cell.backgroundColor = DefaultValues.shared.themeColor
+            cell.label.textColor = DefaultValues.shared.themeTitleColor
+            cell.label.textAlignment = .center
         } else if indexPath.item == reasons.count - 1 {
             //purchase
-            purchase()
             cell.backgroundColor = UIColor.appleBlue
             cell.label.textColor = UIColor.white
+            cell.label.textAlignment = .center
         }
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 100)
+        return CGSize(width: collectionView.frame.width, height: 110)
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionElementKindSectionHeader {
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: headerId, for: indexPath) as! IconHeader
             let attributedText = NSMutableAttributedString(string: "Dope Edition\n", attributes: [NSAttributedStringKey.font: UIFont.init(name: "Futura-Bold", size: 20)!, NSAttributedStringKey.foregroundColor: UIColor.black])
-            attributedText.append(NSAttributedString(string: "Tuition is thousands of dollars. If using the paid version of this app helps you manage and pass just one class you will have saved hundereds if not thousands of dollars. All for a dollar. Investment.", attributes: [NSAttributedStringKey.font: UIFont.init(name: "Futura", size: 12)!]))
+            attributedText.append(NSAttributedString(string: "Tuition is thousands of dollars. Could help you save thousands by helping you pass classes. for some pocket change. #investment.", attributes: [NSAttributedStringKey.font: UIFont.init(name: "Futura", size: 16)!]))
             header.attributedText = attributedText
             return header
         }
@@ -129,13 +135,62 @@ extension UpgradeController: UICollectionViewDelegateFlowLayout {
             purchase()
         }
     }
-    
+    func checkPurchases() {
+        if UserDefaults.standard.bool(forKey: PurchaseManager.instance.IAP_PURCHASE_DOPE_EDITION) {
+            DefaultValues.shared.isUserFreemium = false
+        } else {
+            DefaultValues.shared.isUserFreemium = true //TESTTHIS
+        }
+    }
     func restore() {
         print("trying to restore")
+        let loading = NVActivityIndicatorView(frame: CGRect(x: view.frame.width/2 - 20, y: view.frame.height/2 - 20, width: 40, height: 40), type: .ballRotateChase, color: .white)
+        view.addSubview(loading)
+        loading.startAnimating()
+        PurchaseManager.instance.restorePurchases { success in
+            loading.stopAnimating()
+            if success {
+                self.checkPurchases()
+                //dopness achieved
+                let pop = PopupDialog(title: "Dopeness Achieved", message: "Dope Edition successfuly restored.")
+                self.present(pop, animated: true, completion: nil)
+                delay(4, closure: {
+                    pop.dismiss()
+                })
+            } else {
+                let pop = PopupDialog(title: "Dopeness Not Achieved", message: "Something went wrong.")
+                self.present(pop, animated: true, completion: nil)
+                delay(4, closure: {
+                    pop.dismiss()
+                })
+            }
+        }
     }
     
     func purchase() {
         print("trying to purchase")
+
+        let loading = NVActivityIndicatorView(frame: CGRect(x: view.frame.width/2 - 20, y: view.frame.height/2 - 20, width: 40, height: 40), type: .ballRotateChase, color: .white)
+        view.addSubview(loading)
+        loading.startAnimating()
+        PurchaseManager.instance.purchaseDopeEdition { success in
+            //dismiss spinner
+            loading.stopAnimating()
+            var pop:PopupDialog!
+            if success {
+                //dopness achieved
+                pop = PopupDialog(title: "Dopeness Achieved", message: "Dope Edition successfuly purchased.")
+            } else {
+                pop = PopupDialog(title: "Dopeness Not Achieved", message: "Purchase Failed, try again.")
+                //tell user dopeness could not be achieved at this time #failed
+            }
+            self.present(pop, animated: true, completion: nil)
+            delay(4, closure: {
+                pop.dismiss()
+            })
+            
+        }
+        
     }
     
 

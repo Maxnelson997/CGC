@@ -14,7 +14,7 @@ class PurchaseManager: NSObject, SKProductsRequestDelegate, SKPaymentTransaction
     
     static let instance = PurchaseManager()
     
-    let IAP_PURCHASE_DOPE_EDITION = "MaxNelson.CollegeGPACalculator.dopeedition0"
+    let IAP_PURCHASE_DOPE_EDITION = "MaxNelson.CollegeGPACalculator.dopeedition1"
     
     var productsRequest: SKProductsRequest!
     var products = [SKProduct]()
