@@ -17,6 +17,7 @@ class DefaultValues {
     var themeColor:UIColor = .gitCommitGreen
     var themeTitleColor:UIColor = .black
     var themeWasChanged:Bool = false
+    var isUserFreemium:Bool = true
     var colors:[UIColor] = [
         .appleBlue,
         .aplGreen,
@@ -182,6 +183,8 @@ class DefaultValues {
         UserDefaults.standard.set(true, forKey: "launchedBefore")
         return true //hasn't launched, first launch.
     }
+    
+    
     
 
 

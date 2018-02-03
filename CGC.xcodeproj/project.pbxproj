@@ -27,6 +27,8 @@
 		7918DE5F2025260C0089815F /* option3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7918DE4E2025260B0089815F /* option3.png */; };
 		7918DE602025260C0089815F /* option4.png in Resources */ = {isa = PBXBuildFile; fileRef = 7918DE502025260B0089815F /* option4.png */; };
 		7918DE612025260C0089815F /* Contents.json in Resources */ = {isa = PBXBuildFile; fileRef = 7918DE512025260B0089815F /* Contents.json */; };
+		7918DE63202538AD0089815F /* PurchaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7918DE62202538AD0089815F /* PurchaseManager.swift */; };
+		7918DE65202539870089815F /* UpgradeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7918DE64202539870089815F /* UpgradeController.swift */; };
 		79289623201DFD9E00BC22D3 /* SemestersController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289622201DFD9E00BC22D3 /* SemestersController+UITableViewDelegate.swift */; };
 		79289625201DFE5800BC22D3 /* SemestersController+Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289624201DFE5800BC22D3 /* SemestersController+Protocol.swift */; };
 		79289627201DFE8200BC22D3 /* SemestersController+ActionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79289626201DFE8200BC22D3 /* SemestersController+ActionModel.swift */; };
@@ -86,6 +88,8 @@
 		7918DE4E2025260B0089815F /* option3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = option3.png; sourceTree = "<group>"; };
 		7918DE502025260B0089815F /* option4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = option4.png; sourceTree = "<group>"; };
 		7918DE512025260B0089815F /* Contents.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Contents.json; sourceTree = "<group>"; };
+		7918DE62202538AD0089815F /* PurchaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseManager.swift; sourceTree = "<group>"; };
+		7918DE64202539870089815F /* UpgradeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpgradeController.swift; sourceTree = "<group>"; };
 		79289622201DFD9E00BC22D3 /* SemestersController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemestersController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		79289624201DFE5800BC22D3 /* SemestersController+Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemestersController+Protocol.swift"; sourceTree = "<group>"; };
 		79289626201DFE8200BC22D3 /* SemestersController+ActionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SemestersController+ActionModel.swift"; sourceTree = "<group>"; };
@@ -169,6 +173,7 @@
 				79D66DFE202155580072080E /* ThemeController.swift */,
 				795E8B3B2022811D006E891C /* QuickSuggestionController.swift */,
 				792E27E62023DC0000CEFB16 /* AboutController.swift */,
+				7918DE64202539870089815F /* UpgradeController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				7998F394201BC960007D9C0E /* CGC.xcdatamodeld */,
 				79289646201FD91300BC22D3 /* CoreDataManager.swift */,
 				7918DE32202517E20089815F /* FirstLaunchController.swift */,
+				7918DE62202538AD0089815F /* PurchaseManager.swift */,
 			);
 			path = CGC;
 			sourceTree = "<group>";
@@ -502,8 +508,10 @@
 				7928963F201EB46700BC22D3 /* AddClassController+UIPickerViewDelegate.swift in Sources */,
 				7998F3AD201C0251007D9C0E /* SemesterCell.swift in Sources */,
 				7998F3AF201C10A8007D9C0E /* AddSemesterController.swift in Sources */,
+				7918DE65202539870089815F /* UpgradeController.swift in Sources */,
 				79D66DFF202155580072080E /* ThemeController.swift in Sources */,
 				79289643201EBB8800BC22D3 /* AddClassController+UITextFieldDelegate.swift in Sources */,
+				7918DE63202538AD0089815F /* PurchaseManager.swift in Sources */,
 				7928962B201DFF0700BC22D3 /* Semester.swift in Sources */,
 				79289632201E9B8C00BC22D3 /* ClassesController.swift in Sources */,
 				7998F3A9201BCD50007D9C0E /* AAGradientView.swift in Sources */,

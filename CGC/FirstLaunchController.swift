@@ -21,16 +21,11 @@ class FirstLaunchController:UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-    
-
         iconSets = [
             // avatars
-            IconSet(title: "This app is meant to be customizable. So choose an app icon you prefer. You'll only be asked this once.", icons: DefaultValues.shared.ICON_OPTIONS),
+            IconSet(title: "This app is meant to be customizable. So choose the app icon you prefer. You'll only be asked this once but can change it anytime in the settings tab.", icons: DefaultValues.shared.ICON_OPTIONS),
         ]
-        
-        navigationItem.title = "Getting Started"
-//        setupCancelButton()
-        
+
         collectionView?.delegate = self
         collectionView?.dataSource = self
         collectionView?.register(IconCell.self, forCellWithReuseIdentifier: cellId)

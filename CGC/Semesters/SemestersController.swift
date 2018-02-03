@@ -98,6 +98,7 @@ class SemestersController: UITableViewController {
             let layout = UICollectionViewFlowLayout()
             layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
             let FLC = FirstLaunchController(collectionViewLayout: layout)
+            FLC.navigationItem.title = "Getting Started"
             let FLC_NAV = CustomNavController(rootViewController: FLC)
             present(FLC_NAV, animated: true, completion: nil)
         }

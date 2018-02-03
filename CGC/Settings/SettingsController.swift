@@ -172,11 +172,23 @@ class SettingsController: UITableViewController {
         let layout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
         let FLC = FirstLaunchController(collectionViewLayout: layout)
+        FLC.setupCancelButton()
+        FLC.navigationItem.title = "App Icon"
         let FLC_NAV = CustomNavController(rootViewController: FLC)
-        present(FLC_NAV, animated: true, completion: nil)
+        present(FLC_NAV, animated: true) {
+
+        }
     }
     
-//     #imageLiteral(resourceName: "s75") theme stars
+    @objc func upgradeTapped() {
+        let layout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+        let UPC = UpgradeController(collectionViewLayout: layout)
+        let UPC_NAV = CustomNavController(rootViewController: UPC)
+        present(UPC_NAV, animated: true, completion: nil)
+    }
+    
+//    #imageLiteral(resourceName: "s75") theme stars
 //    #imageLiteral(resourceName: "f15") pencil
     
 //    #imageLiteral(resourceName: "e4") back to school
@@ -188,8 +200,9 @@ class SettingsController: UITableViewController {
         ]
         let secondOptions = [
 //            Option(title: "Set grade values", icon: #imageLiteral(resourceName: "shooting-star"), selector: #selector(defaultSelector)),
+            Option(title: "Upgrade", icon:#imageLiteral(resourceName: "s71"), selector: #selector(upgradeTapped)),
             Option(title: "Theme", icon:#imageLiteral(resourceName: "s60"), selector: #selector(themeTapped)),
-            Option(title: "App Icon", icon:#imageLiteral(resourceName: "appstore"), selector: #selector(changeIconTapped)),
+            Option(title: "App Icon", icon:#imageLiteral(resourceName: "option2"), selector: #selector(changeIconTapped)),
         ]
         let thirdOptions = [
             Option(title: "Quick Suggestion", icon: #imageLiteral(resourceName: "f13"), selector: #selector(quickSuggestionTapped)),
